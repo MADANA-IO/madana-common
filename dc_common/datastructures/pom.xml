@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Parent project -->
+    <parent>
+        <groupId>de.digiclothes.common</groupId>
+        <artifactId>dc-common</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <!-- This module -->
+    <artifactId>dc-common-datastructures</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <!-- Human-readable name -->
+    <name>DC Common Data Structures</name>
+
+    <build>
+        <plugins>
+            <!-- Compile Java sources -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <!-- Build a JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- Library for handling money and currencies -->
+        <dependency>
+            <groupId>org.joda</groupId>
+            <artifactId>joda-money</artifactId>
+            <version>0.12</version>
+        </dependency>
+        <!-- Database -->
+        <dependency>
+            <groupId>${dc.database.driver.groupId}</groupId>
+            <artifactId>${dc.database.driver.artifactId}</artifactId>
+            <version>${dc.database.driver.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

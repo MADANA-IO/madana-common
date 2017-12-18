@@ -1,0 +1,7 @@
+#Wed May 10 18:58:08 CEST 2017
+MaxPooledStatements=250
+user=digiclothes_java
+password=v5c!vjUBDa
+databaseDriver=com.mysql.jdbc.Driver
+databaseURL=jdbc:mysql://extranet.jfwenisch.com:8825/
+databaseName=digiclothes_warehouse
