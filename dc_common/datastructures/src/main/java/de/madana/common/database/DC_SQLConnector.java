@@ -65,7 +65,7 @@ public class DC_SQLConnector
 	 */
 	public static void execute(String strQuery) throws SQLException
 	{
-		Statement stmt = (Statement) connection.createStatement();
+		java.sql.Statement stmt =  connection.createStatement();
 		stmt.executeUpdate(strQuery);
 	}
 	/**
@@ -78,7 +78,7 @@ public class DC_SQLConnector
 	 */
 	public static ResultSet executeQuery(String strQuery) throws SQLException
 	{
-		Statement stmt = (Statement) connection.createStatement();
+		java.sql.Statement stmt =  connection.createStatement();
 		return stmt.executeQuery(strQuery);
 	}
 	/**
