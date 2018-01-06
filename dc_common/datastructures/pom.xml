@@ -40,6 +40,11 @@
             <artifactId>joda-money</artifactId>
             <version>0.12</version>
         </dependency>
+         <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk16</artifactId>
+            <version>1.45</version>
+        </dependency>
         <!-- Database -->
         <dependency>
             <groupId>${dc.database.driver.groupId}</groupId>
