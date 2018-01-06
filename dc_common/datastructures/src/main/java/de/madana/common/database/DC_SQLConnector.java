@@ -26,6 +26,7 @@ public class DC_SQLConnector
 	public static String DATABASE_DRIVER;
 	public static String DATABASE_NAME ;
 	public static String DATABASE_URL ;
+	public static String DATABASE_TOKENHASH;
 	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	protected static Connection connection;
 
@@ -55,6 +56,13 @@ public class DC_SQLConnector
 
 		}
 		return properties;
+	}
+	protected void saveProperties() throws IOException
+	{
+		oDatabaseConfig.setProperty("databaseDriver", DATABASE_DRIVER);
+		oDatabaseConfig.setProperty("databaseURL", DATABASE_URL);
+		oDatabaseConfig.setProperty("databaseHash", DATABASE_TOKENHASH);
+		oDatabaseConfig.saveProperties();
 	}
 	/**
 	 * Führt ein Query in der Datenbank durch
@@ -138,6 +146,7 @@ public class DC_SQLConnector
 		oDatabaseConfig = new DC_ConfigHandler("database");
 		DATABASE_DRIVER = oDatabaseConfig.getProperty("databaseDriver");
 		DATABASE_URL = oDatabaseConfig.getProperty("databaseURL");
+		DATABASE_TOKENHASH= oDatabaseConfig.getProperty("databaseHash");
 
 	}
 	/**
