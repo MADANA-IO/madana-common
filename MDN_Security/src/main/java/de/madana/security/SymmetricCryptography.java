@@ -44,12 +44,24 @@ public class SymmetricCryptography {
 		this.cipher.init(Cipher.ENCRYPT_MODE, this.secretKey);
 		this.writeToFile(f);
 	}
+	public byte[] encrypt(byte [] bytes) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException
+	{
+		this.cipher.init(Cipher.ENCRYPT_MODE, this.secretKey);
+		byte[] output = this.cipher.doFinal(bytes);
+		return output;
+	}
 
 	public void decryptFile(File f)
 			throws InvalidKeyException, IOException, IllegalBlockSizeException, BadPaddingException {
 		System.out.println("Decrypting file: " + f.getName());
 		this.cipher.init(Cipher.DECRYPT_MODE, this.secretKey);
 		this.writeToFile(f);
+	}
+	public byte[] decrypt(byte[] bytes) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException
+	{
+		this.cipher.init(Cipher.DECRYPT_MODE, this.secretKey);
+		byte[] output = this.cipher.doFinal(bytes);
+		return output;
 	}
 
 	public void writeToFile(File f) throws IOException, IllegalBlockSizeException, BadPaddingException {
