@@ -21,6 +21,11 @@
     <artifactId>commons-net</artifactId>
     <version>3.6</version>
 </dependency>
-  
+
+  	<dependency>
+  		<groupId>de.madana</groupId>
+  		<artifactId>MDN_Datastructures</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
 </project>

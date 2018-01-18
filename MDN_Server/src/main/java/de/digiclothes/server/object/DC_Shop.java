@@ -54,29 +54,29 @@ public class DC_Shop
 	}
 	public DC_Shop(String strLicense) throws Exception 
 	{
-		try
-		{
-			ResultSet oSet=oReferencedSQLTable.getEntries("SHOP_LICENSE", strLicense);
-			if(oSet.next())
-			{
-				strID = oSet.getString(1);
-				strName= oSet.getString(2);
-				strURL=oSet.getString(3);
-				strAddress=oSet.getString(4);
-				strPostCode=oSet.getString(5);
-				strPlace=oSet.getString(6);
-				strCountry=oSet.getString(7);
-				strLicense=oSet.getString(8);
-			}
-			else
-			{
-				throw new Exception ("Unbekannter Shop");
-			}
-		}
-		catch(Exception e)
-		{
-			throw new Exception ("Unbekannter Shop");
-		}
+//		try
+//		{
+//			ResultSet oSet=oReferencedSQLTable.getEntries("SHOP_LICENSE", strLicense);
+//			if(oSet.next())
+//			{
+//				strID = oSet.getString(1);
+//				strName= oSet.getString(2);
+//				strURL=oSet.getString(3);
+//				strAddress=oSet.getString(4);
+//				strPostCode=oSet.getString(5);
+//				strPlace=oSet.getString(6);
+//				strCountry=oSet.getString(7);
+//				strLicense=oSet.getString(8);
+//			}
+//			else
+//			{
+//				throw new Exception ("Unbekannter Shop");
+//			}
+//		}
+//		catch(Exception e)
+//		{
+//			throw new Exception ("Unbekannter Shop");
+//		}
 	}
 	public List<ConnectorDescription> registerInterfaces(String[] aInterfaceSequence) throws NoSuchAlgorithmException
 	{
