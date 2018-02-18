@@ -26,7 +26,7 @@ public class DC_SQLConnector
 	public static String DATABASE_DRIVER;
 	public static String DATABASE_NAME ;
 	public static String DATABASE_URL ;
-	public static String DATABASE_ENCRYPTIONHASH;
+	public static String DATABASE_INITIALIZED;
 	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	protected static Connection connection;
 
@@ -61,7 +61,7 @@ public class DC_SQLConnector
 	{
 		oDatabaseConfig.setProperty("databaseDriver", DATABASE_DRIVER);
 		oDatabaseConfig.setProperty("databaseURL", DATABASE_URL);
-		oDatabaseConfig.setProperty("databaseHash", DATABASE_ENCRYPTIONHASH);
+		oDatabaseConfig.setProperty("databaseInitialized", DATABASE_INITIALIZED);
 		oDatabaseConfig.saveProperties();
 	}
 	/**
@@ -146,7 +146,7 @@ public class DC_SQLConnector
 		oDatabaseConfig = new DC_ConfigHandler("database");
 		DATABASE_DRIVER = oDatabaseConfig.getProperty("databaseDriver");
 		DATABASE_URL = oDatabaseConfig.getProperty("databaseURL");
-		DATABASE_ENCRYPTIONHASH= oDatabaseConfig.getProperty("databaseHash");
+		DATABASE_INITIALIZED= oDatabaseConfig.getProperty("databaseInitialized");
 
 	}
 	/**
