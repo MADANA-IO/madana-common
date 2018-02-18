@@ -20,7 +20,7 @@ import de.madana.common.DC_ConfigHandler;
  * @since 01.04.2017
  *
  */
-public abstract class DC_SQLConnector 
+public class DC_SQLConnector 
 {
 	private static DC_ConfigHandler oDatabaseConfig ;
 	public static String DATABASE_DRIVER;
