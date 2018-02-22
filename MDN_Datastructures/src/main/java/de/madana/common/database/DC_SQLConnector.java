@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +87,7 @@ public class DC_SQLConnector
 	 */
 	public static ResultSet executeQuery(String strQuery) throws SQLException
 	{
-		java.sql.Statement stmt =  connection.createStatement();
+		Statement stmt=  connection.createStatement();
 		return stmt.executeQuery(strQuery);
 	}
 	/**
