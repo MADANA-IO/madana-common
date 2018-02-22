@@ -160,7 +160,8 @@ public class DC_SQLConnector
 	public List<String> getAllTables() throws SQLException
 	{
 		List<String> oTables = new ArrayList<String>();
-		ResultSet rs = executeQuery("SHOW TABLES FROM "+DATABASE_NAME);
+//		ResultSet rs = executeQuery("SHOW TABLES FROM "+DATABASE_NAME);
+		ResultSet rs = executeQuery("SHOW TABLES");
 		while(rs.next())
 			oTables.add(rs.getString(1));
 		return oTables;
