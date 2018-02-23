@@ -4,7 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
 
 public class MD_FileHandler 
 {
@@ -30,4 +32,31 @@ public class MD_FileHandler
         }
         return bos != null ? bos.toByteArray() : null;
     }
+    public static void copyFile(File in, File out) throws IOException { 
+        FileChannel inChannel = null; 
+        FileChannel outChannel = null; 
+        try { 
+            inChannel = new FileInputStream(in).getChannel(); 
+            outChannel = new FileOutputStream(out).getChannel(); 
+            inChannel.transferTo(0, inChannel.size(), outChannel); 
+        } catch (IOException e) { 
+            throw e; 
+        } finally { 
+            try { 
+                if (inChannel != null) 
+                    inChannel.close(); 
+                if (outChannel != null) 
+                    outChannel.close(); 
+            } catch (IOException e) {} 
+        } 
+    }
+    public static void writeToFile(String path, byte[] key) throws IOException {
+		File f = new File(path);
+		f.getParentFile().mkdirs();
+
+		FileOutputStream fos = new FileOutputStream(f);
+		fos.write(key);
+		fos.flush();
+		fos.close();
+	}
 }

@@ -17,21 +17,25 @@ public class MDN_User
 	DC_SQLTable tblDatakey;
 	String strPassword; //TODO: Change to char Array;
 	String strLogin;
+	String strDataKey;
 	public MDN_User(String strLogin, String strPassword )
 	{
-		tblUser = new DC_SQLTable("MDN_USER");
-		tblDatakey = new DC_SQLTable("MDN_DATAKEY");
+		tblUser = new DC_SQLTable("MDN_CRYPTFILE");
+		tblDatakey = new DC_SQLTable("MDN_DATAKEYS");
 		this.strPassword = strPassword;
 		this.strLogin= strLogin;
 	}
-
-	public void create() throws Exception
+	public String getDataKey()
+	{
+		return strDataKey;
+	}
+	public void create(String strRandomnizer) throws Exception
 	{
 		ArrayList <Object> oUserData = new ArrayList<Object> ();
 		oUserData.add(strLogin);
 		ArrayList <Object> oDatakeyData  = new ArrayList<Object> ();
 		oDatakeyData.add(String.valueOf(tblUser.getRowCount()+1));
-		String strDataKey = new MDN_RandomString().nextString();
+		strDataKey = strRandomnizer;
 
 		//Salts in DB speichern
 		byte[] bUserSalt= MDN_Password.generateSalt();
@@ -54,21 +58,22 @@ public class MDN_User
 		byte[] strCryptedDatakey = oCrypt1.encrypt(strDataKey.getBytes());
 		oDatakeyData.add(strCryptedDatakey);
 		System.out.println("DATAKEYENCRYPTED:" +strCryptedDatakey );
+		oUserData.add("TRUE");
 		tblUser.addEntry(oUserData);
 		tblDatakey.addEntry(oDatakeyData);
 	}
 
 	public void load()  throws Exception
 	{
-		String strUserID = tblUser.getID("LOGIN", strLogin);
-		byte[] bDataKeySalt = (byte[]) tblDatakey.getEntryByKey("USER", strUserID, "SALT");
+		String strUserID = tblUser.getID("IDENT", strLogin);
+		byte[] bDataKeySalt = (byte[]) tblDatakey.getEntryByKey("FK", strUserID, "SALT");
 		String strDataKeyEncryptionKey = MDN_Password.hash(strPassword, bDataKeySalt);
 		SymmetricCryptography oCrypt =new SymmetricCryptography(strDataKeyEncryptionKey, 16, "AES");
-		byte[] bEncryptedDataKey = (byte[]) tblDatakey.getEntryByKey("USER", strUserID, "DATA");; //verschlüsselten datakey aus Datenbank auslesen
-		String strDataKey = new String (oCrypt.decrypt(bEncryptedDataKey));
+		byte[] bEncryptedDataKey = (byte[]) tblDatakey.getEntryByKey("FK", strUserID, "PW");; //verschlüsselten datakey aus Datenbank auslesen
+		strDataKey = new String (oCrypt.decrypt(bEncryptedDataKey));
 
 		SymmetricCryptography oCrypt1 =new SymmetricCryptography(strDataKey, 16, "AES");
-		byte[] strCryptedUserPassword =(byte[]) tblUser.getEntryByKey("ID", strUserID, "HASH"); //verschlüsselten Passwordhash aus Datenbank lesen
+		byte[] strCryptedUserPassword =(byte[]) tblUser.getEntryByKey("ID", strUserID, "PW"); //verschlüsselten Passwordhash aus Datenbank lesen
 		byte [] strUnedcryptedUserPassword = oCrypt1.decrypt(strCryptedUserPassword);
 		String strPasswordHash =MDN_Password.hash(strPassword, (byte[]) tblUser.getEntryByKey("ID", strUserID, "SALT"));
 		if(strPasswordHash.equals(new String(strUnedcryptedUserPassword)))

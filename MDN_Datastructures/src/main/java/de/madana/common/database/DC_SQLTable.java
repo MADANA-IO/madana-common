@@ -2,6 +2,7 @@ package de.madana.common.database;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -124,7 +125,9 @@ public class DC_SQLTable
 		ResultSetMetaData rsmd=oSet.getMetaData();
 		if(rsmd.getColumnTypeName(oSet.findColumn(strColumn)).toUpperCase().equals("BLOB"))
 		{
-			return oSet.getBytes(oSet.findColumn(strColumn));
+			oSet.next();
+			Blob oBlob = oSet.getBlob(oSet.findColumn(strColumn));
+			return oBlob.getBytes(1L, (int)oBlob.length());
 		}
 		return oSet.getString(oSet.findColumn(strColumn));
 	}
