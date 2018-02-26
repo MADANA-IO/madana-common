@@ -35,6 +35,10 @@ public class GenerateKeys {
 	{
 		return this.publicKey;
 	}
+	public KeyPair getKeypair()
+	{
+		return this.getKeypair();
+	}
 
 	
 }

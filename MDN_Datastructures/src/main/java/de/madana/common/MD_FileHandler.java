@@ -1,10 +1,12 @@
 package de.madana.common;
 
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 
@@ -59,4 +61,25 @@ public class MD_FileHandler
 		fos.flush();
 		fos.close();
 	}
+    public static void writeToFile(String path, String text) throws IOException
+    {
+    	BufferedWriter writer = null;
+    	try
+    	{
+    	    writer = new BufferedWriter( new FileWriter( path));
+    	    writer.write( text);
+
+    	}
+    	finally
+    	{
+    	    try
+    	    {
+    	        if ( writer != null)
+    	        writer.close( );
+    	    }
+    	    catch ( IOException e)
+    	    {
+    	    }
+    	}
+    }
 }
