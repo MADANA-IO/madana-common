@@ -306,6 +306,13 @@ public class DC_SQLTable
 		scanner.close();
 
 	}
+	public void createTable(List <DC_SQLColumn> oColumns) throws SQLException
+	{
+		String strColumns="";
+		for(int i=0; i < oColumns.size();i++)
+			strColumns+=oColumns.get(i).getName()+ "varchar(255) ,";
+		DC_SQLConnector.execute("CREATE TABLE "+getName()+ "( "+strColumns+" )");
+	}
 	/**
 	 * Gibt den Namen der Tabelle zurück
 	 * @return
