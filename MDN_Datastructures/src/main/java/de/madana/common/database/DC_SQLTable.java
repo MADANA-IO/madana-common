@@ -102,6 +102,11 @@ public class DC_SQLTable
 	{
 		DC_SQLConnector.execute("DELETE FROM "+strName + " WHERE "+getColumnNames().get(0)+" = "+ string);
 	}
+	
+	public void changeEntry(String strID, String strColumn, String strValue) throws SQLException
+	{
+		DC_SQLConnector.execute("UPDATE "+ strName+ " SET "+ strColumn+"= '"+strValue+"' WHERE "+getColumnNames().get(0)+"="+strID );
+	}
 	/**
 	 * Gibt den zuerst gefunden Primärschlüssel aus der Tabelle zurück
 	 * @param strColumName - Spalte in der Tabelle
