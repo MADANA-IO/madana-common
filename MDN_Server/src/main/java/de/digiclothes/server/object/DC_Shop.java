@@ -85,9 +85,9 @@ public class DC_Shop
 		{
 			StringBuilder oBuilder = new StringBuilder();
 
-			oBuilder.append(DC_HashHandler.generateMD5Hash(UUID.randomUUID().toString()));
-			oBuilder.append(DC_HashHandler.generateMD5Hash(strID));
-			oBuilder.append(DC_HashHandler.generateMD5Hash(aInterfaceSequence[i]));
+			oBuilder.append(DC_HashHandler.generateHash(UUID.randomUUID().toString()));
+			oBuilder.append(DC_HashHandler.generateHash(strID));
+			oBuilder.append(DC_HashHandler.generateHash(aInterfaceSequence[i]));
 			ConnectorDescription oCurrentInterface = new ConnectorDescription(oBuilder.toString(), aInterfaceSequence[i]);
 			oInterfaces.add(oCurrentInterface);
 		}
@@ -115,13 +115,13 @@ public class DC_Shop
 	{
 		StringBuilder oBuilder = new StringBuilder();
 
-		oBuilder.append(DC_HashHandler.generateMD5Hash(UUID.randomUUID().toString()));
-		oBuilder.append(DC_HashHandler.generateMD5Hash(strName));
-		oBuilder.append(DC_HashHandler.generateMD5Hash(strURL));
-		oBuilder.append(DC_HashHandler.generateMD5Hash(strAddress));
-		oBuilder.append(DC_HashHandler.generateMD5Hash(strPostCode));
-		oBuilder.append(DC_HashHandler.generateMD5Hash(strPlace));
-		oBuilder.append(DC_HashHandler.generateMD5Hash(s_simpleDateFormat.format(new Date())));
+		oBuilder.append(DC_HashHandler.generateHash(UUID.randomUUID().toString()));
+		oBuilder.append(DC_HashHandler.generateHash(strName));
+		oBuilder.append(DC_HashHandler.generateHash(strURL));
+		oBuilder.append(DC_HashHandler.generateHash(strAddress));
+		oBuilder.append(DC_HashHandler.generateHash(strPostCode));
+		oBuilder.append(DC_HashHandler.generateHash(strPlace));
+		oBuilder.append(DC_HashHandler.generateHash(s_simpleDateFormat.format(new Date())));
 		strLicense = oBuilder.toString();
 
 	}

@@ -39,9 +39,9 @@ public class DC_HashHandler
 	       return result;
 	   }
 
-	public static String generateMD5Hash(String plaintext) throws NoSuchAlgorithmException
+	public static String generateHash(String plaintext) throws NoSuchAlgorithmException
 	{
-		MessageDigest m = MessageDigest.getInstance("MD5");
+		MessageDigest m = MessageDigest.getInstance("SHA-256");
 		m.reset();
 		m.update(plaintext.getBytes());
 		byte[] digest = m.digest();
