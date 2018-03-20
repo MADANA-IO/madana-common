@@ -59,6 +59,8 @@ public class MDN_User
 		oDatakeyData.add(strCryptedDatakey);
 		System.out.println("DATAKEYENCRYPTED:" +strCryptedDatakey );
 		oUserData.add("TRUE");
+		oUserData.add("1"); //CRYPTMODE
+		oUserData.add("TRUE"); // False
 		tblUser.addEntry(oUserData);
 		tblDatakey.addEntry(oDatakeyData);
 	}
