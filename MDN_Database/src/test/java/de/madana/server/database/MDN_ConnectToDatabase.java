@@ -11,6 +11,7 @@ public class MDN_ConnectToDatabase {
 		{
 			oConnector.connect(true);
 			System.out.println("Amount of Tables"+ oConnector.getAllTables().size());
+			
 		} catch (ClassNotFoundException e) 
 		{
 			// TODO Auto-generated catch block

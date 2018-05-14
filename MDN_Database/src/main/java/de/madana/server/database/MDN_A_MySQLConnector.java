@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public abstract class MDN_A_MySQLConnector extends MDN_A_SQLConnector
 {
@@ -49,6 +50,16 @@ public abstract class MDN_A_MySQLConnector extends MDN_A_SQLConnector
 			}
 		}
 		return connection;
+	}
+	
+	protected  Properties getProperties(boolean bLoadProperties) throws ClassNotFoundException
+	{
+		Properties oProperties = super.getProperties(bLoadProperties);
+		DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
+		Class.forName(DATABASE_DRIVER);
+		DATABASE_URL =	"jdbc:mysql://"+oProperties.getProperty("hostname")+":"+oProperties.getProperty("port")+"/"+oProperties.getProperty("dbname")+"?user="+oProperties.getProperty("user")+"&password="+oProperties.getProperty("password");
+		
+		return oProperties;
 	}
 
 }
