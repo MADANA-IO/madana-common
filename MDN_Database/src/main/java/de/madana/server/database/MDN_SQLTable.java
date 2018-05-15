@@ -134,6 +134,7 @@ public class MDN_SQLTable
 			Blob oBlob = oSet.getBlob(oSet.findColumn(strColumn));
 			return oBlob.getBytes(1L, (int)oBlob.length());
 		}
+		oSet.next();
 		return oSet.getString(oSet.findColumn(strColumn));
 	}
 	/**
