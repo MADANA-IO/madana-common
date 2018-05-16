@@ -1,0 +1,27 @@
+CREATE TABLE MDN_USERS( 
+   id INT NOT NULL, 
+   ident varchar(255) NOT NULL, 
+   salt BLOB NOT NULL, 
+   pw BLOB NOT NULL,
+  PRIMARY KEY (id)
+);
+CREATE TABLE MDN_USERPROPERTIES( 
+   id INT NOT NULL, 
+  fk INT NOT NULL,
+   firstname varchar(100) , 
+   lastname varchar(100),
+   mail varchar(100),
+  PRIMARY KEY (id),
+  FOREIGN KEY (fk) REFERENCES MDN_USERS(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE MDN_DATAKEYS( 
+   id INT NOT NULL, 
+   fk INT NOT NULL, 
+salt BLOB NOT NULL, 
+   pw BLOB NOT NULL, 
+  PRIMARY KEY (id),
+  FOREIGN KEY (fk) REFERENCES MDN_USERS(id) ON DELETE CASCADE
+
+);
