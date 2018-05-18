@@ -12,7 +12,7 @@ import java.util.UUID;
 import de.digiclothes.server.ifc.ConnectorDescription;
 import de.digiclothes.server.socketimpl.DC_ClientHandler;
 import de.madana.common.database.DC_SQLTable;
-import de.madana.common.security.DC_HashHandler;
+import de.madana.security.DC_HashHandler;
 /**
  * 
  * @author Jean

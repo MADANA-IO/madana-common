@@ -14,7 +14,7 @@ import de.digiclothes.server.DC_ServerSessionManager;
 import de.digiclothes.server.ifc.ConnectorCommunicationService;
 import de.digiclothes.server.ifc.ConnectorDescription;
 import de.digiclothes.server.object.DC_Shop;
-import de.madana.common.DC_A_SocketCommunication;
+import de.madana.common.utils.DC_A_SocketCommunication;
 
 
 /**

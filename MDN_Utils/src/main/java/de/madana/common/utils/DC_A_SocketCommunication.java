@@ -1,4 +1,4 @@
-package de.madana.common;
+package de.madana.common.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

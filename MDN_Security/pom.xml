@@ -51,4 +51,10 @@
 		</plugins>
 
 	</build>
+	<parent>
+		<groupId>de.madana</groupId>
+		<artifactId>MADANA</artifactId>
+		<version>0.0.1</version>
+		<relativePath>../MADANA</relativePath>
+	</parent>
 </project>

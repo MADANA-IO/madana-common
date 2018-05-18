@@ -1,4 +1,4 @@
-package de.madana.common.security;
+package de.madana.security;
 
 import java.io.FileInputStream;
 import java.io.InputStream;

@@ -1,12 +1,5 @@
 package de.digiclothes.server.ifc;
 
-
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-
 /**
  * Communication of the Server with the Connectors
  *

@@ -8,10 +8,10 @@
         <groupId>de.madana</groupId>
         <artifactId>MADANA</artifactId>
         <version>0.0.1</version>
+        <relativePath>../MADANA</relativePath>
 	</parent>
 
 	<!-- This Module -->
-	<groupId>de.madana</groupId>
 	<artifactId>MDN_Server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -57,11 +57,7 @@
 	<version>LATEST</version>
 </dependency>
 		  <!-- Apache HTTP-->
-		<dependency>
-  <groupId>org.apache.httpcomponents</groupId>
-  <artifactId>httpclient</artifactId>
-  <version>4.5.3</version>
-</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
@@ -83,6 +79,11 @@
 		<dependency>
 			<groupId>de.madana</groupId>
 			<artifactId>MDN_Datastructures</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>de.madana.common</groupId>
+			<artifactId>utils</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
