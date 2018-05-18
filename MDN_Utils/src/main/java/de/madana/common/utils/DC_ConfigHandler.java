@@ -80,7 +80,7 @@ public class DC_ConfigHandler
 		File fRootDir = new File ("./conf/");
 		File[] fConfigFiles = fRootDir.listFiles(new FilenameFilter() 
 		{
-			@Override
+		
 			public boolean accept(File dir, String name) 
 			{
 				return name.toLowerCase().endsWith(".dcconf");

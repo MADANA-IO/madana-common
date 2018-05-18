@@ -30,7 +30,6 @@ public class MD_KeyHandler
 		File fRootDir = new File ("./keys/");
 		File[] fConfigFiles = fRootDir.listFiles(new FilenameFilter() 
 		{
-			@Override
 			public boolean accept(File dir, String name) 
 			{
 				return name.toLowerCase().endsWith(".key");
