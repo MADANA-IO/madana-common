@@ -16,7 +16,7 @@ public class MDN_Password {
     private static final int iterations = 20*1000;
     private static final int saltLen = 32;
     private static final int desiredKeyLen = 256;
-    private static String salt;
+
     
     public static byte[] generateSalt() throws NoSuchAlgorithmException
     {
@@ -30,7 +30,6 @@ public class MDN_Password {
         Empty passwords are not supported. */
     public String getSaltedHash(String password) throws Exception {
         byte[] salt = SecureRandom.getInstance("SHA1PRNG").generateSeed(saltLen);
-        this.salt= new String(salt);
       
         // store the salt with the password
         return Base64.encodeBase64String(salt) + "$" + hash(password, salt);
