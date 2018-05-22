@@ -1,13 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>MDN_Security</artifactId>
-	<name>MDN_Security</name>
+	<artifactId>madana-security</artifactId>
+	<name>madana-security</name>
 	<groupId>de.madana.common</groupId>
 	<packaging>jar</packaging>
-	<version>0.0.1-SNAPSHOT</version>
 	<description>Project including all used Security features for all Applications</description>
-	<dependencies>
+	  <properties>
+    <java.version>1.8</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+  <dependencies>
 		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
@@ -53,8 +57,8 @@
 	</build>
 	<parent>
 		<groupId>de.madana</groupId>
-		<artifactId>MADANA</artifactId>
-		<version>0.0.1</version>
-		<relativePath>../MADANA</relativePath>
+		<artifactId>common</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../MDN_Common</relativePath>
 	</parent>
 </project>

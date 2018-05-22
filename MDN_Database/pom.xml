@@ -2,11 +2,15 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>de.madana.server</groupId>
-  <artifactId>database</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-
-  <name>MADANA DatabaseService</name>
+  <groupId>de.madana.common</groupId>
+  <artifactId>madana-database</artifactId>
+  <name>madana-database</name>
+  	<parent>
+  		<groupId>de.madana</groupId>
+  		<version>0.0.1-SNAPSHOT</version>
+  		<relativePath>../MDN_Common</relativePath>
+  		<artifactId>common</artifactId>
+  	</parent>
   <url>http://maven.apache.org</url>
 
 	<properties>
@@ -46,10 +50,5 @@
 		</plugins>
 
 	</build>
-  	<parent>
-  		<groupId>de.madana</groupId>
-  		<artifactId>MADANA</artifactId>
-  		<version>0.0.1</version>
-  		<relativePath>../MADANA</relativePath>
-  	</parent>
+  
 </project>

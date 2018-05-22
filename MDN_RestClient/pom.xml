@@ -3,16 +3,18 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.madana.common</groupId>
-	<artifactId>restclient</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>madana-restclient</artifactId>
+	<name>madana-restclient</name>
 	<packaging>jar</packaging>
 
-	<name>restclient</name>
+	
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+    <java.version>1.8</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
 
 	<dependencies>
 		<dependency>
@@ -47,4 +49,10 @@
 			<version>2.15</version>
 		</dependency>
 	</dependencies>
+	<parent>
+		<groupId>de.madana</groupId>
+		<artifactId>common</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../MDN_Common</relativePath>
+	</parent>
 </project>
