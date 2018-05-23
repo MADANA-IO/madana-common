@@ -6,6 +6,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Feature;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.glassfish.jersey.client.oauth2.OAuth2ClientSupport;
 
@@ -22,23 +23,20 @@ public class MDN_RestClient
 	static Client client = ClientBuilder.newClient();
 
 
-	public String logon(String strUserName, String strPassword)
+	public boolean logon(String strUserName, String strPassword) throws Exception
 	{
 		MDN_UserCredentials oCredentials = new MDN_UserCredentials();
 		oCredentials.setPassword(strPassword);
 		oCredentials.setUsername(strUserName);
-		Response oResponse = client.target(MDN_RestClient.REST_URI).path("authentication").request(MediaType.APPLICATION_JSON).post(Entity.entity(oCredentials, MediaType.APPLICATION_JSON));
-
-		return registerToken(oResponse);
+		registerToken(oCredentials);
+		return true;
 	}
-	public String logon(MDN_UserCredentials oCredentials)
+
+	private String registerToken(MDN_UserCredentials oCredentials ) throws Exception
 	{
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("authentication").request(MediaType.APPLICATION_JSON).post(Entity.entity(oCredentials, MediaType.APPLICATION_JSON));
-
-		return registerToken(oResponse);
-	}
-	private String registerToken(Response oResponse )
-	{
+		if( Response.Status.OK.getStatusCode()!=oResponse.getStatus())
+			throw new Exception("Wrong username / password");
 		String strToken = oResponse.readEntity(String.class);
 		Feature feature = OAuth2ClientSupport.feature(strToken);
 		client.register(feature);
