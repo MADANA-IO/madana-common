@@ -72,7 +72,7 @@ public class MDN_User
 	 * @return the credentials as object
 	 * @author J.-Fabian Wenisch
 	 */
-	public MDN_UserCredentials getCredendials()
+	public MDN_UserCredentials getCredentials()
 	{
 		return credentials;
 	}
