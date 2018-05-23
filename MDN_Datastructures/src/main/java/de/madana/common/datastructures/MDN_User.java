@@ -7,30 +7,12 @@ package de.madana.common.datastructures;
  */
 public class MDN_User 
 {
-	private String id;
 	private String firstName ="";
 	private String lastName="";
 	private String mail="";
 	private MDN_UserCredentials credentials;
 	
-	/**
-	 * 
-	 * @return the userid as string
-	 * @author J.-Fabian Wenisch
-	 */
-	public String getId() 
-	{
-		return id;
-	}
-	/**
-	 * 
-	 * @param id sets the provided id as string
-	 * @author J.-Fabian Wenisch
-	 */
-	public void setId(String id) 
-	{
-		this.id = id;
-	}
+
 	/**
 	 * 
 	 * @return the firstName as string
