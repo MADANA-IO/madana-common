@@ -48,13 +48,22 @@ public class MDN_RestClient
 		return MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("users").path(strUserName).request(MediaType.APPLICATION_JSON).get(MDN_User.class);
 	}
 
-	public  MDN_User createUser(MDN_User oUser)
+	public boolean createUser(String strUserName, String strPassword, String strMail) throws Exception
+	{
+		MDN_User oUser = new MDN_User();
+				oUser.setMail(strMail);
+		MDN_UserCredentials oCredentials = new MDN_UserCredentials();
+		oCredentials.setPassword(strPassword);
+		oCredentials.setUsername(strUserName);
+		oUser.setCredentials(oCredentials);
+		createUser(oUser);
+		return true;
+	}
+	private  MDN_User createUser(MDN_User oUser) throws Exception
 	{
 		Response response =MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("users").request(MediaType.APPLICATION_JSON).post(Entity.entity(oUser, MediaType.APPLICATION_JSON));
 		if(Response.Status.OK.getStatusCode()!=response.getStatus())
-		{
-
-		}
+			throw new Exception("Creation failed");
 		return oUser;
 	}
 	public  void deleteUser(String strUserName)

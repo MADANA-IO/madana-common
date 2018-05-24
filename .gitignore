@@ -1,3 +1,8 @@
 .metadata
 /.recommenders
 /MDN_RestService/src/main/webapp/apidocs
+/MDN_Common/bin
+/MDN_WebClient/target
+/Servers
+/MDN_RestService/src/main/webapp/ui
+/MDN_RestService/src/main/webapp
