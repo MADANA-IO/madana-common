@@ -42,8 +42,7 @@ public class MDN_SQLTable
 		for(int i=0; i < oValues.size();i++)
 			strValues+="'"+oValues.get(i)+"',";
 		strValues= strValues.substring(0, strValues.length()-1);
-		int iIdent= (int) (getRowCount()+1);
-		MDN_SQLConnector.execute("INSERT INTO "+strName+" VALUES ("+iIdent+","+strValues+");" );
+		MDN_SQLConnector.execute("INSERT INTO "+strName+" VALUES ("+strValues+");" );
 	}
 	/**
 	 * Fügt einen neuen Datensatz in die Tabelle ein, der Primary Key wird unter Nutzung von getCount() automatisch gesetzt
@@ -56,12 +55,12 @@ public class MDN_SQLTable
 	{
 		List <String> oColumnNames = getColumnNames();
 		String strColumNames="";
-		for(int i=0; i < oColumnNames.size(); i++)
+		for(int i=1; i < oColumnNames.size(); i++)
 		{
 			strColumNames+=oColumnNames.get(i)+", ";
 		}
 		strColumNames=strColumNames.substring(0, strColumNames.length()-2);
-		String strValues=String.valueOf(getRowCount()+1)+", ";
+		String strValues="";
 		for(int i=0; i < oValues.size();i++)
 		{
 				strValues+="?, ";
@@ -89,7 +88,6 @@ public class MDN_SQLTable
 		{
 			System.out.println("Blob Stored in Database");
 		}
-
 	}
 	/**
 	 * Löscht den Eintrag mit der ID aus der Tablle
