@@ -42,6 +42,8 @@ public abstract class MDN_A_MySQLConnector extends MDN_A_SQLConnector
 			{
 				getProperties(bLoadProperties);
 				connection = DriverManager.getConnection(DATABASE_URL);
+				MDN_SQLConnector.execute("SET SESSION wait_timeout=604800");
+				MDN_SQLConnector.execute("SET SESSION interactive_timeout=604800");
 			} 
 			catch ( SQLException e) 
 			{
@@ -58,7 +60,6 @@ public abstract class MDN_A_MySQLConnector extends MDN_A_SQLConnector
 		DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
 		Class.forName(DATABASE_DRIVER);
 		DATABASE_URL =	"jdbc:mysql://"+oProperties.getProperty("hostname")+":"+oProperties.getProperty("port")+"/"+oProperties.getProperty("dbname")+"?user="+oProperties.getProperty("user")+"&password="+oProperties.getProperty("password")+"&autoReconnect=true";
-		
 		return oProperties;
 	}
 
