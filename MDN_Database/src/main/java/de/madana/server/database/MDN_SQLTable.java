@@ -76,6 +76,11 @@ public class MDN_SQLTable
 				oStatement.setBytes(i+1, (byte[]) oValues.get(i));
 			
 			}
+			else if(oValues.get(i) instanceof java.sql.Timestamp)
+			{
+				oStatement.setTimestamp(i+1, ( java.sql.Timestamp) oValues.get(i));
+			
+			}
 			else //if(oValues.get(i) instanceof String)
 			{
 				oStatement.setString(i+1,  (String) oValues.get(i));
