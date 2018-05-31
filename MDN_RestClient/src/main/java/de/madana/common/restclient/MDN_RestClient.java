@@ -6,10 +6,10 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Feature;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import org.glassfish.jersey.client.oauth2.OAuth2ClientSupport;
 
+import de.madana.common.datastructures.MDN_Token;
 import de.madana.common.datastructures.MDN_User;
 import de.madana.common.datastructures.MDN_UserCredentials;
 
@@ -19,10 +19,13 @@ import de.madana.common.datastructures.MDN_UserCredentials;
  */
 public class MDN_RestClient 
 {
-	static final String REST_URI  = "https://extranet.madana.io/rest/";
+	static String REST_URI  = "https://extranet.madana.io/rest/";
 	static Client client = ClientBuilder.newClient();
 
-
+	MDN_RestClient(String strUrl)
+	{
+		REST_URI= strUrl;
+	}
 	public boolean logon(String strUserName, String strPassword) throws Exception
 	{
 		MDN_UserCredentials oCredentials = new MDN_UserCredentials();
@@ -37,11 +40,11 @@ public class MDN_RestClient
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("authentication").request(MediaType.APPLICATION_JSON).post(Entity.entity(oCredentials, MediaType.APPLICATION_JSON));
 		if( Response.Status.OK.getStatusCode()!=oResponse.getStatus())
 			throw new Exception("Wrong username / password");
-		String strToken = oResponse.readEntity(String.class);
-		Feature feature = OAuth2ClientSupport.feature(strToken);
+		MDN_Token oToken = oResponse.readEntity(MDN_Token.class);
+		Feature feature = OAuth2ClientSupport.feature(oToken.getToken());
 		client.register(feature);
 
-		return strToken;
+		return oToken.getToken();
 	}
 	public  MDN_User getUser(String strUserName)
 	{
