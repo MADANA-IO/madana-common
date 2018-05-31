@@ -63,23 +63,23 @@ public class MDN_SQLTable
 		String strValues="";
 		for(int i=0; i < oValues.size();i++)
 		{
-				strValues+="?, ";
+			strValues+="?, ";
 		}
 		strValues= strValues.substring(0, strValues.length()-2);
 		PreparedStatement oStatement = MDN_SQLConnector.connection.prepareStatement("INSERT INTO "+strName+" ("+strColumNames+")VALUES ("+strValues+")");
-		
+
 
 		for(int i=0; i < oValues.size();i++)
 		{
 			if(oValues.get(i) instanceof byte[])
 			{
 				oStatement.setBytes(i+1, (byte[]) oValues.get(i));
-			
+
 			}
 			else if(oValues.get(i) instanceof java.sql.Timestamp)
 			{
 				oStatement.setTimestamp(i+1, ( java.sql.Timestamp) oValues.get(i));
-			
+
 			}
 			else //if(oValues.get(i) instanceof String)
 			{
@@ -105,10 +105,22 @@ public class MDN_SQLTable
 	{
 		MDN_SQLConnector.execute("DELETE FROM "+strName + " WHERE "+getColumnNames().get(0)+" = "+ string);
 	}
-	
+
 	public void changeEntry(String strID, String strColumn, String strValue) throws SQLException
 	{
 		MDN_SQLConnector.execute("UPDATE "+ strName+ " SET "+ strColumn+"= '"+strValue+"' WHERE "+getColumnNames().get(0)+"="+strID );
+	}
+	public void changeEntry(String strUserID, String strColumn, byte[] bBytes) throws SQLException 
+	{
+		PreparedStatement oStatement = MDN_SQLConnector.connection.prepareStatement("UPDATE "+strName+" set "+strColumn+" =? where id ="+strUserID);
+		oStatement.setBytes(1, bBytes);
+		oStatement.executeUpdate();
+		int s = oStatement.executeUpdate();
+		if (s > 0)
+		{
+			System.out.println("Blob Stored in Database");
+		}
+
 	}
 	/**
 	 * Gibt den zuerst gefunden Primärschlüssel aus der Tabelle zurück
