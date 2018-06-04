@@ -23,9 +23,13 @@ public class MDN_RestClient
 	static String REST_URI  = "https://extranet.madana.io/rest/";
 	static Client client = ClientBuilder.newClient();
 
-	MDN_RestClient(String strUrl)
+	public MDN_RestClient(String strUrl)
 	{
 		REST_URI= strUrl;
+	}
+	public MDN_RestClient()
+	{
+
 	}
 	public boolean logon(String strUserName, String strPassword) throws Exception
 	{
@@ -38,11 +42,11 @@ public class MDN_RestClient
 	public boolean requestNewPassword(MDN_MailAddress oMail) throws Exception
 	{
 
-			Response oResponse = client.target(MDN_RestClient.REST_URI).path("password").request(MediaType.APPLICATION_JSON).post(Entity.entity(oMail, MediaType.APPLICATION_JSON));
-			if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
-				throw new Exception("Mail Address Not found");
-	
-			return true;
+		Response oResponse = client.target(MDN_RestClient.REST_URI).path("password").request(MediaType.APPLICATION_JSON).post(Entity.entity(oMail, MediaType.APPLICATION_JSON));
+		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
+			throw new Exception("Mail Address Not found");
+
+		return true;
 	}
 
 	private String registerToken(MDN_UserCredentials oCredentials ) throws Exception
@@ -64,7 +68,7 @@ public class MDN_RestClient
 	public boolean createUser(String strUserName, String strPassword, String strMail) throws Exception
 	{
 		MDN_User oUser = new MDN_User();
-				oUser.setMail(strMail);
+		oUser.setMail(strMail);
 		MDN_UserCredentials oCredentials = new MDN_UserCredentials();
 		oCredentials.setPassword(strPassword);
 		oCredentials.setUsername(strUserName);
