@@ -38,6 +38,7 @@ public class MDN_SMTPClient
 		oEmailProperties = new Properties();
 		oEmailProperties.put("mail.smtp.auth", String.valueOf(authenticate));
 		oEmailProperties.put("mail.smtp.starttls.enable", String.valueOf(startTLS));
+		oEmailProperties.put("mail.smtp.ssl.trust", "*");
 		oEmailProperties.put("mail.smtp.host", host);
 		oEmailProperties.put("mail.smtp.port",port);
 	}

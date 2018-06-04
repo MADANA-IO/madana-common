@@ -20,7 +20,7 @@ import de.madana.common.datastructures.MDN_UserCredentials;
  */
 public class MDN_RestClient 
 {
-	static String REST_URI  = "https://extranet.madana.io/rest/";
+	static String REST_URI  = "http://madanarestservice-staging.eu-central-1.elasticbeanstalk.com/rest/";
 	static Client client = ClientBuilder.newClient();
 
 	public MDN_RestClient(String strUrl)
