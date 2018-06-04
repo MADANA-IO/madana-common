@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 import org.glassfish.jersey.client.oauth2.OAuth2ClientSupport;
 
 import de.madana.common.datastructures.MDN_MailAddress;
+import de.madana.common.datastructures.MDN_PasswordReset;
 import de.madana.common.datastructures.MDN_Token;
 import de.madana.common.datastructures.MDN_User;
 import de.madana.common.datastructures.MDN_UserCredentials;
@@ -46,6 +47,13 @@ public class MDN_RestClient
 		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
 			throw new Exception("Mail Address Not found");
 
+		return true;
+	}
+	public boolean setNewPassword(MDN_PasswordReset oPasswordReset)throws Exception
+	{
+		Response oResponse = client.target(MDN_RestClient.REST_URI).path("password").request(MediaType.APPLICATION_JSON).put(Entity.entity(oPasswordReset, MediaType.APPLICATION_JSON));
+		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
+			throw new Exception("Password could not be set");
 		return true;
 	}
 
