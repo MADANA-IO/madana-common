@@ -1,5 +1,7 @@
 package de.madana.common.restclient;
 
+import java.util.List;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -14,6 +16,7 @@ import de.madana.common.datastructures.MDN_PasswordReset;
 import de.madana.common.datastructures.MDN_Token;
 import de.madana.common.datastructures.MDN_User;
 import de.madana.common.datastructures.MDN_UserCredentials;
+import de.madana.common.datastructures.MDN_UserProfile;
 
 /**
  * Hello world!
@@ -31,6 +34,12 @@ public class MDN_RestClient
 	public MDN_RestClient()
 	{
 
+	}
+	public List<MDN_UserProfile> getUsers()
+	{
+		List<MDN_UserProfile> oList = client.target(MDN_RestClient.REST_URI).path("users").request(MediaType.APPLICATION_JSON).get(List.class);
+
+		return oList;
 	}
 	public boolean logon(String strUserName, String strPassword) throws Exception
 	{
@@ -70,7 +79,7 @@ public class MDN_RestClient
 	}
 	public  MDN_User getUser(String strUserName)
 	{
-		return MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("users").path(strUserName).request(MediaType.APPLICATION_JSON).get(MDN_User.class);
+		return client.target(MDN_RestClient.REST_URI).path("users").path(strUserName).request(MediaType.APPLICATION_JSON).get(MDN_User.class);
 	}
 
 	public boolean createUser(String strUserName, String strPassword, String strMail) throws Exception
