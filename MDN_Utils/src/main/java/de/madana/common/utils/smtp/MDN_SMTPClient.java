@@ -65,10 +65,20 @@ public class MDN_SMTPClient
 		message.setFrom(new InternetAddress(strFrom));
 		message.setRecipients(Message.RecipientType.TO,	InternetAddress.parse(strReceiver));
 		message.setSubject(strSubject);
-		message.setContent(strMailContent,"text/html");
+		message.setContent(strMailContent + getFooter(),"text/html");
 
 		// Send message
 		Transport.send(message);
+	}
+	private String getFooter() 
+	{	
+		return "<br>\r\n" + 
+				"<br>\r\n" + 
+				"Follow us on <a href=\"https://www.facebook.com/madana.io/\">Facebook</a> and <a href=\"https://twitter.com/MADANA_HQ\">Twitter</a>.<br>\r\n" + 
+				"Read our <a href=\"https://blog.madana.io/\">Medium Blog</a>.\r\n" + 
+				"<br><br>\r\n" + 
+				"This message may contain confidential and/or privileged information. If you have received this e-mail in error please notify the sender immediately and delete the material from any computer. <br>\r\n" + 
+				"Our company accepts no liability for the content of this email, or for the consequences of any actions taken on the basis of the information provided, unless that information is subsequently confirmed in writing. For discussion purposes only and cannot be used to create a binding contract.";
 	}
 	public static void main(String[] args) 
 	{
@@ -76,7 +86,14 @@ public class MDN_SMTPClient
 				, "smtp.1und1.de", "noreply@community.madana.io", "587", true, true);
 		
 		try {
-			oClient.sendMail("TEST", "wenisch@madana.io", "sdsadasdsda");
+			String strMailText ="<div style =\"bgcolor=#f3f3f6;\">			<div>\r\n" + 
+					"                <img src=\"http://www.madana.io/images/logo.png\"\r\n" + 
+					"					alt=\"MADANA Logo\"\r\n" + 
+					"					width=\"100\" height=\"100\" style=\"text-align:center; \r\n" + 
+					"display:block;\"></div><h1>Password reset requested</h1><br> <br> To change the password for your MADANA account, please click on the following link.<br><br>LINK <br><br>"
+					+ "This link will become invalid 6 hours after submission. The link will take you to the MADANA account management website, where you can enter a new password.<br>"
+					+ "This e-mail was sent automatically. Please do not reply to this mail.</div>";
+			oClient.sendMail("TEST", "wenisch@madana.io", strMailText);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
