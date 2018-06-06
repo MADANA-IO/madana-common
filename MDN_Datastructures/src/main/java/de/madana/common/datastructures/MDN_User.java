@@ -5,50 +5,13 @@ package de.madana.common.datastructures;
  * @author J.-Fabian Wenisch
  *
  */
-public class MDN_User 
+public class MDN_User extends MDN_UserProfile
 {
-	private String firstName ="";
-	private String lastName="";
+;
 	private String mail="";
 	private MDN_UserCredentials credentials;
 	
 
-	/**
-	 * 
-	 * @return the firstName as string
-	 * @author J.-Fabian Wenisch
-	 */
-	public String getFirstName() 
-	{
-		return firstName;
-	}
-	/**
-	 * 
-	 * @param firstName sets the provided firstName
-	 * @author J.-Fabian Wenisch
-	 */
-	public void setFirstName(String firstName)
-	{
-		this.firstName = firstName;
-	}
-	/**
-	 * 
-	 * @return the lastName as String
-	 * @author J.-Fabian Wenisch
-	 */
-	public String getLastName()
-	{
-		return lastName;
-	}
-	/**
-	 * 
-	 * @param lastName sets the lastname as string
-	 * @author J.-Fabian Wenisch
-	 */
-	public void setLastName(String lastName)
-	{
-		this.lastName = lastName;
-	}
 	/**
 	 * 
 	 * @return the mail as string
@@ -89,7 +52,7 @@ public class MDN_User
 	@Override
 	public String toString() 
 	{
-		return "User [firstname=" + firstName + ", lastname=" + lastName + " mail " + mail+"]";
+		return "User [" + getUserName() + "]";
 	}
 
 }

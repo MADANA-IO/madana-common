@@ -100,13 +100,13 @@ public class MDN_RestClient
 			throw new Exception("Creation failed");
 		return oUser;
 	}
-	public  void deleteUser(String strUserName)
+	public  boolean deleteUser(String strUserName) throws Exception
 	{
 
 		Response response =MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("users").path(strUserName).request(MediaType.APPLICATION_JSON).delete();
 		if(Response.Status.OK.getStatusCode()!=response.getStatus())
-		{
-		}
+			throw new Exception("Deletion failed");
+		return true;
 	}
 
 
