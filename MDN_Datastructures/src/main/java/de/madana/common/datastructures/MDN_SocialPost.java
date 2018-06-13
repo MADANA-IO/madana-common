@@ -1,6 +1,6 @@
 package de.madana.common.datastructures;
 
-public class MDN_FacebookPost 
+public class MDN_SocialPost 
 {
 	String picture;
 	String id;

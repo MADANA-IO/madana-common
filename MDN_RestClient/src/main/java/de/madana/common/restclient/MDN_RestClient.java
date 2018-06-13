@@ -108,9 +108,14 @@ public class MDN_RestClient
 			throw new Exception("Deletion failed");
 		return true;
 	}
-	public List<de.madana.common.datastructures.MDN_FacebookPost> getFacebookFeed() 
+	public List<de.madana.common.datastructures.MDN_SocialPost> getFacebookFeed() 
 	{
-		 List<de.madana.common.datastructures.MDN_FacebookPost> oList=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
+		 List<de.madana.common.datastructures.MDN_SocialPost> oList=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
+		return oList;
+	}
+	public List<de.madana.common.datastructures.MDN_SocialPost> getTwitterFeed() 
+	{
+		 List<de.madana.common.datastructures.MDN_SocialPost> oList=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
 		return oList;
 	}
 
