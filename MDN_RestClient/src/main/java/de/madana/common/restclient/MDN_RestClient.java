@@ -24,7 +24,7 @@ import de.madana.common.datastructures.MDN_UserProfile;
  */
 public class MDN_RestClient 
 {
-	static String REST_URI  = "http://madanarestservice-staging.eu-central-1.elasticbeanstalk.com/rest/";
+	static String REST_URI  = "https://extranet.madana.io/rest/";
 	static Client client = ClientBuilder.newClient();
 
 	public MDN_RestClient(String strUrl)
@@ -117,6 +117,20 @@ public class MDN_RestClient
 	{
 		 List<de.madana.common.datastructures.MDN_SocialPost> oList=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
 		return oList;
+	}
+	public String getFacebookAuthURL() 
+	{
+		 String strUrl=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
+		return strUrl;
+	}
+	public boolean setFacebookUID(String strCode) 
+	{
+		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("auth").request(MediaType.APPLICATION_JSON).post(Entity.entity(strCode, MediaType.APPLICATION_JSON));
+		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
+		return false;
+
+		return true;
+		
 	}
 
 
