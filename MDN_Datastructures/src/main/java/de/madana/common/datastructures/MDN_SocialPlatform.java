@@ -1,10 +1,21 @@
 package de.madana.common.datastructures;
 
+import java.util.List;
+
 public class MDN_SocialPlatform
 {
 	private String name= "";
 	private String link="";
 	private String icon="";
+	private List<MDN_SocialPost> feed;
+
+	public List<MDN_SocialPost> getFeed() {
+		return feed;
+	}
+
+	public void setFeed(List<MDN_SocialPost> feed) {
+		this.feed = feed;
+	}
 
 	public String getLink() {
 		return link;

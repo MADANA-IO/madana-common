@@ -1,5 +1,6 @@
 package de.madana.common.restclient;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.ws.rs.client.Client;
@@ -11,8 +12,17 @@ import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.client.oauth2.OAuth2ClientSupport;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
+
 import de.madana.common.datastructures.MDN_MailAddress;
 import de.madana.common.datastructures.MDN_PasswordReset;
+import de.madana.common.datastructures.MDN_SocialPlatform;
+import de.madana.common.datastructures.MDN_SocialPost;
 import de.madana.common.datastructures.MDN_Token;
 import de.madana.common.datastructures.MDN_User;
 import de.madana.common.datastructures.MDN_UserCredentials;
@@ -108,28 +118,70 @@ public class MDN_RestClient
 			throw new Exception("Deletion failed");
 		return true;
 	}
-	public List<de.madana.common.datastructures.MDN_SocialPost> getFacebookFeed() 
+	public List<MDN_SocialPost>  getFacebookFeed() 
 	{
-		 List<de.madana.common.datastructures.MDN_SocialPost> oList=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
+		List<MDN_SocialPost>  oList=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
 		return oList;
 	}
-	public List<de.madana.common.datastructures.MDN_SocialPost> getTwitterFeed() 
+	public List<MDN_SocialPost> getTwitterFeed() 
 	{
-		 List<de.madana.common.datastructures.MDN_SocialPost> oList=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
+		List<MDN_SocialPost>  oList=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
 		return oList;
 	}
 	public String getFacebookAuthURL() 
 	{
-		 String strUrl=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
+		String strUrl=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
 		return strUrl;
+	}
+	public List<MDN_SocialPlatform> getSocialPlatforms()
+	{
+		ObjectMapper mapper = new ObjectMapper();
+		List<MDN_SocialPlatform> oList=null;
+		JsonNode oJSON =client.target(MDN_RestClient.REST_URI).path("social").request(MediaType.APPLICATION_JSON).get(JsonNode.class);
+		//Jackson's use of generics here are completely unsafe, but that's another issue
+		try {
+			oList = mapper.readValue(mapper.treeAsTokens(oJSON),   new TypeReference<List<MDN_SocialPlatform>>(){});
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return oList;
 	}
 	public boolean setFacebookUID(String strCode) 
 	{
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("auth").request(MediaType.APPLICATION_JSON).post(Entity.entity(strCode, MediaType.APPLICATION_JSON));
 		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
-		return false;
+			return false;
 
 		return true;
+
+	}
+	public void getSocialFeed(MDN_SocialPlatform oPlatform) 
+	{
+		ObjectMapper mapper = new ObjectMapper();
+		List<MDN_SocialPost>  oFeed = null;
+		JsonNode oJSON = client.target(MDN_RestClient.REST_URI).path("social").path(oPlatform.getName().toLowerCase()).path("feed").request(MediaType.APPLICATION_JSON).get(JsonNode.class);
+		//Jackson's use of generics here are completely unsafe, but that's another issue
+		try {
+		 oFeed = mapper.readValue(mapper.treeAsTokens(oJSON),   new TypeReference<List<MDN_SocialPost>>(){});
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		oPlatform.setFeed(oFeed);
 		
 	}
 
