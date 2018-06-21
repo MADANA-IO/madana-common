@@ -2,11 +2,12 @@ package de.madana.common.datastructures;
 
 public class MDN_SocialPost 
 {
-	String picture;
+	
 	String id;
 	String link;
 	String created;
 	String text;
+	String picture;
 	public String getPicture() {
 		return picture;
 	}
