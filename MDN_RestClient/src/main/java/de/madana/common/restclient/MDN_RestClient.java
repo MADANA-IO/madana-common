@@ -1,7 +1,16 @@
 package de.madana.common.restclient;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.stream.Stream;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -153,6 +162,40 @@ public class MDN_RestClient
 		}
 		return oList;
 	}
+	public Map<String, String> getRanking()
+	{
+		Map<String, String> oRanking =MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("ranking").request(MediaType.APPLICATION_JSON).get(Map.class);
+		return sortMapByValues(oRanking);
+	}
+	private static Map<String, String> sortMapByValues(Map<String, String> aMap) {
+
+		Set<Entry<String,String>> mapEntries = aMap.entrySet();
+
+
+
+		// used linked list to sort, because insertion of elements in linked list is faster than an array list. 
+		List<Entry<String,String>> aList = new LinkedList<Entry<String,String>>(mapEntries);
+
+		// sorting the List
+		Collections.sort(aList, new Comparator<Entry<String,String>>() {
+
+			@Override
+			public int compare(Entry<String, String> ele1,
+					Entry<String, String> ele2) {
+
+				return Integer.valueOf(ele2.getValue()).compareTo(Integer.valueOf(ele1.getValue()));
+			}
+		});
+
+		// Storing the list into Linked HashMap to preserve the order of insertion. 
+		Map<String,String> aMap2 = new LinkedHashMap<String, String>();
+		for(Entry<String,String> entry: aList) {
+			aMap2.put(entry.getKey(), entry.getValue());
+		}
+
+		return aMap2;
+
+	}
 	public boolean setFacebookUID(String strCode) 
 	{
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("auth").request(MediaType.APPLICATION_JSON).post(Entity.entity(strCode, MediaType.APPLICATION_JSON));
@@ -169,7 +212,7 @@ public class MDN_RestClient
 		JsonNode oJSON = client.target(MDN_RestClient.REST_URI).path("social").path(oPlatform.getName().toLowerCase()).path("feed").request(MediaType.APPLICATION_JSON).get(JsonNode.class);
 		//Jackson's use of generics here are completely unsafe, but that's another issue
 		try {
-		 oFeed = mapper.readValue(mapper.treeAsTokens(oJSON),   new TypeReference<List<MDN_SocialPost>>(){});
+			oFeed = mapper.readValue(mapper.treeAsTokens(oJSON),   new TypeReference<List<MDN_SocialPost>>(){});
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -180,9 +223,9 @@ public class MDN_RestClient
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		oPlatform.setFeed(oFeed);
-		
+
 	}
 
 
