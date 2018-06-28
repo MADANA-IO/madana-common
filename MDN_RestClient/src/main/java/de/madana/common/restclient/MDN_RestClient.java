@@ -179,7 +179,6 @@ public class MDN_RestClient
 		// sorting the List
 		Collections.sort(aList, new Comparator<Entry<String,String>>() {
 
-			@Override
 			public int compare(Entry<String, String> ele1,
 					Entry<String, String> ele2) {
 
