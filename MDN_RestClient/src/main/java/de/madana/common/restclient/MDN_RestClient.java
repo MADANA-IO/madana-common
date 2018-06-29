@@ -3,14 +3,12 @@ package de.madana.common.restclient;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -26,9 +24,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
 
 import de.madana.common.datastructures.MDN_MailAddress;
+import de.madana.common.datastructures.MDN_OAuthToken;
 import de.madana.common.datastructures.MDN_PasswordReset;
 import de.madana.common.datastructures.MDN_SocialPlatform;
 import de.madana.common.datastructures.MDN_SocialPost;
@@ -43,7 +41,7 @@ import de.madana.common.datastructures.MDN_UserProfile;
  */
 public class MDN_RestClient 
 {
-	static String REST_URI  = "https://extranet.madana.io/rest/";
+	static String REST_URI  = "http://MadanaRestService-staging.eu-central-1.elasticbeanstalk.com/rest/";
 	static Client client = ClientBuilder.newClient();
 
 	public MDN_RestClient(String strUrl)
@@ -142,6 +140,11 @@ public class MDN_RestClient
 		String strUrl=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
 		return strUrl;
 	}
+	public String getTwitterAuthURL() 
+	{
+		String strUrl=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
+		return strUrl;
+	}
 	public List<MDN_SocialPlatform> getSocialPlatforms()
 	{
 		ObjectMapper mapper = new ObjectMapper();
@@ -225,6 +228,18 @@ public class MDN_RestClient
 
 		oPlatform.setFeed(oFeed);
 
+	}
+	public boolean setTwitterUID(String token, String verifier)
+	{
+		MDN_OAuthToken oToken = new MDN_OAuthToken();
+		oToken.setToken(token);
+		oToken.setVerifier(verifier);
+		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("auth").request(MediaType.APPLICATION_JSON).post(Entity.entity(oToken, MediaType.APPLICATION_JSON));
+		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
+			return false;
+
+		return true;
+		
 	}
 
 

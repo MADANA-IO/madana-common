@@ -1,6 +1,6 @@
 package de.madana.common.datastructures;
 
-public class MDN_OAauthToken 
+public class MDN_OAuthToken 
 {
 	String token;
 	String verifier;
