@@ -1,12 +1,30 @@
 package de.madana.common.datastructures;
 
+import java.util.List;
+
+
 public class MDN_UserProfile 
 {
-	private String firstName ="";
-	private String lastName="";
-	private String userName="";
-	private String created="";
-	private String lastActive="";
+	 String firstName ="";
+	 String lastName="";
+	 String userName="";
+	 String created="";
+	 String lastActive="";
+	 String points;
+	 List<MDN_SocialHistoryObject> history;
+	
+	public String getPoints() {
+		return points;
+	}
+	public void setPoints(String points) {
+		this.points = points;
+	}
+	public List<MDN_SocialHistoryObject> getHistory() {
+		return history;
+	}
+	public void setHistory(List<MDN_SocialHistoryObject> oHistory) {
+		this.history = oHistory;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -37,4 +55,5 @@ public class MDN_UserProfile
 	public void setLastActive(String lastActive) {
 		this.lastActive = lastActive;
 	}
+
 }
