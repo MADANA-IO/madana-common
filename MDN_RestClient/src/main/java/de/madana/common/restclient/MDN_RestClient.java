@@ -207,6 +207,7 @@ public class MDN_RestClient
 		return true;
 
 	}
+	@SuppressWarnings("unchecked")
 	public void getSocialFeed(MDN_SocialPlatform oPlatform) 
 	{
 		ObjectMapper mapper = new ObjectMapper();
@@ -215,6 +216,8 @@ public class MDN_RestClient
 		//Jackson's use of generics here are completely unsafe, but that's another issue
 		try {
 			oFeed = mapper.readValue(mapper.treeAsTokens(oJSON),   new TypeReference<List<MDN_SocialPost>>(){});
+			Collections.sort(oFeed);
+			
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -240,6 +243,12 @@ public class MDN_RestClient
 
 		return true;
 		
+	}
+	public MDN_UserProfile getProfile(String strUserName) 
+	{
+		MDN_UserProfile oProfile = client.target(MDN_RestClient.REST_URI).path("users").path("profiles").path(strUserName).request(MediaType.APPLICATION_JSON).get(MDN_UserProfile.class);
+
+		return oProfile;
 	}
 
 
