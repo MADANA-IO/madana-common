@@ -88,11 +88,7 @@ public class MDN_SQLTable
 
 		}
 
-		int s = oStatement.executeUpdate();
-		if (s > 0)
-		{
-			System.out.println("Blob Stored in Database");
-		}
+	 oStatement.executeUpdate();
 	}
 	/**
 	 * Löscht den Eintrag mit der ID aus der Tablle
@@ -115,11 +111,6 @@ public class MDN_SQLTable
 		PreparedStatement oStatement = MDN_SQLConnector.connection.prepareStatement("UPDATE "+strName+" set "+strColumn+" =? where id ="+strUserID);
 		oStatement.setBytes(1, bBytes);
 		oStatement.executeUpdate();
-		int s = oStatement.executeUpdate();
-		if (s > 0)
-		{
-			System.out.println("Blob Stored in Database");
-		}
 
 	}
 	/**
