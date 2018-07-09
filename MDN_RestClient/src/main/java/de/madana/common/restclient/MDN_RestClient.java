@@ -99,7 +99,7 @@ public class MDN_RestClient
 		return client.target(MDN_RestClient.REST_URI).path("users").path(strUserName).request(MediaType.APPLICATION_JSON).get(MDN_User.class);
 	}
 
-	public boolean createUser(String strUserName, String strPassword, String strMail) throws Exception
+	public boolean createUser(String strUserName, String strPassword, String strMail, String strToken) throws Exception
 	{
 		MDN_User oUser = new MDN_User();
 		oUser.setMail(strMail);
@@ -107,12 +107,21 @@ public class MDN_RestClient
 		oCredentials.setPassword(strPassword);
 		oCredentials.setUsername(strUserName);
 		oUser.setCredentials(oCredentials);
-		createUser(oUser);
+		createUser(oUser, strToken);
 		return true;
 	}
-	private  MDN_User createUser(MDN_User oUser) throws Exception
+	private  MDN_User createUser(MDN_User oUser, String strToken) throws Exception
 	{
-		Response response =MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("users").request(MediaType.APPLICATION_JSON).post(Entity.entity(oUser, MediaType.APPLICATION_JSON));
+		Response response;
+		if(strToken!=null)
+		{
+			response =MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("users").queryParam("referrer", strToken).request(MediaType.APPLICATION_JSON).post(Entity.entity(oUser, MediaType.APPLICATION_JSON));
+		}
+		else
+		{
+			response =MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("users").request(MediaType.APPLICATION_JSON).post(Entity.entity(oUser, MediaType.APPLICATION_JSON));
+		}
+
 		if(Response.Status.OK.getStatusCode()!=response.getStatus())
 			throw new Exception("Creation failed");
 		return oUser;
