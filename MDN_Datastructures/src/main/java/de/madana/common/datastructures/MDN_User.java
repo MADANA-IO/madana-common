@@ -13,7 +13,14 @@ public class MDN_User extends MDN_A_UserObject
 	private MDN_UserCredentials credentials;
 	 String firstName ="";
 	 String lastName="";
+	 String guid="";
 
+		public String getGuid() {
+		return guid;
+	}
+	public void setGuid(String guid) {
+		this.guid = guid;
+	}
 		public String getFirstName() {
 			return firstName;
 		}

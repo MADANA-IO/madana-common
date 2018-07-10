@@ -7,7 +7,7 @@ public class MDN_SocialPlatform
 	private String name= "";
 	private String link="";
 	private String icon="";
-	private boolean isReferralPlatform = false;
+	private String isReferralPlatform = "false";
 	private List<MDN_SocialPost> feed;
 
 	public List<MDN_SocialPost> getFeed() {
@@ -42,11 +42,12 @@ public class MDN_SocialPlatform
 		this.name = name;
 	}
 
-	public boolean isReferralPlatform() {
+	public String getIsReferralPlatform() {
 		return isReferralPlatform;
 	}
 
-	public void setReferralPlatform(boolean isReferralPlatform) {
+	public void setIsReferralPlatform(String isReferralPlatform) {
 		this.isReferralPlatform = isReferralPlatform;
 	}
+
 }
