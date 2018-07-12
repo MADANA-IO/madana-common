@@ -42,15 +42,16 @@ import de.madana.common.datastructures.MDN_UserProfile;
 public class MDN_RestClient 
 {
 	static String REST_URI  = "https://extranet.madana.io/rest";
-	static Client client = ClientBuilder.newClient();
+	Client client;
 
 	public MDN_RestClient(String strUrl)
 	{
 		REST_URI= strUrl;
+		client = ClientBuilder.newClient();
 	}
 	public MDN_RestClient()
 	{
-
+		client = ClientBuilder.newClient();
 	}
 	public List<MDN_UserProfile> getUsers()
 	{
@@ -115,11 +116,11 @@ public class MDN_RestClient
 		Response response;
 		if(strToken!=null)
 		{
-			response =MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("users").queryParam("referrer", strToken).request(MediaType.APPLICATION_JSON).post(Entity.entity(oUser, MediaType.APPLICATION_JSON));
+			response =client.target(MDN_RestClient.REST_URI).path("users").queryParam("referrer", strToken).request(MediaType.APPLICATION_JSON).post(Entity.entity(oUser, MediaType.APPLICATION_JSON));
 		}
 		else
 		{
-			response =MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("users").request(MediaType.APPLICATION_JSON).post(Entity.entity(oUser, MediaType.APPLICATION_JSON));
+			response =client.target(MDN_RestClient.REST_URI).path("users").request(MediaType.APPLICATION_JSON).post(Entity.entity(oUser, MediaType.APPLICATION_JSON));
 		}
 
 		if(Response.Status.OK.getStatusCode()!=response.getStatus())
@@ -129,29 +130,29 @@ public class MDN_RestClient
 	public  boolean deleteUser(String strUserName) throws Exception
 	{
 
-		Response response =MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("users").path(strUserName).request(MediaType.APPLICATION_JSON).delete();
+		Response response =client.target(MDN_RestClient.REST_URI).path("users").path(strUserName).request(MediaType.APPLICATION_JSON).delete();
 		if(Response.Status.OK.getStatusCode()!=response.getStatus())
 			throw new Exception("Deletion failed");
 		return true;
 	}
 	public List<MDN_SocialPost>  getFacebookFeed() 
 	{
-		List<MDN_SocialPost>  oList=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
+		List<MDN_SocialPost>  oList=client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
 		return oList;
 	}
 	public List<MDN_SocialPost> getTwitterFeed() 
 	{
-		List<MDN_SocialPost>  oList=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
+		List<MDN_SocialPost>  oList=client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
 		return oList;
 	}
 	public String getFacebookAuthURL() 
 	{
-		String strUrl=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
+		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
 		return strUrl;
 	}
 	public String getTwitterAuthURL() 
 	{
-		String strUrl=MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
+		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
 		return strUrl;
 	}
 	public List<MDN_SocialPlatform> getSocialPlatforms()
@@ -176,7 +177,7 @@ public class MDN_RestClient
 	}
 	public Map<String, String> getRanking()
 	{
-		Map<String, String> oRanking =MDN_RestClient.client.target(MDN_RestClient.REST_URI).path("social").path("ranking").request(MediaType.APPLICATION_JSON).get(Map.class);
+		Map<String, String> oRanking =client.target(MDN_RestClient.REST_URI).path("social").path("ranking").request(MediaType.APPLICATION_JSON).get(Map.class);
 		return sortMapByValues(oRanking);
 	}
 	private static Map<String, String> sortMapByValues(Map<String, String> aMap) {
