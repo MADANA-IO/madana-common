@@ -1,5 +1,7 @@
 package de.madana.common.datastructures;
 
+import java.util.List;
+
 /**
  * 
  * @author J.-Fabian Wenisch
@@ -14,7 +16,14 @@ public class MDN_User extends MDN_A_UserObject
 	 String firstName ="";
 	 String lastName="";
 	 String guid="";
+	 List<MDN_SocialUserObject> socialAccounts;
 
+		public List<MDN_SocialUserObject> getSocialAccounts() {
+		return socialAccounts;
+	}
+	public void setSocialAccounts(List<MDN_SocialUserObject> socialAccounts) {
+		this.socialAccounts = socialAccounts;
+	}
 		public String getGuid() {
 		return guid;
 	}
