@@ -8,9 +8,16 @@ public class MDN_SystemHealthObject
 
 private String activeusercount;
 private String usercount;
+private String rankingPointsSum;
 private String rankingupdate;
 private String feedUpdate;
 private String useractionupdate;
+public String getRankingPointsSum() {
+	return rankingPointsSum;
+}
+public void setRankingPointsSum(String rankingPointsSum) {
+	this.rankingPointsSum = rankingPointsSum;
+}
 public String getActiveusercount() {
 	return activeusercount;
 }
