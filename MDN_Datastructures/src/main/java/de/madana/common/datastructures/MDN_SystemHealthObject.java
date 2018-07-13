@@ -12,6 +12,8 @@ private String rankingPointsSum;
 private String rankingupdate;
 private String feedUpdate;
 private String useractionupdate;
+private String databaseconnection;
+private String startup;
 public String getRankingPointsSum() {
 	return rankingPointsSum;
 }
@@ -60,8 +62,7 @@ public String getStartup() {
 public void setStartup(String startup) {
 	this.startup = startup;
 }
-private String databaseconnection;
-private String startup;
+
 
 
 }
