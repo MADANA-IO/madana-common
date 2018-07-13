@@ -30,6 +30,7 @@ import de.madana.common.datastructures.MDN_OAuthToken;
 import de.madana.common.datastructures.MDN_PasswordReset;
 import de.madana.common.datastructures.MDN_SocialPlatform;
 import de.madana.common.datastructures.MDN_SocialPost;
+import de.madana.common.datastructures.MDN_SystemHealthObject;
 import de.madana.common.datastructures.MDN_Token;
 import de.madana.common.datastructures.MDN_User;
 import de.madana.common.datastructures.MDN_UserCredentials;
@@ -259,6 +260,13 @@ public class MDN_RestClient
 		MDN_UserProfile oProfile = client.target(MDN_RestClient.REST_URI).path("users").path("profiles").path(strUserName).request(MediaType.APPLICATION_JSON).get(MDN_UserProfile.class);
 
 		return oProfile;
+	}
+	
+	public MDN_SystemHealthObject getSystemHealth()
+	{
+		MDN_SystemHealthObject Health = client.target(MDN_RestClient.REST_URI).path("health").request(MediaType.APPLICATION_JSON).get(MDN_SystemHealthObject.class);
+
+		return Health;
 	}
 
 
