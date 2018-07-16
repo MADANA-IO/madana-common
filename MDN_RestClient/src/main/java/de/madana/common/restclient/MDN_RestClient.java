@@ -255,6 +255,12 @@ public class MDN_RestClient
 		return true;
 		
 	}
+	public List<MDN_UserProfile> getReferredUsers(String strPlatform, String strUsername)
+	{
+		List<MDN_UserProfile> oProfiles = client.target(MDN_RestClient.REST_URI).path("social").path(strPlatform.toLowerCase()).path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
+
+		return oProfiles;
+	}
 	public MDN_UserProfile getProfile(String strUserName) 
 	{
 		MDN_UserProfile oProfile = client.target(MDN_RestClient.REST_URI).path("users").path("profiles").path(strUserName).request(MediaType.APPLICATION_JSON).get(MDN_UserProfile.class);

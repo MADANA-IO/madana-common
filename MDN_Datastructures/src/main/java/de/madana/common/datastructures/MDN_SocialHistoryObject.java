@@ -76,10 +76,10 @@ public class MDN_SocialHistoryObject implements Comparable
 			{
 				return 0;
 			}   
-		} catch (ParseException e)
+		} catch (Exception e)
 		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return 0;
 
