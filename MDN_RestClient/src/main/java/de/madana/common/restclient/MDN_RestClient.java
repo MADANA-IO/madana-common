@@ -243,6 +243,16 @@ public class MDN_RestClient
 		oPlatform.setFeed(oFeed);
 
 	}
+	public boolean setFractalUID(String code) 
+	{
+		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("fractal").path("auth").request(MediaType.APPLICATION_JSON).post(Entity.entity(code, MediaType.APPLICATION_JSON));
+		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
+			return false;
+
+		return true;
+		
+	}
+
 	public boolean setTwitterUID(String token, String verifier)
 	{
 		MDN_OAuthToken oToken = new MDN_OAuthToken();
