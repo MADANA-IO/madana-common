@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import de.madana.common.datastructures.MDN_AccesTokenRequestResponse;
 import de.madana.common.datastructures.MDN_MailAddress;
 import de.madana.common.datastructures.MDN_OAuthToken;
 import de.madana.common.datastructures.MDN_PasswordReset;
@@ -289,6 +290,35 @@ public class MDN_RestClient
 		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("fractal").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
 		return strUrl;
 	}
+	
+	public String getFractalAuthToken(String strClientID, String strClientSecret, String strBaseURL, String strRedirectURL, String strCode)
+	{
+		
+		Response oResponse  =client.target(strBaseURL).path("token")
+				.queryParam("client_id", strClientID)
+				.queryParam("redirect_uri", strRedirectURL)
+				.queryParam("client_secret", strClientSecret)
+				.queryParam("code", strCode)
+				.queryParam("grant_type", "authorization_code")
+				.request(MediaType.APPLICATION_JSON).post(Entity.entity(null, MediaType.APPLICATION_JSON));
+		String strResponse =  oResponse.readEntity(String.class);
+//		JsonNode oNode = oResponse.readEntity(JsonNode.class);
+		strResponse=strResponse.substring(strResponse.indexOf("access_token")+15, strResponse.indexOf("token_type")-3);
+		return strResponse;
+	}
+	public void setAuthenticationBearer(String strBearer) 
+	{
+		Feature feature = OAuth2ClientSupport.feature(strBearer);
+		client.register(feature);	
+	}
+	public String getFractalInformation(String strBaseURL) 
+	{
+		strBaseURL=strBaseURL.substring(0, strBaseURL.lastIndexOf("/"));
+		JsonNode oJSON   =client.target(strBaseURL).path("api").path("me").request(MediaType.APPLICATION_JSON).get(JsonNode.class);
+		String strResponse = oJSON.get("did").asText();
+		return strResponse;
+	}
+	
 
 
 }
