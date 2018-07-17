@@ -274,6 +274,11 @@ public class MDN_RestClient
 
 		return Health;
 	}
+	public String getFractalAuthURL() 	
+	{
+		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("fractal").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
+		return strUrl;
+	}
 
 
 }
