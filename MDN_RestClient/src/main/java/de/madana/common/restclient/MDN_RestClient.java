@@ -36,6 +36,7 @@ import de.madana.common.datastructures.MDN_Token;
 import de.madana.common.datastructures.MDN_User;
 import de.madana.common.datastructures.MDN_UserCredentials;
 import de.madana.common.datastructures.MDN_UserProfile;
+import de.madana.common.datastructures.MDN_UserProfileImage;
 
 /**
  * Hello world!
@@ -271,6 +272,20 @@ public class MDN_RestClient
 		List<MDN_UserProfile> oProfiles = client.target(MDN_RestClient.REST_URI).path("social").path(strPlatform.toLowerCase()).path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
 
 		return oProfiles;
+	}
+	public List<MDN_UserProfileImage> getAvailableAvatars(String strUsername)
+	{
+		List<MDN_UserProfileImage> oAvatars = client.target(MDN_RestClient.REST_URI).path("users").path(strUsername).path("avatars").request(MediaType.APPLICATION_JSON).get(List.class);
+
+		return oAvatars;
+	}
+	public boolean setAvatar(String strUsername, MDN_UserProfileImage oImage)
+	{
+		Response oResponse = client.target(MDN_RestClient.REST_URI).path("users").path(strUsername).path("avatars").request(MediaType.APPLICATION_JSON).post(Entity.entity(oImage, MediaType.APPLICATION_JSON));
+		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
+			return false;
+
+		return true;
 	}
 	public MDN_UserProfile getProfile(String strUserName) 
 	{
