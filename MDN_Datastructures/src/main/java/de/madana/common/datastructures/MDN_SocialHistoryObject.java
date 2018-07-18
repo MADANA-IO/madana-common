@@ -1,6 +1,5 @@
 package de.madana.common.datastructures;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
