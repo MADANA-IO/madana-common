@@ -8,6 +8,15 @@ public class MDN_SocialPlatform
 	private String link="";
 	private String icon="";
 	private String isReferralPlatform = "false";
+	private String isDisabled = "true";
+	public String getIsDisabled() {
+		return isDisabled;
+	}
+
+	public void setIsDisabled(String isDisabled) {
+		this.isDisabled = isDisabled;
+	}
+
 	private List<MDN_SocialPost> feed;
 
 	public List<MDN_SocialPost> getFeed() {
