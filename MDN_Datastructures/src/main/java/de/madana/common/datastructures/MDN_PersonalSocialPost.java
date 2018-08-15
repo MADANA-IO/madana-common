@@ -6,7 +6,14 @@ import java.util.List;
 public class MDN_PersonalSocialPost extends MDN_SocialPost
 {
 	boolean isCompleted;
+	String embeddCode;
 	
+	public String getEmbeddCode() {
+		return embeddCode;
+	}
+	public void setEmbeddCode(String embeddCode) {
+		this.embeddCode = embeddCode;
+	}
 	public List<String> getAvailableActions() {
 		return availableActions;
 	}

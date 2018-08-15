@@ -21,6 +21,7 @@ import org.glassfish.jersey.client.oauth2.OAuth2ClientSupport;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,6 +30,7 @@ import de.madana.common.datastructures.MDN_AccesTokenRequestResponse;
 import de.madana.common.datastructures.MDN_MailAddress;
 import de.madana.common.datastructures.MDN_OAuthToken;
 import de.madana.common.datastructures.MDN_PasswordReset;
+import de.madana.common.datastructures.MDN_PersonalSocialPost;
 import de.madana.common.datastructures.MDN_SocialPlatform;
 import de.madana.common.datastructures.MDN_SocialPost;
 import de.madana.common.datastructures.MDN_SystemHealthObject;
@@ -146,6 +148,26 @@ public class MDN_RestClient
 	public List<MDN_SocialPost> getTwitterFeed() 
 	{
 		List<MDN_SocialPost>  oList=client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
+		return oList;
+	}
+	public List<MDN_PersonalSocialPost> getPersonalizedTwitterFeed(String strUserName) 
+	{
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		List<MDN_PersonalSocialPost> oList=null;
+		JsonNode oJSON =client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("feed").path(strUserName).request(MediaType.APPLICATION_JSON).get(JsonNode.class);
+		try {
+			oList = mapper.readValue(mapper.treeAsTokens(oJSON),   new TypeReference<List<MDN_PersonalSocialPost>>(){});
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return oList;
 	}
 	public String getFacebookAuthURL() 
@@ -333,6 +355,22 @@ public class MDN_RestClient
 		String strResponse = oJSON.get("did").asText();
 		return strResponse;
 	}
+	public String getTwitterEmbeddCode(String strFeedLink) 
+	{
+		JsonNode oJSON= null;
+	   try
+	   {
+		    oJSON   =client.target("https://publish.twitter.com").path("oembed").queryParam("url",strFeedLink).request(MediaType.APPLICATION_JSON).get(JsonNode.class);
+	   }
+	   catch(Exception ex)
+	   {
+		   return null;
+	   }
+		
+		String strResponse = oJSON.get("html").asText();
+		return strResponse;
+	}
+
 	
 
 
