@@ -62,7 +62,7 @@ public class MDN_SocialHistoryObject implements Comparable
 		try
 		{
 			dMyCreated = oFormat.parse(getCreated());
-			Date dComparedCreated  = oFormat.parse(((MDN_SocialPost) o).getCreated());
+			Date dComparedCreated  = oFormat.parse(((MDN_SocialHistoryObject) o).getCreated());
 
 			if (dMyCreated.before(dComparedCreated))
 			{
