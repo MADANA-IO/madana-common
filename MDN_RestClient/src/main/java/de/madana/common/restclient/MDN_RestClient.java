@@ -56,8 +56,11 @@ public class MDN_RestClient
 	}
 	public MDN_RestClient()
 	{
-		if(System.getProperty("RESTURI").length()>0)
-			REST_URI= System.getProperty("RESTURI");
+		if(System.getProperty("RESTURI")!=null)
+		{
+			if(System.getProperty("RESTURI").length()>0)
+				REST_URI= System.getProperty("RESTURI");
+		}
 		client = ClientBuilder.newClient();
 	}
 	public List<MDN_UserProfile> getUsers()
@@ -254,7 +257,7 @@ public class MDN_RestClient
 		try {
 			oFeed = mapper.readValue(mapper.treeAsTokens(oJSON),   new TypeReference<List<MDN_SocialPost>>(){});
 			Collections.sort(oFeed);
-			
+
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -276,7 +279,7 @@ public class MDN_RestClient
 			return false;
 
 		return true;
-		
+
 	}
 
 	public boolean setTwitterUID(String token, String verifier)
@@ -289,7 +292,7 @@ public class MDN_RestClient
 			return false;
 
 		return true;
-		
+
 	}
 	public List<MDN_UserProfile> getReferredUsers(String strPlatform, String strUsername)
 	{
@@ -317,7 +320,7 @@ public class MDN_RestClient
 
 		return oProfile;
 	}
-	
+
 	public MDN_SystemHealthObject getSystemHealth()
 	{
 		MDN_SystemHealthObject Health = client.target(MDN_RestClient.REST_URI).path("health").request(MediaType.APPLICATION_JSON).get(MDN_SystemHealthObject.class);
@@ -329,10 +332,10 @@ public class MDN_RestClient
 		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("fractal").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
 		return strUrl;
 	}
-	
+
 	public String getFractalAuthToken(String strClientID, String strClientSecret, String strBaseURL, String strRedirectURL, String strCode)
 	{
-		
+
 		Response oResponse  =client.target(strBaseURL).path("token")
 				.queryParam("client_id", strClientID)
 				.queryParam("redirect_uri", strRedirectURL)
@@ -341,7 +344,7 @@ public class MDN_RestClient
 				.queryParam("grant_type", "authorization_code")
 				.request(MediaType.APPLICATION_JSON).post(Entity.entity(null, MediaType.APPLICATION_JSON));
 		String strResponse =  oResponse.readEntity(String.class);
-//		JsonNode oNode = oResponse.readEntity(JsonNode.class);
+		//		JsonNode oNode = oResponse.readEntity(JsonNode.class);
 		strResponse=strResponse.substring(strResponse.indexOf("access_token")+15, strResponse.indexOf("token_type")-3);
 		return strResponse;
 	}
@@ -360,20 +363,20 @@ public class MDN_RestClient
 	public String getTwitterEmbeddCode(String strFeedLink) 
 	{
 		JsonNode oJSON= null;
-	   try
-	   {
-		    oJSON   =client.target("https://publish.twitter.com").path("oembed").queryParam("url",strFeedLink).request(MediaType.APPLICATION_JSON).get(JsonNode.class);
-	   }
-	   catch(Exception ex)
-	   {
-		   return null;
-	   }
-		
+		try
+		{
+			oJSON   =client.target("https://publish.twitter.com").path("oembed").queryParam("url",strFeedLink).request(MediaType.APPLICATION_JSON).get(JsonNode.class);
+		}
+		catch(Exception ex)
+		{
+			return null;
+		}
+
 		String strResponse = oJSON.get("html").asText();
 		return strResponse;
 	}
 
-	
+
 
 
 }
