@@ -56,6 +56,8 @@ public class MDN_RestClient
 	}
 	public MDN_RestClient()
 	{
+		if(System.getProperty("RESTURI").length()>0)
+			REST_URI= System.getProperty("RESTURI");
 		client = ClientBuilder.newClient();
 	}
 	public List<MDN_UserProfile> getUsers()
