@@ -145,6 +145,13 @@ public class MDN_RestClient
 			throw new Exception("Deletion failed");
 		return true;
 	}
+	public boolean updateUser(MDN_User oUser, String strUserName) throws Exception 
+	{
+		Response response =client.target(MDN_RestClient.REST_URI).path("users").path(strUserName).request(MediaType.APPLICATION_JSON).put(Entity.entity(oUser, MediaType.APPLICATION_JSON));
+		if(Response.Status.OK.getStatusCode()!=response.getStatus())
+			throw new Exception("Deletion failed");
+		return true;
+	}
 	public List<MDN_SocialPost>  getFacebookFeed() 
 	{
 		List<MDN_SocialPost>  oList=client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
@@ -375,6 +382,7 @@ public class MDN_RestClient
 		String strResponse = oJSON.get("html").asText();
 		return strResponse;
 	}
+
 
 
 
