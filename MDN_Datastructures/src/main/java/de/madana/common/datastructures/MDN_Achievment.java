@@ -2,6 +2,10 @@ package de.madana.common.datastructures;
 
 public class MDN_Achievment
 {
+	public MDN_Achievment()
+	{
+		completed="false";
+	}
 	String name;
 	public String getName() {
 		return name;
@@ -30,7 +34,14 @@ public class MDN_Achievment
 	String description;
 	String reward;
 	String image;
+	String completed;
 
+	public String getCompleted() {
+		return completed;
+	}
+	public void setCompleted(String completed) {
+		this.completed = completed;
+	}
 	public String toString()
 	{
 		return name;

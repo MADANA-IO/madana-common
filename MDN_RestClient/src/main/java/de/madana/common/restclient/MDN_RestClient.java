@@ -98,7 +98,7 @@ public class MDN_RestClient
 	{
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("authentication").request(MediaType.APPLICATION_JSON).post(Entity.entity(oCredentials, MediaType.APPLICATION_JSON));
 		if( Response.Status.OK.getStatusCode()!=oResponse.getStatus())
-			throw new Exception("Wrong username / password");
+			throw new Exception(oResponse.getStatusInfo().toString());
 		MDN_Token oToken = oResponse.readEntity(MDN_Token.class);
 		Feature feature = OAuth2ClientSupport.feature(oToken.getToken());
 		client.register(feature);
