@@ -1,8 +1,8 @@
 package de.madana.common.datastructures;
 
-public class MDN_Achievment
+public class MDN_Achievement
 {
-	public MDN_Achievment()
+	public MDN_Achievement()
 	{
 		completed="false";
 	}
