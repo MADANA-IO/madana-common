@@ -8,7 +8,7 @@ public class MDN_UserProfile extends MDN_A_UserObject
 	 
 	 String points;
 	 List<MDN_SocialHistoryObject> history;
-	 private List<MDN_AchievementGroup> achievments;
+	 private List<MDN_AchievementGroup> achievements;
 	
 	public String getPoints() {
 		return points;
@@ -22,11 +22,11 @@ public class MDN_UserProfile extends MDN_A_UserObject
 	public void setHistory(List<MDN_SocialHistoryObject> oHistory) {
 		this.history = oHistory;
 	}
-	public List<MDN_AchievementGroup> getAchievments() {
-		return achievments;
+	public List<MDN_AchievementGroup> getAchievements() {
+		return achievements;
 	}
-	public void setAchievments(List<MDN_AchievementGroup> achievments) {
-		this.achievments = achievments;
+	public void setAchievements(List<MDN_AchievementGroup> achievments) {
+		this.achievements = achievments;
 	}
 
 
