@@ -46,7 +46,7 @@ import de.madana.common.datastructures.MDN_UserProfileImage;
  */
 public class MDN_RestClient 
 {
-	static String REST_URI  = "https://staging.extranet.madana.io/rest";
+	static String REST_URI  = "https://extranet.madana.io/rest";
 	Client client;
 
 	public MDN_RestClient(String strUrl)
@@ -59,6 +59,11 @@ public class MDN_RestClient
 		if(System.getProperty("RESTURI")!=null)
 		{
 			if(System.getProperty("RESTURI").length()>0)
+				REST_URI= System.getProperty("RESTURI");
+		}
+		if(System.getenv("RESTURI")!=null)
+		{
+			if(System.getenv("RESTURI").length()>0)
 				REST_URI= System.getProperty("RESTURI");
 		}
 		client = ClientBuilder.newClient();
