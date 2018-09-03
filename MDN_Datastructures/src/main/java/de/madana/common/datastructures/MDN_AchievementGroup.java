@@ -12,11 +12,11 @@ public class MDN_AchievementGroup
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<MDN_Achievement> getAchievments() {
+	public List<MDN_Achievement> getAchievements() {
 		return achievements;
 	}
-	public void setAchievments(List<MDN_Achievement> achievments) {
-		this.achievements = achievments;
+	public void setAchievements(List<MDN_Achievement> achievements) {
+		this.achievements = achievements;
 	}
 
 	public String toString()

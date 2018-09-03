@@ -25,8 +25,8 @@ public class MDN_UserProfile extends MDN_A_UserObject
 	public List<MDN_AchievementGroup> getAchievements() {
 		return achievements;
 	}
-	public void setAchievements(List<MDN_AchievementGroup> achievments) {
-		this.achievements = achievments;
+	public void setAchievements(List<MDN_AchievementGroup> achievements) {
+		this.achievements = achievements;
 	}
 
 
