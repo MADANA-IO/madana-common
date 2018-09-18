@@ -177,16 +177,17 @@ public class MDN_RestClient
 			throw new Exception("Deletion failed");
 		return true;
 	}
-	public List<MDN_SocialPost>  getFacebookFeed() 
+	public List<MDN_SocialPost>  getSocialFeed(String strPlatform) 
 	{
-		List<MDN_SocialPost>  oList=client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
+		List<MDN_SocialPost>  oList;
+
+		oList=client.target(MDN_RestClient.REST_URI).path("social").path("feed").path(strPlatform).request(MediaType.APPLICATION_JSON).get(List.class);
+
+
+
 		return oList;
 	}
-	public List<MDN_SocialPost> getTwitterFeed() 
-	{
-		List<MDN_SocialPost>  oList=client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
-		return oList;
-	}
+
 	public List<MDN_PersonalSocialPost> getPersonalizedTwitterFeed(String strUserName) 
 	{
 		ObjectMapper mapper = new ObjectMapper();
@@ -328,7 +329,7 @@ public class MDN_RestClient
 	}
 	public List<MDN_UserProfile> getReferredUsers(String strPlatform, String strUsername)
 	{
-		List<MDN_UserProfile> oProfiles = client.target(MDN_RestClient.REST_URI).path("social").path(strPlatform.toLowerCase()).path("feed").request(MediaType.APPLICATION_JSON).get(List.class);
+		List<MDN_UserProfile> oProfiles = client.target(MDN_RestClient.REST_URI).path("social").path("feed").path(strPlatform.toLowerCase()).request(MediaType.APPLICATION_JSON).get(List.class);
 
 		return oProfiles;
 	}
