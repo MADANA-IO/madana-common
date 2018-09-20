@@ -285,7 +285,7 @@ public class MDN_RestClient
 	{
 		ObjectMapper mapper = new ObjectMapper();
 		List<MDN_SocialPost>  oFeed = null;
-		JsonNode oJSON = client.target(MDN_RestClient.REST_URI).path("social").path(oPlatform.getName().toLowerCase()).path("feed").request(MediaType.APPLICATION_JSON).get(JsonNode.class);
+		JsonNode oJSON = client.target(MDN_RestClient.REST_URI).path("social").path("feed").path(oPlatform.getName().toLowerCase()).request(MediaType.APPLICATION_JSON).get(JsonNode.class);
 		//Jackson's use of generics here are completely unsafe, but that's another issue
 		try {
 			oFeed = mapper.readValue(mapper.treeAsTokens(oJSON),   new TypeReference<List<MDN_SocialPost>>(){});
