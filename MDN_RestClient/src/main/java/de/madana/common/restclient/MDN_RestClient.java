@@ -84,7 +84,7 @@ public class MDN_RestClient
 		if(System.getenv("RESTURI")!=null)
 		{
 			if(System.getenv("RESTURI").length()>0)
-				REST_URI= System.getProperty("RESTURI");
+				REST_URI= System.getenv("RESTURI");
 		}
 		client = ClientBuilder.newClient();
 	}
@@ -210,12 +210,12 @@ public class MDN_RestClient
 	}
 	public String getFacebookAuthURL() 
 	{
-		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
+		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("auth").path("facebook").request(MediaType.APPLICATION_JSON).get(String.class);
 		return strUrl;
 	}
 	public String getTwitterAuthURL() 
 	{
-		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
+		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("auth").path("twitter").request(MediaType.APPLICATION_JSON).get(String.class);
 		return strUrl;
 	}
 	public List<MDN_SocialPlatform> getSocialPlatforms()
@@ -273,7 +273,7 @@ public class MDN_RestClient
 	}
 	public boolean setFacebookUID(String strCode) 
 	{
-		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("facebook").path("auth").request(MediaType.APPLICATION_JSON).post(Entity.entity(strCode, MediaType.APPLICATION_JSON));
+		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("auth").path("facebook").request(MediaType.APPLICATION_JSON).post(Entity.entity(strCode, MediaType.APPLICATION_JSON));
 		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
 			return false;
 
@@ -284,10 +284,12 @@ public class MDN_RestClient
 	public void getSocialFeed(MDN_SocialPlatform oPlatform) 
 	{
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		List<MDN_SocialPost>  oFeed = null;
-		JsonNode oJSON = client.target(MDN_RestClient.REST_URI).path("social").path("feed").path(oPlatform.getName().toLowerCase()).request(MediaType.APPLICATION_JSON).get(JsonNode.class);
+
 		//Jackson's use of generics here are completely unsafe, but that's another issue
 		try {
+			JsonNode oJSON = client.target(MDN_RestClient.REST_URI).path("social").path("feed").path(oPlatform.getName().toLowerCase()).request(MediaType.APPLICATION_JSON).get(JsonNode.class);
 			oFeed = mapper.readValue(mapper.treeAsTokens(oJSON),   new TypeReference<List<MDN_SocialPost>>(){});
 			Collections.sort(oFeed);
 
@@ -307,7 +309,7 @@ public class MDN_RestClient
 	}
 	public boolean setFractalUID(String code) 
 	{
-		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("fractal").path("auth").request(MediaType.APPLICATION_JSON).post(Entity.entity(code, MediaType.APPLICATION_JSON));
+		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("auth").path("fractal").request(MediaType.APPLICATION_JSON).post(Entity.entity(code, MediaType.APPLICATION_JSON));
 		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
 			return false;
 
@@ -320,7 +322,7 @@ public class MDN_RestClient
 		MDN_OAuthToken oToken = new MDN_OAuthToken();
 		oToken.setToken(token);
 		oToken.setVerifier(verifier);
-		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("auth").request(MediaType.APPLICATION_JSON).post(Entity.entity(oToken, MediaType.APPLICATION_JSON));
+		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("auth").path("twitter").request(MediaType.APPLICATION_JSON).post(Entity.entity(oToken, MediaType.APPLICATION_JSON));
 		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
 			return false;
 
