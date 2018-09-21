@@ -193,7 +193,7 @@ public class MDN_RestClient
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		List<MDN_PersonalSocialPost> oList=null;
-		JsonNode oJSON =client.target(MDN_RestClient.REST_URI).path("social").path("twitter").path("feed").path(strUserName).request(MediaType.APPLICATION_JSON).get(JsonNode.class);
+		JsonNode oJSON =client.target(MDN_RestClient.REST_URI).path("social").path("feed").path("twitter").request(MediaType.APPLICATION_JSON).get(JsonNode.class);
 		try {
 			oList = mapper.readValue(mapper.treeAsTokens(oJSON),   new TypeReference<List<MDN_PersonalSocialPost>>(){});
 		} catch (JsonParseException e) {
