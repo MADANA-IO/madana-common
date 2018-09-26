@@ -37,7 +37,14 @@ public class MDN_User extends MDN_A_UserObject
 	 String lastName="";
 	 String guid="";
 	 List<MDN_SocialUserObject> socialAccounts;
+	 List<MDN_UserSetting> settings;
 
+		public List<MDN_UserSetting> getSettings() {
+		return settings;
+	}
+	public void setSettings(List<MDN_UserSetting> settings) {
+		this.settings = settings;
+	}
 		public List<MDN_SocialUserObject> getSocialAccounts() {
 		return socialAccounts;
 	}

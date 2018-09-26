@@ -43,4 +43,8 @@ public String getPlatform() {
 public void setPlatform(String platform) {
 	this.platform = platform;
 }
+public String toString()
+{
+	return platform+"["+ident+"]";
+}
 }
