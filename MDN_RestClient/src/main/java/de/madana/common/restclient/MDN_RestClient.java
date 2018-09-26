@@ -59,6 +59,7 @@ import de.madana.common.datastructures.MDN_User;
 import de.madana.common.datastructures.MDN_UserCredentials;
 import de.madana.common.datastructures.MDN_UserProfile;
 import de.madana.common.datastructures.MDN_UserProfileImage;
+import de.madana.common.datastructures.MDN_UserSetting;
 
 /**
  * Hello world!
@@ -409,6 +410,19 @@ public class MDN_RestClient
 
 		String strResponse = oJSON.get("html").asText();
 		return strResponse;
+	}
+	/**
+	 * @param string
+	 * @param oSetting
+	 * @return 
+	 */
+	public boolean setUserSetting(String strUsername, MDN_UserSetting oSetting)
+	{
+		Response oResponse = client.target(MDN_RestClient.REST_URI).path("users").path(strUsername).path("settings").request(MediaType.APPLICATION_JSON).post(Entity.entity(oSetting, MediaType.APPLICATION_JSON));
+		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
+			return false;
+
+	return true;		
 	}
 
 
