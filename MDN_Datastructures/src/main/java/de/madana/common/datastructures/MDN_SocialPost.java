@@ -32,6 +32,17 @@ public class MDN_SocialPost implements Comparable
 	String created;
 	String text;
 	String picture;
+	String creator;
+	/**
+	 * @param socialUser
+	 */
+	public void setCreator(String socialUser) {
+		creator=socialUser;
+		
+	}
+	public String getCreator() {
+		return creator;
+	}
 	public String getPicture() {
 		return picture;
 	}
@@ -93,5 +104,6 @@ public class MDN_SocialPost implements Comparable
 
 
 	}
+
 
 }
