@@ -47,6 +47,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.madana.common.datastructures.MDN_AccesTokenRequestResponse;
+import de.madana.common.datastructures.MDN_ErrorMessage;
 import de.madana.common.datastructures.MDN_MailAddress;
 import de.madana.common.datastructures.MDN_OAuthToken;
 import de.madana.common.datastructures.MDN_PasswordReset;
@@ -122,9 +123,8 @@ public class MDN_RestClient
 
 	private String registerToken(MDN_UserCredentials oCredentials ) throws Exception
 	{
-		Response oResponse = client.target(MDN_RestClient.REST_URI).path("authentication").request(MediaType.APPLICATION_JSON).post(Entity.entity(oCredentials, MediaType.APPLICATION_JSON));
-		if( Response.Status.OK.getStatusCode()!=oResponse.getStatus())
-			throw new Exception(oResponse.getStatusInfo().toString());
+		Response oResponse = client.target(MDN_RestClient.REST_URI).path("authentication").request(MediaType.APPLICATION_JSON).post(Entity.entity(oCredentials, MediaType.APPLICATION_JSON)); 
+		checkForError(oResponse, Response.Status.OK.getStatusCode() );
 		MDN_Token oToken = oResponse.readEntity(MDN_Token.class);
 		Feature feature = OAuth2ClientSupport.feature(oToken.getToken());
 		client.register(feature);
@@ -158,9 +158,7 @@ public class MDN_RestClient
 		{
 			response =client.target(MDN_RestClient.REST_URI).path("users").request(MediaType.APPLICATION_JSON).post(Entity.entity(oUser, MediaType.APPLICATION_JSON));
 		}
-
-		if(Response.Status.OK.getStatusCode()!=response.getStatus())
-			throw new Exception("Creation failed");
+		checkForError(response, Response.Status.OK.getStatusCode() );
 		return oUser;
 	}
 	public  boolean deleteUser(String strUserName) throws Exception
@@ -422,11 +420,33 @@ public class MDN_RestClient
 		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
 			return false;
 
-	return true;		
+		return true;		
 	}
 
 
 
+private void checkForError( Response response, int status )throws Exception
+{
+	if( status!=response.getStatus())
+	{
+			Exception oEx;
+			try
+			{
+				MDN_ErrorMessage oMessage = getErrorMessage(response);
+				oEx = new Exception(oMessage.getErrorMessage());
+			}
+			catch(Exception ex)
+			{
+				oEx = new Exception(response.getStatusInfo().toString());
+			}
+			throw oEx;
 
+	}
+}
+public MDN_ErrorMessage getErrorMessage( Response response )
+{
+			return response.readEntity(MDN_ErrorMessage.class);
+		
+}
 
 }
