@@ -116,8 +116,8 @@ public class MDN_RestClient
 	public boolean setNewPassword(MDN_PasswordReset oPasswordReset)throws Exception
 	{
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("password").request(MediaType.APPLICATION_JSON).put(Entity.entity(oPasswordReset, MediaType.APPLICATION_JSON));
-		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
-			throw new Exception("Password could not be set");
+		checkForError( oResponse, Response.Status.ACCEPTED.getStatusCode());
+
 		return true;
 	}
 
@@ -425,10 +425,10 @@ public class MDN_RestClient
 
 
 
-private void checkForError( Response response, int status )throws Exception
-{
-	if( status!=response.getStatus())
+	private void checkForError( Response response, int status )throws Exception
 	{
+		if( status!=response.getStatus())
+		{
 			Exception oEx;
 			try
 			{
@@ -441,12 +441,12 @@ private void checkForError( Response response, int status )throws Exception
 			}
 			throw oEx;
 
+		}
 	}
-}
-public MDN_ErrorMessage getErrorMessage( Response response )
-{
-			return response.readEntity(MDN_ErrorMessage.class);
-		
-}
+	public MDN_ErrorMessage getErrorMessage( Response response )
+	{
+		return response.readEntity(MDN_ErrorMessage.class);
+
+	}
 
 }
