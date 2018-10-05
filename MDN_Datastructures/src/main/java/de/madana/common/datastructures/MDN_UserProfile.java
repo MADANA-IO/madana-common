@@ -23,19 +23,14 @@ package de.madana.common.datastructures;
 import java.util.List;
 
 
-public class MDN_UserProfile extends MDN_A_UserObject
+public class MDN_UserProfile extends MDN_SimpleUserProfile
 {
 	 
-	 String points;
+	
 	 List<MDN_SocialHistoryObject> history;
 	 private List<MDN_AchievementGroup> achievements;
 	
-	public String getPoints() {
-		return points;
-	}
-	public void setPoints(String points) {
-		this.points = points;
-	}
+
 	public List<MDN_SocialHistoryObject> getHistory() {
 		return history;
 	}
