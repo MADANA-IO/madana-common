@@ -52,6 +52,7 @@ import de.madana.common.datastructures.MDN_MailAddress;
 import de.madana.common.datastructures.MDN_OAuthToken;
 import de.madana.common.datastructures.MDN_PasswordReset;
 import de.madana.common.datastructures.MDN_PersonalSocialPost;
+import de.madana.common.datastructures.MDN_SimpleUserProfile;
 import de.madana.common.datastructures.MDN_SocialPlatform;
 import de.madana.common.datastructures.MDN_SocialPost;
 import de.madana.common.datastructures.MDN_SystemHealthObject;
@@ -237,39 +238,31 @@ public class MDN_RestClient
 		}
 		return oList;
 	}
-	public Map<String, String> getRanking()
+	public List<MDN_SimpleUserProfile> getRanking()
 	{
-		Map<String, String> oRanking =client.target(MDN_RestClient.REST_URI).path("social").path("ranking").request(MediaType.APPLICATION_JSON).get(Map.class);
-		return sortMapByValues(oRanking);
-	}
-	private static Map<String, String> sortMapByValues(Map<String, String> aMap) {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		List<MDN_SimpleUserProfile>  oRanking = null;
 
-		Set<Entry<String,String>> mapEntries = aMap.entrySet();
+		//Jackson's use of generics here are completely unsafe, but that's another issue
+		try {
+			JsonNode oJSON =client.target(MDN_RestClient.REST_URI).path("social").path("ranking").request(MediaType.APPLICATION_JSON).get(JsonNode.class);
+			oRanking = mapper.readValue(mapper.treeAsTokens(oJSON),   new TypeReference<List<MDN_SimpleUserProfile>>(){});
+			Collections.sort(oRanking);
 
-
-
-		// used linked list to sort, because insertion of elements in linked list is faster than an array list. 
-		List<Entry<String,String>> aList = new LinkedList<Entry<String,String>>(mapEntries);
-
-		// sorting the List
-		Collections.sort(aList, new Comparator<Entry<String,String>>() {
-
-			public int compare(Entry<String, String> ele1,
-					Entry<String, String> ele2) {
-
-				return Integer.valueOf(ele2.getValue()).compareTo(Integer.valueOf(ele1.getValue()));
-			}
-		});
-
-		// Storing the list into Linked HashMap to preserve the order of insertion. 
-		Map<String,String> aMap2 = new LinkedHashMap<String, String>();
-		for(Entry<String,String> entry: aList) {
-			aMap2.put(entry.getKey(), entry.getValue());
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		return aMap2;
-
+			return oRanking;
 	}
+
 	public boolean setFacebookUID(String strCode) 
 	{
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("auth").path("facebook").request(MediaType.APPLICATION_JSON).post(Entity.entity(strCode, MediaType.APPLICATION_JSON));
