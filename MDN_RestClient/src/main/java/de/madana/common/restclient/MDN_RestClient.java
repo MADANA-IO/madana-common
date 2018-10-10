@@ -309,14 +309,13 @@ public class MDN_RestClient
 
 	}
 
-	public boolean setTwitterUID(String token, String verifier)
+	public boolean setTwitterUID(String token, String verifier) throws Exception
 	{
 		MDN_OAuthToken oToken = new MDN_OAuthToken();
 		oToken.setToken(token);
 		oToken.setVerifier(verifier);
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("auth").path("twitter").request(MediaType.APPLICATION_JSON).post(Entity.entity(oToken, MediaType.APPLICATION_JSON));
-		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
-			return false;
+		checkForError( oResponse, Response.Status.ACCEPTED.getStatusCode());
 
 		return true;
 
