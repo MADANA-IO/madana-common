@@ -273,28 +273,18 @@ public class MDN_RestClient
 
 	}
 	@SuppressWarnings("unchecked")
-	public void getSocialFeed(MDN_SocialPlatform oPlatform) 
+	public void getSocialFeed(MDN_SocialPlatform oPlatform) throws Exception 
 	{
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		List<MDN_SocialPost>  oFeed = null;
 
 		//Jackson's use of generics here are completely unsafe, but that's another issue
-		try {
+
 			JsonNode oJSON = client.target(MDN_RestClient.REST_URI).path("social").path("feed").path(oPlatform.getName().toLowerCase()).request(MediaType.APPLICATION_JSON).get(JsonNode.class);
 			oFeed = mapper.readValue(mapper.treeAsTokens(oJSON),   new TypeReference<List<MDN_SocialPost>>(){});
 			Collections.sort(oFeed);
 
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		oPlatform.setFeed(oFeed);
 
@@ -340,11 +330,19 @@ public class MDN_RestClient
 
 		return true;
 	}
-	public MDN_UserProfile getProfile(String strUserName) 
+	public MDN_UserProfile getProfile(String strUserName) throws Exception 
 	{
-		MDN_UserProfile oProfile = client.target(MDN_RestClient.REST_URI).path("users").path("profiles").path(strUserName).request(MediaType.APPLICATION_JSON).get(MDN_UserProfile.class);
+		try
+		{
+			MDN_UserProfile oProfile = client.target(MDN_RestClient.REST_URI).path("users").path("profiles").path(strUserName).request(MediaType.APPLICATION_JSON).get(MDN_UserProfile.class);
+			return oProfile;
+		}
+		catch(Exception e)
+		{
+			throw new Exception("Error Requesting profile " +strUserName);
+		}
 
-		return oProfile;
+	
 	}
 
 	public MDN_SystemHealthObject getSystemHealth()
