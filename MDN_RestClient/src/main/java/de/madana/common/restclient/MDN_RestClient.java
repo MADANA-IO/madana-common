@@ -356,6 +356,14 @@ public class MDN_RestClient
 		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("fractal").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
 		return strUrl;
 	}
+	public boolean validateActivationToken(String token) 	
+	{
+		Response oResponse=client.target(MDN_RestClient.REST_URI).path("users").path("activation").path(token).request(MediaType.APPLICATION_JSON).get();
+		if( Response.Status.ACCEPTED.getStatusCode()!=oResponse.getStatus())
+			return false;
+
+		return true;	
+	}
 
 	public String getFractalAuthToken(String strClientID, String strClientSecret, String strBaseURL, String strRedirectURL, String strCode)
 	{
