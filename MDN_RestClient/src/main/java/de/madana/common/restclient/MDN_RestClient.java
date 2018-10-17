@@ -22,13 +22,7 @@ package de.madana.common.restclient;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -46,7 +40,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.madana.common.datastructures.MDN_AccesTokenRequestResponse;
 import de.madana.common.datastructures.MDN_ErrorMessage;
 import de.madana.common.datastructures.MDN_MailAddress;
 import de.madana.common.datastructures.MDN_OAuthToken;
@@ -340,6 +333,20 @@ public class MDN_RestClient
 		catch(Exception e)
 		{
 			throw new Exception("Error Requesting profile " +strUserName);
+		}
+
+	
+	}
+	public MDN_UserProfile getProfile() 
+	{
+		try
+		{
+			MDN_UserProfile oProfile = client.target(MDN_RestClient.REST_URI).path("users").path("profiles").path("me").request(MediaType.APPLICATION_JSON).get(MDN_UserProfile.class);
+			return oProfile;
+		}
+		catch(Exception e)
+		{
+			return null;
 		}
 
 	
