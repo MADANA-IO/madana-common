@@ -8,8 +8,8 @@
   	<parent>
   		<groupId>de.madana</groupId>
   		<version>0.0.1-SNAPSHOT</version>
-  		<relativePath>../MDN_Common</relativePath>
-  		<artifactId>common</artifactId>
+  		<relativePath>..</relativePath>
+  		<artifactId>madana-common</artifactId>
   	</parent>
   <url>http://maven.apache.org</url>
 

@@ -1,11 +1,2 @@
-.metadata
-/.recommenders
-/MDN_RestService/src/main/webapp/apidocs
-/MDN_Common/bin
-/MDN_WebClient/target
-/Servers
-/MDN_RestService/src/main/webapp/ui
-/MDN_RestService/src/main/webapp
-target
-/MDN_TwitterService/.settings
-MDN_Tests
+/target/
+/.metadata/

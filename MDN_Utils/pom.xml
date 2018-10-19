@@ -32,9 +32,9 @@
 	</dependencies>
 	<parent>
 		<groupId>de.madana</groupId>
-		<artifactId>common</artifactId>
+		<artifactId>madana-common</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../MDN_Common</relativePath>
+		<relativePath>..</relativePath>
 	</parent>
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
