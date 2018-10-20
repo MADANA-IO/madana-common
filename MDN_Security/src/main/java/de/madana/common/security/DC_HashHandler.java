@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.security;
+package de.madana.common.security;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -26,10 +26,21 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DC_HashHandler.
+ */
 public class DC_HashHandler 
 {
 	
-	   public static byte[] createChecksum(String filename) throws Exception {
+	   /**
+   	 * Creates the checksum.
+   	 *
+   	 * @param filename the filename
+   	 * @return the byte[]
+   	 * @throws Exception the exception
+   	 */
+   	public static byte[] createChecksum(String filename) throws Exception {
 	       InputStream fis =  new FileInputStream(filename);
 
 	       byte[] buffer = new byte[1024];
@@ -48,7 +59,14 @@ public class DC_HashHandler
 	   }
 
 	   // see this How-to for a faster way to convert
-	   // a byte array to a HEX string
+	   /**
+   	 * Gets the MD 5 checksum.
+   	 *
+   	 * @param filename the filename
+   	 * @return the MD 5 checksum
+   	 * @throws Exception the exception
+   	 */
+   	// a byte array to a HEX string
 	   public static String getMD5Checksum(String filename) throws Exception {
 	       byte[] b = createChecksum(filename);
 	       String result = "";
@@ -59,6 +77,13 @@ public class DC_HashHandler
 	       return result;
 	   }
 
+	/**
+	 * Generate hash.
+	 *
+	 * @param plaintext the plaintext
+	 * @return the string
+	 * @throws NoSuchAlgorithmException the no such algorithm exception
+	 */
 	public static String generateHash(String plaintext) throws NoSuchAlgorithmException
 	{
 		MessageDigest m = MessageDigest.getInstance("SHA-256");

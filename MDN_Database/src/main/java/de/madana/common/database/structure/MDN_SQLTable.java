@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.server.database;
+package de.madana.common.database.structure;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
+import de.madana.common.database.MDN_SQLConnector;
 /**
  * Klasse zur Verwaltung einer Tabelle in der Datenbank
  * @author Jean

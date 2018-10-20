@@ -18,14 +18,23 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package test;
+package de.madana.common.security.test;
 
 //Copyright (C) Leejae Karinja 2016 
 
 import java.net.Inet4Address;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Main.
+ */
 public class Main {
 
+  /**
+   * The main method.
+   *
+   * @param args the arguments
+   */
   public static void main(String[] args) {
       new Thread() {
 

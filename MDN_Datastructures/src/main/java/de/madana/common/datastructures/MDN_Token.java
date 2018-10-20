@@ -19,22 +19,36 @@
  * @contact:dev@madana.io
  ******************************************************************************/
 package de.madana.common.datastructures;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
- * @author J.-Fabian Wenisch
+ * The Class MDN_Token.
  *
+ * @author J.-Fabian Wenisch
  */
 public class MDN_Token 
 {
+	
+	/**
+	 * Gets the token.
+	 *
+	 * @return the token
+	 */
 	public String getToken() 
 	{
 		return token;
 	}
 
+	/**
+	 * Sets the token.
+	 *
+	 * @param token the new token
+	 */
 	public void setToken(String token) 
 	{
 		this.token = token;
 	}
 
+	/** The token. */
 	String token;
 }

@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.security;
+package de.madana.common.security;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,6 +39,11 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Map;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class SymmetricCryptography.
+ */
 public class SymmetricCryptography 
 {
 	// Reflection based "Hack" to use 24 & 32 bit key sizes for AES without the need of external jar
@@ -81,9 +86,23 @@ public class SymmetricCryptography
 	    if (newMaxKeyLength < 256)
 	        throw new RuntimeException(errorString); // hack failed
 	}
+	
+	/** The secret key. */
 	private SecretKeySpec secretKey;
+	
+	/** The cipher. */
 	private Cipher cipher;
 
+	/**
+	 * Instantiates a new symmetric cryptography.
+	 *
+	 * @param secret the secret
+	 * @param length the length
+	 * @param algorithm the algorithm
+	 * @throws UnsupportedEncodingException the unsupported encoding exception
+	 * @throws NoSuchAlgorithmException the no such algorithm exception
+	 * @throws NoSuchPaddingException the no such padding exception
+	 */
 	public SymmetricCryptography(String secret, int length, String algorithm)
 			throws UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		byte[] key = new byte[length];
@@ -92,6 +111,14 @@ public class SymmetricCryptography
 		this.cipher = Cipher.getInstance(algorithm);
 	}
 
+	/**
+	 * Fix secret.
+	 *
+	 * @param s the s
+	 * @param length the length
+	 * @return the byte[]
+	 * @throws UnsupportedEncodingException the unsupported encoding exception
+	 */
 	private byte[] fixSecret(String s, int length) throws UnsupportedEncodingException {
 		if (s.length() < length) {
 			int missingLength = length - s.length();
@@ -102,12 +129,31 @@ public class SymmetricCryptography
 		return s.substring(0, length).getBytes("UTF-8");
 	}
 
+	/**
+	 * Encrypt file.
+	 *
+	 * @param f the f
+	 * @throws InvalidKeyException the invalid key exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws IllegalBlockSizeException the illegal block size exception
+	 * @throws BadPaddingException the bad padding exception
+	 */
 	public void encryptFile(File f)
 			throws InvalidKeyException, IOException, IllegalBlockSizeException, BadPaddingException {
 		System.out.println("Encrypting file: " + f.getName());
 		this.cipher.init(Cipher.ENCRYPT_MODE, this.secretKey);
 		this.writeToFile(f);
 	}
+	
+	/**
+	 * Encrypt.
+	 *
+	 * @param bytes the bytes
+	 * @return the byte[]
+	 * @throws InvalidKeyException the invalid key exception
+	 * @throws IllegalBlockSizeException the illegal block size exception
+	 * @throws BadPaddingException the bad padding exception
+	 */
 	public byte[] encrypt(byte [] bytes) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException
 	{
 		this.cipher.init(Cipher.ENCRYPT_MODE, this.secretKey);
@@ -115,12 +161,31 @@ public class SymmetricCryptography
 		return output;
 	}
 
+	/**
+	 * Decrypt file.
+	 *
+	 * @param f the f
+	 * @throws InvalidKeyException the invalid key exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws IllegalBlockSizeException the illegal block size exception
+	 * @throws BadPaddingException the bad padding exception
+	 */
 	public void decryptFile(File f)
 			throws InvalidKeyException, IOException, IllegalBlockSizeException, BadPaddingException {
 		System.out.println("Decrypting file: " + f.getName());
 		this.cipher.init(Cipher.DECRYPT_MODE, this.secretKey);
 		this.writeToFile(f);
 	}
+	
+	/**
+	 * Decrypt.
+	 *
+	 * @param bytes the bytes
+	 * @return the byte[]
+	 * @throws InvalidKeyException the invalid key exception
+	 * @throws IllegalBlockSizeException the illegal block size exception
+	 * @throws BadPaddingException the bad padding exception
+	 */
 	public byte[] decrypt(byte[] bytes) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException
 	{
 		this.cipher.init(Cipher.DECRYPT_MODE, this.secretKey);
@@ -128,6 +193,14 @@ public class SymmetricCryptography
 		return output;
 	}
 
+	/**
+	 * Write to file.
+	 *
+	 * @param f the f
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws IllegalBlockSizeException the illegal block size exception
+	 * @throws BadPaddingException the bad padding exception
+	 */
 	public void writeToFile(File f) throws IOException, IllegalBlockSizeException, BadPaddingException {
 		FileInputStream in = new FileInputStream(f);
 		byte[] input = new byte[(int) f.length()];
@@ -142,6 +215,11 @@ public class SymmetricCryptography
 		in.close();
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		File dir = new File("src/cryptodir");
 		File[] filelist = dir.listFiles();

@@ -24,55 +24,143 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_SocialPost.
+ */
 public class MDN_SocialPost implements Comparable
 {
 
+	/** The id. */
 	String id;
+	
+	/** The link. */
 	String link;
+	
+	/** The created. */
 	String created;
+	
+	/** The text. */
 	String text;
+	
+	/** The picture. */
 	String picture;
+	
+	/** The creator. */
 	String creator;
+	
 	/**
-	 * @param socialUser
+	 * Sets the creator.
+	 *
+	 * @param socialUser the new creator
 	 */
 	public void setCreator(String socialUser) {
 		creator=socialUser;
 		
 	}
+	
+	/**
+	 * Gets the creator.
+	 *
+	 * @return the creator
+	 */
 	public String getCreator() {
 		return creator;
 	}
+	
+	/**
+	 * Gets the picture.
+	 *
+	 * @return the picture
+	 */
 	public String getPicture() {
 		return picture;
 	}
+	
+	/**
+	 * Sets the picture.
+	 *
+	 * @param picture the new picture
+	 */
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
+	
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
 	public String getId() {
 		return id;
 	}
+	
+	/**
+	 * Sets the id.
+	 *
+	 * @param id the new id
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	/**
+	 * Gets the link.
+	 *
+	 * @return the link
+	 */
 	public String getLink() {
 		return link;
 	}
+	
+	/**
+	 * Sets the link.
+	 *
+	 * @param link the new link
+	 */
 	public void setLink(String link) {
 		this.link = link;
 	}
+	
+	/**
+	 * Gets the created.
+	 *
+	 * @return the created
+	 */
 	public String getCreated() {
 		return created;
 	}
+	
+	/**
+	 * Sets the created.
+	 *
+	 * @param created the new created
+	 */
 	public void setCreated(String created) {
 		this.created = created;
 	}
+	
+	/**
+	 * Gets the text.
+	 *
+	 * @return the text
+	 */
 	public String getText() {
 		return text;
 	}
+	
+	/**
+	 * Sets the text.
+	 *
+	 * @param text the new text
+	 */
 	public void setText(String text) {
 		this.text = text;
 	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	@Override
 	public int compareTo(Object o) 
 	{

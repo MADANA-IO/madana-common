@@ -28,11 +28,28 @@ import java.net.Socket;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DC_A_SocketCommunication.
+ */
 public abstract class DC_A_SocketCommunication implements Runnable
 {
+	
+	/** The o socket. */
 	protected Socket oSocket;
+	
+	/** The out. */
 	protected PrintWriter out;
+	
+	/** The in. */
 	protected BufferedReader in;
+	
+	/**
+	 * Instantiates a new d C A socket communication.
+	 *
+	 * @param oDestSocket the o dest socket
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public DC_A_SocketCommunication(Socket oDestSocket) throws IOException
 	{
 		oSocket = oDestSocket;
@@ -40,18 +57,47 @@ public abstract class DC_A_SocketCommunication implements Runnable
 		in = new BufferedReader(new InputStreamReader(oSocket.getInputStream()));
 
 	}
+	
+	/**
+	 * Gets the remote address.
+	 *
+	 * @return the remote address
+	 */
 	public String getRemoteAddress() 
 	{
 		return oSocket.getRemoteSocketAddress().toString();
 	}
+	
+	/**
+	 * Gets the command.
+	 *
+	 * @param strMessage the str message
+	 * @return the command
+	 */
 	protected String getCommand(String strMessage)
 	{
 		return strMessage.substring(0, strMessage.indexOf("|"));
 	}
+	
+	/**
+	 * Gets the command text.
+	 *
+	 * @param strMessage the str message
+	 * @return the command text
+	 */
 	protected String getCommandText(String strMessage)
 	{
 		return strMessage.substring(strMessage.indexOf("|")+1, strMessage.length());
 	}
+	
+	/**
+	 * Send command.
+	 *
+	 * @param strCommand the str command
+	 * @param strParams the str params
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	protected synchronized String sendCommand(String strCommand, String strParams) throws Exception
 	{
 
@@ -72,10 +118,20 @@ public abstract class DC_A_SocketCommunication implements Runnable
 		return null;
 	}
 
+	/**
+	 * Gets the action.
+	 *
+	 * @param strInput the str input
+	 * @return the action
+	 */
 	protected  String getAction(String strInput)
 	{
 		return "Unbekannter Befehl";
 	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	public void run()
 	{
 		Thread.currentThread().setName(oSocket.getRemoteSocketAddress().toString());
@@ -127,6 +183,10 @@ public abstract class DC_A_SocketCommunication implements Runnable
 		setSessionCancelled();
 
 	}
+	
+	/**
+	 * Sets the session cancelled.
+	 */
 	protected  void setSessionCancelled() 
 	{
 		System.out.println(Thread.currentThread().getName() + " beendet!");

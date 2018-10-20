@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.security.certficate;
+package de.madana.common.security.certficate;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -42,8 +42,23 @@ import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_CertificateHandler.
+ */
 public class MDN_CertificateHandler
 {
+	
+	/**
+	 * Self sign.
+	 *
+	 * @param keyPair the key pair
+	 * @param subjectDN the subject DN
+	 * @return the x 509 certificate
+	 * @throws OperatorCreationException the operator creation exception
+	 * @throws CertificateException the certificate exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static X509Certificate selfSign(KeyPair keyPair, String subjectDN) throws OperatorCreationException, CertificateException, IOException
 	{
 	    Provider bcProvider = new BouncyCastleProvider();
@@ -78,6 +93,14 @@ public class MDN_CertificateHandler
 
 	    return new JcaX509CertificateConverter().setProvider(bcProvider).getCertificate(certBuilder.build(contentSigner));
 	}
+	
+	/**
+	 * Convert to pem.
+	 *
+	 * @param cert the cert
+	 * @return the string
+	 * @throws CertificateEncodingException the certificate encoding exception
+	 */
 	public static String convertToPem(X509Certificate cert) throws CertificateEncodingException 
 	{
 		 Base64 encoder = new Base64(64);

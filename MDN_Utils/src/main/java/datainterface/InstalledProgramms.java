@@ -26,8 +26,19 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InstalledProgramms.
+ */
 public class InstalledProgramms 
 {
+	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static void main(String[] args) throws IOException {
 
 		List <MDN_DataObject> oObjs = new ArrayList<MDN_DataObject>();
@@ -39,6 +50,14 @@ public class InstalledProgramms
 
 	}
 
+	/**
+	 * Read values.
+	 *
+	 * @param oObjs the o objs
+	 * @param strKey the str key
+	 * @param bInit the b init
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private static void readValues( List <MDN_DataObject> oObjs, String strKey, boolean bInit) throws IOException
 	{
 		String command = "powershell.exe  Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Select-Object "+strKey;

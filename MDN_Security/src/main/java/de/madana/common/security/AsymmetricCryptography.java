@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.security;
+package de.madana.common.security;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,12 +43,32 @@ import javax.crypto.NoSuchPaddingException;
 import org.apache.commons.net.util.Base64;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AsymmetricCryptography.
+ */
 public class AsymmetricCryptography {
+	
+	/** The cipher. */
 	private Cipher cipher;
 	
+	/**
+	 * Instantiates a new asymmetric cryptography.
+	 *
+	 * @throws NoSuchAlgorithmException the no such algorithm exception
+	 * @throws NoSuchPaddingException the no such padding exception
+	 */
 	public AsymmetricCryptography() throws NoSuchAlgorithmException, NoSuchPaddingException{
 		this.cipher = Cipher.getInstance("RSA");
 	}
+	
+	/**
+	 * Gets the private.
+	 *
+	 * @param filename the filename
+	 * @return the private
+	 * @throws Exception the exception
+	 */
 	//https://docs.oracle.com/javase/8/docs/api/java/security/spec/PKCS8EncodedKeySpec.html
 	public PrivateKey getPrivate(String filename) throws Exception {
 		byte[] keyBytes = Files.readAllBytes(new File(filename).toPath());
@@ -56,6 +76,14 @@ public class AsymmetricCryptography {
 		KeyFactory kf = KeyFactory.getInstance("RSA");
 		return kf.generatePrivate(spec);
 	}
+	
+	/**
+	 * Gets the public.
+	 *
+	 * @param filename the filename
+	 * @return the public
+	 * @throws Exception the exception
+	 */
 	//https://docs.oracle.com/javase/8/docs/api/java/security/spec/X509EncodedKeySpec.html
 	public PublicKey getPublic(String filename) throws Exception {
 		byte[] keyBytes = Files.readAllBytes(new File(filename).toPath());
@@ -64,16 +92,43 @@ public class AsymmetricCryptography {
 		return kf.generatePublic(spec);
 	}
 	
+	/**
+	 * Encrypt file.
+	 *
+	 * @param input the input
+	 * @param output the output
+	 * @param key the key
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws GeneralSecurityException the general security exception
+	 */
 	public void encryptFile(byte[] input, File output, PrivateKey key) throws IOException, GeneralSecurityException {
 		this.cipher.init(Cipher.ENCRYPT_MODE, key);
 		writeToFile(output, this.cipher.doFinal(input));
     }
 	
+	/**
+	 * Decrypt file.
+	 *
+	 * @param input the input
+	 * @param output the output
+	 * @param key the key
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws GeneralSecurityException the general security exception
+	 */
 	public void decryptFile(byte[] input, File output, PublicKey key) throws IOException, GeneralSecurityException {
 		this.cipher.init(Cipher.DECRYPT_MODE, key);
 		writeToFile(output, this.cipher.doFinal(input));
     }
 	
+	/**
+	 * Write to file.
+	 *
+	 * @param output the output
+	 * @param toWrite the to write
+	 * @throws IllegalBlockSizeException the illegal block size exception
+	 * @throws BadPaddingException the bad padding exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private void writeToFile(File output, byte[] toWrite) throws IllegalBlockSizeException, BadPaddingException, IOException{
 		FileOutputStream fos = new FileOutputStream(output);
 		fos.write(toWrite);
@@ -81,16 +136,47 @@ public class AsymmetricCryptography {
 		fos.close();
 	}
 	
+	/**
+	 * Encrypt text.
+	 *
+	 * @param msg the msg
+	 * @param key the key
+	 * @return the string
+	 * @throws NoSuchAlgorithmException the no such algorithm exception
+	 * @throws NoSuchPaddingException the no such padding exception
+	 * @throws UnsupportedEncodingException the unsupported encoding exception
+	 * @throws IllegalBlockSizeException the illegal block size exception
+	 * @throws BadPaddingException the bad padding exception
+	 * @throws InvalidKeyException the invalid key exception
+	 */
 	public String encryptText(String msg, PrivateKey key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException{
 		this.cipher.init(Cipher.ENCRYPT_MODE, key);
 		return Base64.encodeBase64String(cipher.doFinal(msg.getBytes("UTF-8")));
 	}
 	
+	/**
+	 * Decrypt text.
+	 *
+	 * @param msg the msg
+	 * @param key the key
+	 * @return the string
+	 * @throws InvalidKeyException the invalid key exception
+	 * @throws UnsupportedEncodingException the unsupported encoding exception
+	 * @throws IllegalBlockSizeException the illegal block size exception
+	 * @throws BadPaddingException the bad padding exception
+	 */
 	public String decryptText(String msg, PublicKey key) throws InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException{
 		this.cipher.init(Cipher.DECRYPT_MODE, key);
 		return new String(cipher.doFinal(Base64.decodeBase64(msg)), "UTF-8");
 	}
 	
+	/**
+	 * Gets the file in bytes.
+	 *
+	 * @param f the f
+	 * @return the file in bytes
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public byte[] getFileInBytes(File f) throws IOException{
 		FileInputStream fis = new FileInputStream(f);
 		byte[] fbytes = new byte[(int) f.length()];
@@ -99,6 +185,12 @@ public class AsymmetricCryptography {
 		return fbytes;
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Exception the exception
+	 */
 	public static void main(String[] args) throws Exception {
 		AsymmetricCryptography ac = new AsymmetricCryptography();
 		PrivateKey privateKey = ac.getPrivate("KeyPair/privateKey");

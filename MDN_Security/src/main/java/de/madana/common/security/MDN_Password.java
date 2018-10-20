@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.security;
+package de.madana.common.security;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -29,15 +29,30 @@ import javax.crypto.spec.PBEKeySpec;
 
 import org.apache.commons.net.util.Base64;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_Password.
+ */
 public class MDN_Password {
     // The higher the number of iterations the more 
     // expensive computing the hash is for us and
+    /** The Constant iterations. */
     // also for an attacker.
     private static final int iterations = 20*1000;
+    
+    /** The Constant saltLen. */
     private static final int saltLen = 32;
+    
+    /** The Constant desiredKeyLen. */
     private static final int desiredKeyLen = 256;
 
     
+    /**
+     * Generate salt.
+     *
+     * @return the byte[]
+     * @throws NoSuchAlgorithmException the no such algorithm exception
+     */
     public static byte[] generateSalt() throws NoSuchAlgorithmException
     {
     	return SecureRandom.getInstance("SHA1PRNG").generateSeed(saltLen);
@@ -45,9 +60,15 @@ public class MDN_Password {
 
   
 
-    /** Computes a salted PBKDF2 hash of given plaintext password
-        suitable for storing in a database. 
-        Empty passwords are not supported. */
+    /**
+     *  Computes a salted PBKDF2 hash of given plaintext password
+     *         suitable for storing in a database. 
+     *         Empty passwords are not supported.
+     *
+     * @param password the password
+     * @return the salted hash
+     * @throws Exception the exception
+     */
     public String getSaltedHash(String password) throws Exception {
         byte[] salt = SecureRandom.getInstance("SHA1PRNG").generateSeed(saltLen);
       
@@ -55,8 +76,15 @@ public class MDN_Password {
         return Base64.encodeBase64String(salt) + "$" + hash(password, salt);
     }
 
-    /** Checks whether given plaintext password corresponds 
-        to a stored salted hash of the password. */
+    /**
+     *  Checks whether given plaintext password corresponds 
+     *         to a stored salted hash of the password.
+     *
+     * @param password the password
+     * @param stored the stored
+     * @return true, if successful
+     * @throws Exception the exception
+     */
     public static boolean check(String password, String stored) throws Exception{
         String[] saltAndPass = stored.split("\\$");
         if (saltAndPass.length != 2) {
@@ -68,6 +96,14 @@ public class MDN_Password {
     }
 
     // using PBKDF2 from Sun, an alternative is https://github.com/wg/scrypt
+    /**
+     * Hash.
+     *
+     * @param password the password
+     * @param salt the salt
+     * @return the string
+     * @throws Exception the exception
+     */
     // cf. http://www.unlimitednovelty.com/2012/03/dont-use-bcrypt.html
     public static String hash(String password, byte[] salt) throws Exception {
         if (password == null || password.length() == 0)

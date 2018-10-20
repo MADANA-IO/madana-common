@@ -20,35 +20,93 @@
  ******************************************************************************/
 package de.madana.common.datastructures;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_A_UserObject.
+ */
 public abstract class MDN_A_UserObject 
 {
+	
+	/** The user name. */
 	String userName="";
+	
+	/** The created. */
 	String created="";
+	
+	/** The last active. */
 	String lastActive="";
+	
+	/** The image. */
 	String image="";
 
+	/**
+	 * Gets the image.
+	 *
+	 * @return the image
+	 */
 	public String getImage() {
 		return image;
 	}
+	
+	/**
+	 * Sets the image.
+	 *
+	 * @param image the new image
+	 */
 	public void setImage(String image) {
 		this.image = image;
 	}
+	
+	/**
+	 * Gets the user name.
+	 *
+	 * @return the user name
+	 */
 	public String getUserName() {
 		return userName;
 	}
+	
+	/**
+	 * Sets the user name.
+	 *
+	 * @param userName the new user name
+	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
+	/**
+	 * Gets the created.
+	 *
+	 * @return the created
+	 */
 	public String getCreated() {
 		return created;
 	}
+	
+	/**
+	 * Sets the created.
+	 *
+	 * @param created the new created
+	 */
 	public void setCreated(String created) {
 		this.created = created;
 	}
+	
+	/**
+	 * Gets the last active.
+	 *
+	 * @return the last active
+	 */
 	public String getLastActive() {
 		return lastActive;
 	}
+	
+	/**
+	 * Sets the last active.
+	 *
+	 * @param lastActive the new last active
+	 */
 	public void setLastActive(String lastActive) {
 		this.lastActive = lastActive;
 	}

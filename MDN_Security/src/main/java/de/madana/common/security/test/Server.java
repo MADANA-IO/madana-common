@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package test;
+package de.madana.common.security.test;
 //Copyright (C) Leejae Karinja 2016 
 
 import java.io.ByteArrayInputStream;
@@ -64,38 +64,70 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Server.
+ */
 public class Server {
 
+  /** The port. */
   private int port;
+  
+  /** The nonce. */
   private byte[] nonce;
+  
+  /** The key data. */
   private byte[] keyData;
+  
+  /** The client. */
   private SSLSocket client;
+  
+  /** The server. */
   private SSLServerSocket server;
+  
+  /** The writer. */
   private DataOutputStream writer;
+  
+  /** The reader. */
   private DataInputStream reader;
 
+  /** The Constant PROVIDER_NAME. */
   private static final String PROVIDER_NAME = BouncyCastleProvider.PROVIDER_NAME;
   static {
       Security.addProvider(new BouncyCastleProvider());
   }
+  
+  /** The Constant SIGNATURE_ALGORITHM. */
   private static final String SIGNATURE_ALGORITHM = "SHA512withECDSA";
+  
+  /** The Constant KEY_GENERATION_ALGORITHM. */
   private static final String KEY_GENERATION_ALGORITHM = "ECDH";
+  
+  /** The Constant SSL_CONTEXT. */
   private static final String SSL_CONTEXT = "TLSv1.2";
+  
+  /** The Constant KEY_STORE_INSTANCE. */
   private static final String KEY_STORE_INSTANCE = "JKS";
+  
+  /** The Constant KMF_INSTANCE. */
   private static final String KMF_INSTANCE = "PKIX";
+  
+  /** The Constant BEFORE. */
   private static final Date BEFORE = new Date(System.currentTimeMillis() - 5000);
+  
+  /** The Constant AFTER. */
   private static final Date AFTER = new Date(System.currentTimeMillis() + 600000);
 
   /**
-   * Default constructor
+   * Default constructor.
    */
   Server() {
 
   }
 
   /**
-   * Constructor with specified port
-   * 
+   * Constructor with specified port.
+   *
    * @param port Port to start the server on
    */
   Server(int port) {
@@ -104,8 +136,8 @@ public class Server {
 
   /**
    * Generates a one time use secure random number to be used as the password
-   * for a keystore
-   * 
+   * for a keystore.
+   *
    * @return Returns void on completion
    */
   private void genNonce() {
@@ -116,8 +148,8 @@ public class Server {
   }
 
   /**
-   * Generates a one time use keystore for use with an SSL session
-   * 
+   * Generates a one time use keystore for use with an SSL session.
+   *
    * @return Returns void on completion
    */
   private void genKeystore() {
@@ -150,10 +182,11 @@ public class Server {
    * Create a certificate to use by a Certificate Authority
    * 
    * Retrieved from http://www.programcreek.com/java-api-examples/index.php?class=org.bouncycastle.cert.X509v3CertificateBuilder&method=addExtension
-   * 
+   *
    * @param publicKey Public key
    * @param privateKey Private key
    * @return Generated X509 Certificate
+   * @throws Exception the exception
    */
   private X509Certificate createCACert(PublicKey publicKey, PrivateKey privateKey) throws Exception {
       X500Name issuerName = new X500Name("CN=127.0.0.1, O=FOO, L=BAR, ST=BAZ, C=QUX");
@@ -186,10 +219,10 @@ public class Server {
    * Helper method
    * 
    * Retrieved from http://www.programcreek.com/java-api-examples/index.php?api=org.bouncycastle.cert.bc.BcX509ExtensionUtils
-   * 
-   * @param key
-   * @return
-   * @throws Exception
+   *
+   * @param key the key
+   * @return the subject key identifier
+   * @throws Exception the exception
    */
   private static SubjectKeyIdentifier createSubjectKeyIdentifier(Key key) throws Exception {
       ASN1InputStream is = new ASN1InputStream(new ByteArrayInputStream(key.getEncoded()));
@@ -204,11 +237,11 @@ public class Server {
    * Helper method
    * 
    * Retrieved from http://www.programcreek.com/java-api-examples/index.php?source_dir=mockserver-master/mockserver-core/src/main/java/org/mockserver/socket/KeyStoreFactory.java
-   * 
-   * @param certificateBuilder
-   * @param signedWithPrivateKey
-   * @return
-   * @throws Exception
+   *
+   * @param certificateBuilder the certificate builder
+   * @param signedWithPrivateKey the signed with private key
+   * @return the x 509 certificate
+   * @throws Exception the exception
    */
   private static X509Certificate signCertificate(X509v3CertificateBuilder certificateBuilder, PrivateKey signedWithPrivateKey) throws Exception {
       ContentSigner signer = new JcaContentSignerBuilder(SIGNATURE_ALGORITHM).setProvider(PROVIDER_NAME).build(signedWithPrivateKey);
@@ -216,8 +249,8 @@ public class Server {
   }
 
   /**
-   * Sets the port for the server to start on
-   * 
+   * Sets the port for the server to start on.
+   *
    * @param port Port to start the server on
    * @return Returns void on completion
    */
@@ -227,8 +260,8 @@ public class Server {
   }
 
   /**
-   * Starts the SSL session
-   * 
+   * Starts the SSL session.
+   *
    * @return Returns void on completion
    */
   protected void start() {
@@ -244,8 +277,8 @@ public class Server {
   }
 
   /**
-   * Stopps the SSL session
-   * 
+   * Stopps the SSL session.
+   *
    * @return Returns void on completion
    */
   protected void stop() {
@@ -256,8 +289,8 @@ public class Server {
   }
 
   /**
-   * Creates an SSL session
-   * 
+   * Creates an SSL session.
+   *
    * @return Returns void on completion
    */
   private void startConnection() {
@@ -290,8 +323,8 @@ public class Server {
   }
 
   /**
-   * Ends the SSL session
-   * 
+   * Ends the SSL session.
+   *
    * @return Returns void on completion
    */
   private void endConnection() {
@@ -307,8 +340,8 @@ public class Server {
   }
 
   /**
-   * Sends data to the client
-   * 
+   * Sends data to the client.
+   *
    * @param data Data to send to the client as a byte array
    * @return Returns void on completion
    */
@@ -327,8 +360,8 @@ public class Server {
   }
 
   /**
-   * Receives data from the client
-   * 
+   * Receives data from the client.
+   *
    * @return Returns data received from the client as a byte array
    */
   public byte[] receiveData() {

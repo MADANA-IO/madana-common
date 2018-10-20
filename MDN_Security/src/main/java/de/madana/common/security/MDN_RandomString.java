@@ -18,17 +18,23 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.security;
+package de.madana.common.security;
 
 import java.security.SecureRandom;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_RandomString.
+ */
 public class MDN_RandomString {
 
     /**
      * Generate a random string.
+     *
+     * @return the string
      */
     public String nextString() {
         for (int idx = 0; idx < buf.length; ++idx)
@@ -36,20 +42,34 @@ public class MDN_RandomString {
         return new String(buf);
     }
 
+    /** The Constant upper. */
     public static final String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+    /** The Constant lower. */
     public static final String lower = upper.toLowerCase(Locale.ROOT);
 
+    /** The Constant digits. */
     public static final String digits = "0123456789";
 
+    /** The Constant alphanum. */
     public static final String alphanum = upper + lower + digits;
 
+    /** The random. */
     private final Random random;
 
+    /** The symbols. */
     private final char[] symbols;
 
+    /** The buf. */
     private final char[] buf;
 
+    /**
+     * Instantiates a new MD N random string.
+     *
+     * @param length the length
+     * @param random the random
+     * @param symbols the symbols
+     */
     public MDN_RandomString(int length, Random random, String symbols) {
         if (length < 1) throw new IllegalArgumentException();
         if (symbols.length() < 2) throw new IllegalArgumentException();
@@ -60,6 +80,9 @@ public class MDN_RandomString {
 
     /**
      * Create an alphanumeric string generator.
+     *
+     * @param length the length
+     * @param random the random
      */
     public MDN_RandomString(int length, Random random) {
         this(length, random, alphanum);
@@ -67,6 +90,8 @@ public class MDN_RandomString {
 
     /**
      * Create an alphanumeric strings from a secure generator.
+     *
+     * @param length the length
      */
     public MDN_RandomString(int length) {
         this(length, new SecureRandom());

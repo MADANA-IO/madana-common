@@ -22,91 +22,174 @@ package de.madana.common.datastructures;
 
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
- * @author J.-Fabian Wenisch
+ * The Class MDN_User.
  *
+ * @author J.-Fabian Wenisch
  */
 public class MDN_User extends MDN_A_UserObject
 {
 ;
+	
+	/** The mail. */
 	private String mail="";
 	
+	/** The credentials. */
 	private MDN_UserCredentials credentials;
-	 String firstName ="";
-	 String lastName="";
-	 String guid="";
-	 List<MDN_SocialUserObject> socialAccounts;
-	 List<MDN_UserSetting> settings;
+	 
+ 	/** The first name. */
+ 	String firstName ="";
+	 
+ 	/** The last name. */
+ 	String lastName="";
+	 
+ 	/** The guid. */
+ 	String guid="";
+	 
+ 	/** The social accounts. */
+ 	List<MDN_SocialUserObject> socialAccounts;
+	 
+ 	/** The settings. */
+ 	List<MDN_UserSetting> settings;
 
+		/**
+		 * Gets the settings.
+		 *
+		 * @return the settings
+		 */
 		public List<MDN_UserSetting> getSettings() {
 		return settings;
 	}
+	
+	/**
+	 * Sets the settings.
+	 *
+	 * @param settings the new settings
+	 */
 	public void setSettings(List<MDN_UserSetting> settings) {
 		this.settings = settings;
 	}
+		
+		/**
+		 * Gets the social accounts.
+		 *
+		 * @return the social accounts
+		 */
 		public List<MDN_SocialUserObject> getSocialAccounts() {
 		return socialAccounts;
 	}
+	
+	/**
+	 * Sets the social accounts.
+	 *
+	 * @param socialAccounts the new social accounts
+	 */
 	public void setSocialAccounts(List<MDN_SocialUserObject> socialAccounts) {
 		this.socialAccounts = socialAccounts;
 	}
+		
+		/**
+		 * Gets the guid.
+		 *
+		 * @return the guid
+		 */
 		public String getGuid() {
 		return guid;
 	}
+	
+	/**
+	 * Sets the guid.
+	 *
+	 * @param guid the new guid
+	 */
 	public void setGuid(String guid) {
 		this.guid = guid;
 	}
+		
+		/**
+		 * Gets the first name.
+		 *
+		 * @return the first name
+		 */
 		public String getFirstName() {
 			return firstName;
 		}
+		
+		/**
+		 * Sets the first name.
+		 *
+		 * @param firstName the new first name
+		 */
 		public void setFirstName(String firstName) {
 			this.firstName = firstName;
 		}
+		
+		/**
+		 * Gets the last name.
+		 *
+		 * @return the last name
+		 */
 		public String getLastName() {
 			return lastName;
 		}
+		
+		/**
+		 * Sets the last name.
+		 *
+		 * @param lastName the new last name
+		 */
 		public void setLastName(String lastName) {
 			this.lastName = lastName;
 		}
 	
 	/**
-	 * 
-	 * @return the mail as string
+	 * Gets the mail.
+	 *
 	 * @author J.-Fabian Wenisch
+	 * @return the mail as string
 	 */
 	public String getMail() 
 	{
 		return mail;
 	}
+	
 	/**
-	 * 
-	 * @param mail sets the provided mail as string
+	 * Sets the mail.
+	 *
 	 * @author J.-Fabian Wenisch
+	 * @param mail sets the provided mail as string
 	 */
 	public void setMail(String mail) 
 	{
 		this.mail = mail;
 	}
+	
 	/**
-	 * 
-	 * @return the credentials as object
+	 * Gets the credentials.
+	 *
 	 * @author J.-Fabian Wenisch
+	 * @return the credentials as object
 	 */
 	public MDN_UserCredentials getCredentials()
 	{
 		return credentials;
 	}
+	
 	/**
-	 * 
-	 * @param oCredentials sets the provided credentials for the user
+	 * Sets the credentials.
+	 *
 	 * @author J.-Fabian Wenisch
+	 * @param oCredentials sets the provided credentials for the user
 	 */
 	public void setCredentials(MDN_UserCredentials oCredentials)
 	{
 		this.credentials = oCredentials;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() 
 	{

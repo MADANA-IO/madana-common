@@ -26,19 +26,43 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_DataObject.
+ */
 public class MDN_DataObject 
 {
+	
+	/** The map. */
 	private Map<String, String> map = new HashMap<String, String>();
 	
+	/**
+	 * Adds the entry.
+	 *
+	 * @param strKey the str key
+	 * @param strValue the str value
+	 */
 	public void addEntry(String strKey, String strValue)
 	{
 		map.put(strKey, strValue);
 	}
 	
+	/**
+	 * Gets the entry.
+	 *
+	 * @param strKey the str key
+	 * @return the entry
+	 */
 	public String getEntry(String strKey)
 	{
 		return map.get(strKey);
 	}
+	
+	/**
+	 * Gets the keys.
+	 *
+	 * @return the keys
+	 */
 	public List<String> getKeys()
 	{
 		List <String> oKeyList = new ArrayList<String>();

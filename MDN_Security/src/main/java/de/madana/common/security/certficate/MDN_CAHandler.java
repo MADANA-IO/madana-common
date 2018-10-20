@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.security.certficate;
+package de.madana.common.security.certficate;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -52,7 +52,27 @@ import org.bouncycastle.pkcs.PKCS10CertificationRequest;
 import org.bouncycastle.pkcs.jcajce.JcaPKCS10CertificationRequest;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_CAHandler.
+ */
 public class MDN_CAHandler {
+	
+	/**
+	 * Sign certificate request.
+	 *
+	 * @param caCert the ca cert
+	 * @param caPrivateKey the ca private key
+	 * @param csr the csr
+	 * @param notBefore the not before
+	 * @param notAfter the not after
+	 * @return the x 509 certificate
+	 * @throws NoSuchAlgorithmException the no such algorithm exception
+	 * @throws InvalidKeyException the invalid key exception
+	 * @throws CertificateException the certificate exception
+	 * @throws CertIOException the cert IO exception
+	 * @throws OperatorCreationException the operator creation exception
+	 */
 	private X509Certificate signCertificateRequest(X509Certificate caCert, PrivateKey caPrivateKey, PKCS10CertificationRequest csr,
 			Date notBefore, Date notAfter)
 					throws NoSuchAlgorithmException, InvalidKeyException, CertificateException, CertIOException, OperatorCreationException {
@@ -86,6 +106,14 @@ public class MDN_CAHandler {
 		ContentSigner signer = new JcaContentSignerBuilder("SHA1withRSA").setProvider("BC").build(caPrivateKey);
 		return new JcaX509CertificateConverter().setProvider("BC").getCertificate(certificateBuilder.build(signer));
 	}
+	
+	/**
+	 * Convert certificate to PEM.
+	 *
+	 * @param signedCertificate the signed certificate
+	 * @return the string
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private String convertCertificateToPEM(X509Certificate signedCertificate) throws IOException {
 		StringWriter signedCertificatePEMDataStringWriter = new StringWriter();
 		JcaPEMWriter pemWriter = new JcaPEMWriter(signedCertificatePEMDataStringWriter);

@@ -23,57 +23,163 @@ package de.madana.common.datastructures;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_SocialHistoryObject.
+ */
 public class MDN_SocialHistoryObject implements Comparable
 {
+	
+	/** The objectid. */
 	String objectid;
+	
+	/** The benefit. */
 	String benefit;
+	
+	/** The platform. */
 	String platform;
+	
+	/** The action. */
 	String action;
+	
+	/** The text. */
 	String text;
+	
+	/** The link. */
 	String link;
+	
+	/** The created. */
 	String created;
+	
+	/**
+	 * Gets the objectid.
+	 *
+	 * @return the objectid
+	 */
 	public String getObjectid() {
 		return objectid;
 	}
+	
+	/**
+	 * Sets the objectid.
+	 *
+	 * @param objectid the new objectid
+	 */
 	public void setObjectid(String objectid) {
 		this.objectid = objectid;
 	}
+	
+	/**
+	 * Gets the benefit.
+	 *
+	 * @return the benefit
+	 */
 	public String getBenefit() {
 		return benefit;
 	}
+	
+	/**
+	 * Sets the benefit.
+	 *
+	 * @param benefit the new benefit
+	 */
 	public void setBenefit(String benefit) {
 		this.benefit = benefit;
 	}
+	
+	/**
+	 * Gets the platform.
+	 *
+	 * @return the platform
+	 */
 	public String getPlatform() {
 		return platform;
 	}
+	
+	/**
+	 * Sets the platform.
+	 *
+	 * @param platform the new platform
+	 */
 	public void setPlatform(String platform) {
 		this.platform = platform;
 	}
+	
+	/**
+	 * Gets the action.
+	 *
+	 * @return the action
+	 */
 	public String getAction() {
 		return action;
 	}
+	
+	/**
+	 * Sets the action.
+	 *
+	 * @param action the new action
+	 */
 	public void setAction(String action) {
 		this.action = action;
 	}
+	
+	/**
+	 * Gets the text.
+	 *
+	 * @return the text
+	 */
 	public String getText() {
 		return text;
 	}
+	
+	/**
+	 * Sets the text.
+	 *
+	 * @param text the new text
+	 */
 	public void setText(String text) {
 		this.text = text;
 	}
+	
+	/**
+	 * Gets the link.
+	 *
+	 * @return the link
+	 */
 	public String getLink() {
 		return link;
 	}
+	
+	/**
+	 * Sets the link.
+	 *
+	 * @param link the new link
+	 */
 	public void setLink(String link) {
 		this.link = link;
 	}
+	
+	/**
+	 * Gets the created.
+	 *
+	 * @return the created
+	 */
 	public String getCreated() {
 		return created;
 	}
+	
+	/**
+	 * Sets the created.
+	 *
+	 * @param created the new created
+	 */
 	public void setCreated(String created) {
 		this.created = created;
 	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	@Override
 	public int compareTo(Object o) 
 	{

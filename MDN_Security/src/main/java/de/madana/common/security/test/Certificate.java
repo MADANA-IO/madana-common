@@ -18,10 +18,19 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package test;
+package de.madana.common.security.test;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Certificate.
+ */
 public class Certificate {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) 
 	{
 //		GenerateKeys gk;

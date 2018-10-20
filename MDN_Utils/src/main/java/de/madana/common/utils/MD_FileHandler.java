@@ -30,13 +30,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MD_FileHandler.
+ */
 public class MD_FileHandler 
 {
-	  /**
-     * Read the file and returns the byte array
-     * @param file
-     * @return the bytes of the file
-     */
+	  
+  	/**
+  	 * Read the file and returns the byte array.
+  	 *
+  	 * @param file the file
+  	 * @return the bytes of the file
+  	 */
     private byte[] readFile(String file) {
         ByteArrayOutputStream bos = null;
         try {
@@ -54,6 +60,14 @@ public class MD_FileHandler
         }
         return bos != null ? bos.toByteArray() : null;
     }
+    
+    /**
+     * Copy file.
+     *
+     * @param in the in
+     * @param out the out
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static void copyFile(File in, File out) throws IOException { 
         FileChannel inChannel = null; 
         FileChannel outChannel = null; 
@@ -72,6 +86,14 @@ public class MD_FileHandler
             } catch (IOException e) {} 
         } 
     }
+    
+    /**
+     * Write to file.
+     *
+     * @param path the path
+     * @param key the key
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static void writeToFile(String path, byte[] key) throws IOException {
 		File f = new File(path);
 		f.getParentFile().mkdirs();
@@ -81,6 +103,14 @@ public class MD_FileHandler
 		fos.flush();
 		fos.close();
 	}
+    
+    /**
+     * Write to file.
+     *
+     * @param path the path
+     * @param text the text
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static void writeToFile(String path, String text) throws IOException
     {
     	BufferedWriter writer = null;

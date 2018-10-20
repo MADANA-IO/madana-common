@@ -20,25 +20,54 @@
  ******************************************************************************/
 package de.madana.common.datastructures;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_OAuthToken.
+ */
 public class MDN_OAuthToken 
 {
+	
+	/** The token. */
 	String token;
+	
+	/** The verifier. */
 	String verifier;
+	
+	/**
+	 * Gets the token.
+	 *
+	 * @return the token
+	 */
 	public String getToken() 
 	{
 		return token;
 	}
 
+	/**
+	 * Sets the token.
+	 *
+	 * @param token the new token
+	 */
 	public void setToken(String token) 
 	{
 		this.token = token;
 	}
 
+	/**
+	 * Gets the verifier.
+	 *
+	 * @return the verifier
+	 */
 	public String getVerifier() 
 	{
 		return verifier;
 	}
 
+	/**
+	 * Sets the verifier.
+	 *
+	 * @param verifier the new verifier
+	 */
 	public void setVerifier(String verifier)
 	{
 		this.verifier = verifier;

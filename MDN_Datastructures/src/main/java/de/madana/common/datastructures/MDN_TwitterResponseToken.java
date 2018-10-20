@@ -20,14 +20,30 @@
  ******************************************************************************/
 package de.madana.common.datastructures;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_TwitterResponseToken.
+ */
 public class MDN_TwitterResponseToken 
 {
+
+/** The response token. */
 String response_token;
 
+/**
+ * Gets the response token.
+ *
+ * @return the response token
+ */
 public String getResponse_token() {
 	return response_token;
 }
 
+/**
+ * Sets the response token.
+ *
+ * @param response_token the new response token
+ */
 public void setResponse_token(String response_token) {
 	this.response_token = response_token;
 }

@@ -20,14 +20,30 @@
  ******************************************************************************/
 package de.madana.common.datastructures;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_MailAddress.
+ */
 public class MDN_MailAddress 
 {
+
+/** The mail. */
 String mail;
 
+/**
+ * Gets the mail.
+ *
+ * @return the mail
+ */
 public String getMail() {
 	return mail;
 }
 
+/**
+ * Sets the mail.
+ *
+ * @param mail the new mail
+ */
 public void setMail(String mail) {
 	this.mail = mail;
 }

@@ -20,19 +20,51 @@
  ******************************************************************************/
 package de.madana.common.datastructures;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_UserProfileImage.
+ */
 public class MDN_UserProfileImage 
 {
+	
+	/** The id. */
 	String id;
+	
+	/** The image. */
 	String image;
+	
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
 	public String getId() {
 		return id;
 	}
+	
+	/**
+	 * Sets the id.
+	 *
+	 * @param id the new id
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	/**
+	 * Gets the image.
+	 *
+	 * @return the image
+	 */
 	public String getImage() {
 		return image;
 	}
+	
+	/**
+	 * Sets the image.
+	 *
+	 * @param image the new image
+	 */
 	public void setImage(String image) {
 		this.image = image;
 	}

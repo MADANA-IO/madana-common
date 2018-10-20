@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.server.database;
+package de.madana.common.database.dbms;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,13 +28,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import de.madana.common.database.MDN_A_SQLConnector;
+import de.madana.common.database.MDN_SQLConnector;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_A_MySQLConnector.
+ */
 public abstract class MDN_A_MySQLConnector extends MDN_A_SQLConnector
 {
+	
 	/**
-	 * Liest alle Tabellen aus der Datenbank aus
-	 * @return eine aus String bestehende Liste welche die Namen der Tabellen enthält
-	 * @throws SQLException
+	 * Liest alle Tabellen aus der Datenbank aus.
+	 *
 	 * @author Jean
+	 * @return eine aus String bestehende Liste welche die Namen der Tabellen enthält
+	 * @throws SQLException the SQL exception
 	 * @since 01.04.2017
 	 */
 	public List<String> getAllTables() throws SQLException
@@ -48,10 +57,12 @@ public abstract class MDN_A_MySQLConnector extends MDN_A_SQLConnector
 	}
 	
 	/**
-	 * Stellt eine Verbindung zur Datenbank her
-	 * @return {@link Connection}
+	 * Stellt eine Verbindung zur Datenbank her.
+	 *
 	 * @author Jean
-	 * @throws ClassNotFoundException 
+	 * @param bLoadProperties the b load properties
+	 * @return {@link Connection}
+	 * @throws ClassNotFoundException the class not found exception
 	 * @since 01.04.2017
 	 */
 	public Connection connect(boolean bLoadProperties) throws ClassNotFoundException 
@@ -74,6 +85,9 @@ public abstract class MDN_A_MySQLConnector extends MDN_A_SQLConnector
 		return connection;
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.madana.common.database.MDN_A_SQLConnector#getProperties(boolean)
+	 */
 	protected  Properties getProperties(boolean bLoadProperties) throws ClassNotFoundException
 	{
 		Properties oProperties = super.getProperties(bLoadProperties);

@@ -20,46 +20,59 @@
  ******************************************************************************/
 package de.madana.common.datastructures;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
- * @author J.-Fabian Wenisch
+ * The Class MDN_UserCredentials.
  *
+ * @author J.-Fabian Wenisch
  */
 public class MDN_UserCredentials
 {
+	
+	/** The username. */
 	private String username;
+	
+	/** The password. */
 	private String password;
+	
 	/**
-	 * 
-	 * @return the username as string
+	 * Gets the username.
+	 *
 	 * @author J.-Fabian Wenisch
+	 * @return the username as string
 	 */
 	public String getUsername() 
 	{
 		return username;
 	}
+	
 	/**
-	 * 
-	 * @param username sets the username, expects string
+	 * Sets the username.
+	 *
 	 * @author J.-Fabian Wenisch
+	 * @param username sets the username, expects string
 	 */
 	public void setUsername(String username)
 	{
 		this.username = username;
 	}
+	
 	/**
-	 * 
-	 * @return the password as string
+	 * Gets the password.
+	 *
 	 * @author J.-Fabian Wenisch
+	 * @return the password as string
 	 */
 	public String getPassword() 
 	{
 		return password;
 	}
+	
 	/**
-	 * 
-	 * @param password sets the provided password in the credentials, expects string
+	 * Sets the password.
+	 *
 	 * @author J.-Fabian Wenisch
+	 * @param password sets the provided password in the credentials, expects string
 	 */
 	public void setPassword(String password)
 	{

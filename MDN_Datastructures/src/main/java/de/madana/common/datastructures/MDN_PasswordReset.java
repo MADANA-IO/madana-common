@@ -20,27 +20,72 @@
  ******************************************************************************/
 package de.madana.common.datastructures;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_PasswordReset.
+ */
 public class MDN_PasswordReset
 {
+
+/** The password. */
 private String password;
+
+/** The mail. */
 private  String mail;
+
+/** The token. */
 private  String token;
 
+/**
+ * Gets the password.
+ *
+ * @return the password
+ */
 public String getPassword() {
 	return password;
 }
+
+/**
+ * Sets the password.
+ *
+ * @param password the new password
+ */
 public void setPassword(String password) {
 	this.password = password;
 }
+
+/**
+ * Gets the mail.
+ *
+ * @return the mail
+ */
 public String getMail() {
 	return mail;
 }
+
+/**
+ * Sets the mail.
+ *
+ * @param mail the new mail
+ */
 public void setMail(String mail) {
 	this.mail = mail;
 }
+
+/**
+ * Gets the token.
+ *
+ * @return the token
+ */
 public String getToken() {
 	return token;
 }
+
+/**
+ * Sets the token.
+ *
+ * @param token the new token
+ */
 public void setToken(String token) {
 	this.token = token;
 }

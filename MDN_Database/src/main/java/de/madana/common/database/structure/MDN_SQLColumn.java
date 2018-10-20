@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.server.database;
+package de.madana.common.database.structure;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -27,68 +27,95 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
+
+import de.madana.common.database.MDN_SQLConnector;
+// TODO: Auto-generated Javadoc
+
 /**
  * Klasse zur Verwaltung einer einzelnen Spalte aus der Datenbank
- * Kümmert sich um die Auflösung der Fremdschlüssel und bestimmt welche visuellen Komponenten für den Input angezeigt werden sollen
+ * Kümmert sich um die Auflösung der Fremdschlüssel und bestimmt welche visuellen Komponenten für den Input angezeigt werden sollen.
+ *
  * @author Jean
  * @since 01.04.2017
  */
 public class MDN_SQLColumn 
 {
+	
+	/** The str name. */
 	private String strName;
+	
+	/** The j visual component. */
 	private JComponent jVisualComponent;
+	
+	/** The o foreign key. */
 	private MDN_SQLForeignKey oForeignKey=null;
 
 	/**
-	 * Konstruktor
-	 * @param strName - Name der Spalte
+	 * Konstruktor.
+	 *
 	 * @author Jean
+	 * @param strName - Name der Spalte
 	 * @since 01.04.2017
 	 */
 	MDN_SQLColumn(String strName)
 	{
 		this.strName=strName;
 	}
+	
 	/**
-	 * 
-	 * @return {@link String} - Name der Spalte
+	 * Gets the name.
+	 *
 	 * @author Jean
+	 * @return {@link String} - Name der Spalte
 	 * @since 01.04.2017
 	 */
 	public String getName()
 	{
 		return strName;
 	}
+	
 	/**
-	 * 
-	 * @param oKey {@link MDN_SQLForeignKey}
+	 * Sets the foreign key.
+	 *
 	 * @author Jean
+	 * @param oKey {@link MDN_SQLForeignKey}
 	 * @since 01.04.2017
 	 */
 	protected void setForeignKey(MDN_SQLForeignKey oKey)
 	{
 		oForeignKey=oKey;
 	}
+	
 	/**
-	 * 
-	 * @return {@link MDN_SQLForeignKey} - das Fremdschlüsselobjekt
+	 * Gets the foreign key.
+	 *
 	 * @author Jean
+	 * @return {@link MDN_SQLForeignKey} - das Fremdschlüsselobjekt
 	 * @since 01.04.2017
 	 */
 	public MDN_SQLForeignKey getForeignKey()
 	{
 		return oForeignKey;
 	}
+	
 	/**
-	 * Gibt zurück ob die Spalte über einen Fremdschlüssel verknüpft ist
-	 * @return {@link boolean}
+	 * Gibt zurück ob die Spalte über einen Fremdschlüssel verknüpft ist.
+	 *
 	 * @author Jean
+	 * @return {@link boolean}
 	 * @since 01.04.2017
 	 */
 	public boolean isForeignKey()
 	{
 		return oForeignKey!=null;
 	}
+	
+	/**
+	 * Gets the input component.
+	 *
+	 * @return the input component
+	 * @throws SQLException the SQL exception
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	/**
 	 * Gibt für die Spalte eine Visuelle Komponente zurück die zum Input von Daten dient
@@ -117,6 +144,13 @@ public class MDN_SQLColumn
 		}
 		return jVisualComponent;
 	}
+	
+	/**
+	 * Gets the input component value.
+	 *
+	 * @return the input component value
+	 * @throws SQLException the SQL exception
+	 */
 	@SuppressWarnings("rawtypes")
 	/**
 	 * Gibt den in der Input Komponente ausgewählten / eingegeben Wert zurück

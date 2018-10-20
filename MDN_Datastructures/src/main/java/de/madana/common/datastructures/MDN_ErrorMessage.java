@@ -20,19 +20,51 @@
  ******************************************************************************/
 package de.madana.common.datastructures;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_ErrorMessage.
+ */
 public class MDN_ErrorMessage 
 {
+
+/** The error code. */
 String errorCode;
+
+/** The user message. */
 String userMessage;
+
+/**
+ * Gets the error code.
+ *
+ * @return the error code
+ */
 public String getErrorCode() {
 	return errorCode;
 }
+
+/**
+ * Sets the error code.
+ *
+ * @param errorCode the new error code
+ */
 public void setErrorCode(String errorCode) {
 	this.errorCode = errorCode;
 }
+
+/**
+ * Gets the error message.
+ *
+ * @return the error message
+ */
 public String getErrorMessage() {
 	return userMessage;
 }
+
+/**
+ * Sets the error message.
+ *
+ * @param errorMessage the new error message
+ */
 public void setErrorMessage(String errorMessage) {
 	this.userMessage = errorMessage;
 }

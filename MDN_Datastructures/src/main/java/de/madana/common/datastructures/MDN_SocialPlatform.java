@@ -22,59 +22,135 @@ package de.madana.common.datastructures;
 
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_SocialPlatform.
+ */
 public class MDN_SocialPlatform
 {
+	
+	/** The name. */
 	private String name= "";
+	
+	/** The link. */
 	private String link="";
+	
+	/** The icon. */
 	private String icon="";
+	
+	/** The is referral platform. */
 	private String isReferralPlatform = "false";
+	
+	/** The is disabled. */
 	private String isDisabled = "true";
+	
+	/**
+	 * Gets the checks if is disabled.
+	 *
+	 * @return the checks if is disabled
+	 */
 	public String getIsDisabled() {
 		return isDisabled;
 	}
 
+	/**
+	 * Sets the checks if is disabled.
+	 *
+	 * @param isDisabled the new checks if is disabled
+	 */
 	public void setIsDisabled(String isDisabled) {
 		this.isDisabled = isDisabled;
 	}
 
+	/** The feed. */
 	private List<MDN_SocialPost> feed;
 
+	/**
+	 * Gets the feed.
+	 *
+	 * @return the feed
+	 */
 	public List<MDN_SocialPost> getFeed() {
 		return feed;
 	}
 
+	/**
+	 * Sets the feed.
+	 *
+	 * @param feed the new feed
+	 */
 	public void setFeed(List<MDN_SocialPost> feed) {
 		this.feed = feed;
 	}
 
+	/**
+	 * Gets the link.
+	 *
+	 * @return the link
+	 */
 	public String getLink() {
 		return link;
 	}
 
+	/**
+	 * Sets the link.
+	 *
+	 * @param link the new link
+	 */
 	public void setLink(String link) {
 		this.link = link;
 	}
 
+	/**
+	 * Gets the icon.
+	 *
+	 * @return the icon
+	 */
 	public String getIcon() {
 		return icon;
 	}
 
+	/**
+	 * Sets the icon.
+	 *
+	 * @param icon the new icon
+	 */
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
 
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Gets the checks if is referral platform.
+	 *
+	 * @return the checks if is referral platform
+	 */
 	public String getIsReferralPlatform() {
 		return isReferralPlatform;
 	}
 
+	/**
+	 * Sets the checks if is referral platform.
+	 *
+	 * @param isReferralPlatform the new checks if is referral platform
+	 */
 	public void setIsReferralPlatform(String isReferralPlatform) {
 		this.isReferralPlatform = isReferralPlatform;
 	}

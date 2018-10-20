@@ -27,15 +27,25 @@ import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
+ * The Class DC_LogHandler.
+ *
  * @author Jean
  * @since 13.05.2017
- *
  */
 public class DC_LogHandler extends PrintStream 
 {
+	
+	/** The o date format. */
 	SimpleDateFormat oDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+	
+	/**
+	 * Instantiates a new d C log handler.
+	 *
+	 * @param strFileName the str file name
+	 * @throws FileNotFoundException the file not found exception
+	 */
 	public DC_LogHandler (String strFileName) throws FileNotFoundException
 	{
 		super(new FileOutputStream(new File("./"+strFileName)), true);

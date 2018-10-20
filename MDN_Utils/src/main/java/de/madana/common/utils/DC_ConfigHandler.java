@@ -28,21 +28,29 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+// TODO: Auto-generated Javadoc
+
 /**
- * Verwaltungsklasse für Konfigurationsdateien
+ * Verwaltungsklasse für Konfigurationsdateien.
+ *
  * @author Jean
  * @since 10.05.2017
- *
  */
 public class DC_ConfigHandler 
 {
+	
+	/** The props. */
 	Properties props;
+	
+	/** The property file. */
 	File fPropertyFile;
+	
 	/**
-	 * 
-	 * @param fPropertyFile
-	 * @throws IOException
+	 * Instantiates a new d C config handler.
+	 *
 	 * @author Jean
+	 * @param fPropertyFile the f property file
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @since 10.05.2017
 	 */
 	public DC_ConfigHandler(File fPropertyFile) throws IOException 
@@ -56,15 +64,24 @@ public class DC_ConfigHandler
 
 		loadProperties();
 	}
+	
+	/**
+	 * Gets the path.
+	 *
+	 * @return the path
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public String getPath() throws IOException
 	{
 		return fPropertyFile.getCanonicalPath().toString();
 	}
+	
 	/**
-	 * 
-	 * @param strPropertyFileName
-	 * @throws IOException
+	 * Instantiates a new d C config handler.
+	 *
 	 * @author Jean
+	 * @param strPropertyFileName the str property file name
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @since 10.05.2017
 	 */
 	public DC_ConfigHandler(String strPropertyFileName) throws IOException 
@@ -78,20 +95,24 @@ public class DC_ConfigHandler
 		}
 		loadProperties();
 	}
+	
 	/**
-	 * 
-	 * @return
+	 * Gets the name.
+	 *
 	 * @author Jean
+	 * @return the name
 	 * @since 10.05.2017
 	 */
 	public String getName()
 	{
 		return fPropertyFile.getName();
 	}
+	
 	/**
-	 * 
-	 * @return
+	 * Gets the all configs.
+	 *
 	 * @author Jean
+	 * @return the all configs
 	 * @since 10.05.2017
 	 */
 	public static List <DC_ConfigHandler> getAllConfigs()
@@ -119,10 +140,12 @@ public class DC_ConfigHandler
 		}
 		return oConfigs;
 	}
+	
 	/**
-	 * 
-	 * @return
+	 * Gets the properties.
+	 *
 	 * @author Jean
+	 * @return the properties
 	 * @since 10.05.2017
 	 */
 	public Properties getProperties()
@@ -137,11 +160,13 @@ public class DC_ConfigHandler
 		}
 		return props;
 	}
+	
 	/**
-	 * 
-	 * @param strPropertyName
-	 * @return
+	 * Gets the property.
+	 *
 	 * @author Jean
+	 * @param strPropertyName the str property name
+	 * @return the property
 	 * @since 10.05.2017
 	 */
 	public String getProperty(String strPropertyName)
@@ -160,21 +185,25 @@ public class DC_ConfigHandler
 		}
 		return strPropertyValue;
 	}
+	
 	/**
-	 * 
-	 * @param strPropertyName
-	 * @param strValue
+	 * Sets the property.
+	 *
 	 * @author Jean
+	 * @param strPropertyName the str property name
+	 * @param strValue the str value
 	 * @since 10.05.2017
 	 */
 	public void setProperty(String strPropertyName, String strValue)
 	{
 		props.setProperty(strPropertyName, strValue);  
 	}
+	
 	/**
-	 * 
-	 * @throws IOException
+	 * Load properties.
+	 *
 	 * @author Jean
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @since 10.05.2017
 	 */
 	void loadProperties() throws IOException
@@ -191,10 +220,12 @@ public class DC_ConfigHandler
 		}
 
 	}
+	
 	/**
-	 * 
-	 * @throws IOException
+	 * Save properties.
+	 *
 	 * @author Jean
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @since 10.05.2017
 	 */
 	public void saveProperties() throws IOException

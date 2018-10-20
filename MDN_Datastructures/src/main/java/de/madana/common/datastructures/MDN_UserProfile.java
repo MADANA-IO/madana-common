@@ -23,23 +23,53 @@ package de.madana.common.datastructures;
 import java.util.List;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_UserProfile.
+ */
 public class MDN_UserProfile extends MDN_SimpleUserProfile
 {
 	 
 	
-	 List<MDN_SocialHistoryObject> history;
-	 private List<MDN_AchievementGroup> achievements;
+	 /** The history. */
+ 	List<MDN_SocialHistoryObject> history;
+	 
+ 	/** The achievements. */
+ 	private List<MDN_AchievementGroup> achievements;
 	
 
+	/**
+	 * Gets the history.
+	 *
+	 * @return the history
+	 */
 	public List<MDN_SocialHistoryObject> getHistory() {
 		return history;
 	}
+	
+	/**
+	 * Sets the history.
+	 *
+	 * @param oHistory the new history
+	 */
 	public void setHistory(List<MDN_SocialHistoryObject> oHistory) {
 		this.history = oHistory;
 	}
+	
+	/**
+	 * Gets the achievements.
+	 *
+	 * @return the achievements
+	 */
 	public List<MDN_AchievementGroup> getAchievements() {
 		return achievements;
 	}
+	
+	/**
+	 * Sets the achievements.
+	 *
+	 * @param achievements the new achievements
+	 */
 	public void setAchievements(List<MDN_AchievementGroup> achievements) {
 		this.achievements = achievements;
 	}

@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.server.database;
+package de.madana.common.database;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -30,26 +30,62 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Properties;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_A_SQLConnector.
+ *
+ * @author J.-Fabian Wenisch
+ */
 public abstract class MDN_A_SQLConnector 
 {
+	
+	/** The database driver. */
 	public static String DATABASE_DRIVER;
+	
+	/** The database name. */
 	public static String DATABASE_NAME ;
+	
+	/** The database url. */
 	public static String DATABASE_URL ;
+	
+	/** The o connection details. */
 	private Properties oConnectionDetails;
-	protected static Connection connection;
+	
+	/** The connection. */
+	public static Connection connection;
+	
+	/** The simple date format. */
 	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	
-	protected abstract Properties initProperties() throws ClassNotFoundException;
-	protected abstract void saveProperties();
-	public  abstract List<String> getAllTables() throws SQLException;
 	/**
-	 * Gibt die Verbindungsdaten zurück
-	 * @return {@link Properties}
+	 * Inits the properties.
+	 *
+	 * @return the properties
+	 * @throws ClassNotFoundException the class not found exception
+	 */
+	protected abstract Properties initProperties() throws ClassNotFoundException;
+	
+	/**
+	 * Save properties.
+	 */
+	protected abstract void saveProperties();
+	
+	/**
+	 * Gets the all tables.
+	 *
+	 * @return the all tables
+	 * @throws SQLException the SQL exception
+	 */
+	public  abstract List<String> getAllTables() throws SQLException;
+	
+	/**
+	 * Gibt die Verbindungsdaten zurück.
+	 *
 	 * @author Jean
-	 * @param bLoadProperties 
-	 * @throws ClassNotFoundException 
-	 * @throws IOException 
+	 * @param bLoadProperties the b load properties
+	 * @return {@link Properties}
+	 * @throws ClassNotFoundException the class not found exception
 	 * @since 01.04.2017
 	 */
 	protected  Properties getProperties(boolean bLoadProperties) throws ClassNotFoundException
@@ -59,11 +95,13 @@ public abstract class MDN_A_SQLConnector
 		
 		return oConnectionDetails;
 	}
+	
 	/**
-	 * Führt ein Query in der Datenbank durch
-	 * @param strQuery - Das auszuführende SQL Statement als String
-	 * @throws SQLException
+	 * Führt ein Query in der Datenbank durch.
+	 *
 	 * @author Jean
+	 * @param strQuery - Das auszuführende SQL Statement als String
+	 * @throws SQLException the SQL exception
 	 * @since 01.04.2017
 	 */
 	public static void execute(String strQuery) throws SQLException
@@ -71,12 +109,14 @@ public abstract class MDN_A_SQLConnector
 		java.sql.Statement stmt =  connection.createStatement();
 		stmt.executeUpdate(strQuery);
 	}
+	
 	/**
-	 * Führt ein Query in der Datenbank durch und gibt das Ergebnis als Resultset zurück
+	 * Führt ein Query in der Datenbank durch und gibt das Ergebnis als Resultset zurück.
+	 *
+	 * @author Jean
 	 * @param strQuery - Das auszuführende SQL Statement als String
 	 * @return {@link ResultSet}
-	 * @throws SQLException
-	 * @author Jean
+	 * @throws SQLException the SQL exception
 	 * @since 01.04.2017
 	 */
 	public static ResultSet executeQuery(String strQuery) throws SQLException
@@ -84,11 +124,14 @@ public abstract class MDN_A_SQLConnector
 		Statement stmt=  connection.createStatement();
 		return stmt.executeQuery(strQuery);
 	}
+	
 	/**
-	 * Stellt eine Verbindung zur Datenbank her
-	 * @return {@link Connection}
+	 * Stellt eine Verbindung zur Datenbank her.
+	 *
 	 * @author Jean
-	 * @throws ClassNotFoundException 
+	 * @param bLoadProperties the b load properties
+	 * @return {@link Connection}
+	 * @throws ClassNotFoundException the class not found exception
 	 * @since 01.04.2017
 	 */
 	public Connection connect(boolean bLoadProperties) throws ClassNotFoundException 
@@ -109,6 +152,11 @@ public abstract class MDN_A_SQLConnector
 		return connection;
 	}
 
+	/**
+	 * Checks if is connected.
+	 *
+	 * @return true, if is connected
+	 */
 	public static boolean isConnected()
 	{
 		if(connection==null)
@@ -125,7 +173,8 @@ public abstract class MDN_A_SQLConnector
 	}
 	
 	/**
-	 * Trennt die Verbindung mit der Datenbank
+	 * Trennt die Verbindung mit der Datenbank.
+	 *
 	 * @author Jean
 	 * @since 01.04.2017
 	 */

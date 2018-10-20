@@ -25,4 +25,4 @@
  * @author afrol
  *
  */
-package de.madana.security;
+package de.madana.common.security;

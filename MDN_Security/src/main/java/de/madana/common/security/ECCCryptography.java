@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.security;
+package de.madana.common.security;
 
 import java.math.BigInteger;
 import java.security.KeyPair;
@@ -30,10 +30,19 @@ import java.security.spec.ECGenParameterSpec;
 
 import javax.crypto.KeyAgreement;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ECCCryptography.
+ */
 public class ECCCryptography 
 {
 
-	 public static void generateKey() throws Exception 
+	 /**
+ 	 * Generate key.
+ 	 *
+ 	 * @throws Exception the exception
+ 	 */
+ 	public static void generateKey() throws Exception 
 	 {
 		    KeyPairGenerator kpg;
 		    kpg = KeyPairGenerator.getInstance("EC","SunEC");
@@ -49,7 +58,12 @@ public class ECCCryptography
 		    System.out.println(pubKey.toString());
 		  }
 	 
-	 public static void keyAgreement() throws Exception 
+	 /**
+ 	 * Key agreement.
+ 	 *
+ 	 * @throws Exception the exception
+ 	 */
+ 	public static void keyAgreement() throws Exception 
 	 {
 		    KeyPairGenerator kpg;
 		    kpg = KeyPairGenerator.getInstance("EC","SunEC");
@@ -83,7 +97,13 @@ public class ECCCryptography
 		    System.out.println("Secret computed by V: 0x" + 
 		                       (new BigInteger(1, ecdhV.generateSecret()).toString(16)).toUpperCase());
 		  }
-	 public static void sign() throws Exception 
+	 
+ 	/**
+ 	 * Sign.
+ 	 *
+ 	 * @throws Exception the exception
+ 	 */
+ 	public static void sign() throws Exception 
 	 {
 		    KeyPairGenerator kpg;
 		    kpg = KeyPairGenerator.getInstance("EC","SunEC");

@@ -25,19 +25,30 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MD_KeyHandler.
+ */
 public class MD_KeyHandler 
 {
 
+	/** The key file. */
 	File fKeyFile;
 	
+	/**
+	 * Instantiates a new m D key handler.
+	 *
+	 * @param file the file
+	 */
 	public MD_KeyHandler(File file) {
 		fKeyFile=file;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Gets the all keys.
+	 *
 	 * @author Jean
+	 * @return the all keys
 	 * @since 10.05.2017
 	 */
 	public static List <MD_KeyHandler> getAllKeys()
@@ -59,6 +70,11 @@ public class MD_KeyHandler
 		return oConfigs;
 	}
 
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public Object getName() 
 	{
 		return fKeyFile.getName();

@@ -22,6 +22,8 @@ package de.madana.server.database;
 
 import java.sql.SQLException;
 
+import de.madana.common.database.MDN_SQLConnector;
+
 public class MDN_ConnectToDatabase {
 
 	public static void main(String[] args)

@@ -20,29 +20,79 @@
  ******************************************************************************/
 package de.madana.common.datastructures;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_SocialUserObject.
+ */
 public class MDN_SocialUserObject 
 {
+ 
+ /** The ident. */
  String ident;
+ 
+ /** The image. */
  String image;
+ 
+ /** The platform. */
  String platform;
+
+/**
+ * Gets the ident.
+ *
+ * @return the ident
+ */
 public String getIdent() {
 	return ident;
 }
+
+/**
+ * Sets the ident.
+ *
+ * @param ident the new ident
+ */
 public void setIdent(String ident) {
 	this.ident = ident;
 }
+
+/**
+ * Gets the image.
+ *
+ * @return the image
+ */
 public String getImage() {
 	return image;
 }
+
+/**
+ * Sets the image.
+ *
+ * @param image the new image
+ */
 public void setImage(String image) {
 	this.image = image;
 }
+
+/**
+ * Gets the platform.
+ *
+ * @return the platform
+ */
 public String getPlatform() {
 	return platform;
 }
+
+/**
+ * Sets the platform.
+ *
+ * @param platform the new platform
+ */
 public void setPlatform(String platform) {
 	this.platform = platform;
 }
+
+/* (non-Javadoc)
+ * @see java.lang.Object#toString()
+ */
 public String toString()
 {
 	return platform+"["+ident+"]";

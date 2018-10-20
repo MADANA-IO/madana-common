@@ -22,23 +22,58 @@ package de.madana.common.datastructures;
 
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MDN_AchievementGroup.
+ */
 public class MDN_AchievementGroup
 {
+	
+	/** The name. */
 	String name;
+	
+	/** The achievements. */
 	List <MDN_Achievement> achievements;
+	
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
+	
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	/**
+	 * Gets the achievements.
+	 *
+	 * @return the achievements
+	 */
 	public List<MDN_Achievement> getAchievements() {
 		return achievements;
 	}
+	
+	/**
+	 * Sets the achievements.
+	 *
+	 * @param achievements the new achievements
+	 */
 	public void setAchievements(List<MDN_Achievement> achievements) {
 		this.achievements = achievements;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString()
 	{
 		return name;

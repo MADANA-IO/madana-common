@@ -56,20 +56,35 @@ import de.madana.common.datastructures.MDN_UserProfile;
 import de.madana.common.datastructures.MDN_UserProfileImage;
 import de.madana.common.datastructures.MDN_UserSetting;
 
+// TODO: Auto-generated Javadoc
 /**
- * Hello world!
+ * The Class MDN_RestClient.
  *
+ * @author J.-Fabian Wenisch
  */
 public class MDN_RestClient 
 {
-	static String REST_URI  = "https://extranet.madana.io/rest";
+	
+	/** The rest uri. */
+	static String REST_URI  = "";
+	
+	/** The client. */
 	Client client;
 
+	/**
+	 * Instantiates a new MD N rest client.
+	 *
+	 * @param strUrl the str url
+	 */
 	public MDN_RestClient(String strUrl)
 	{
 		REST_URI= strUrl;
 		client = ClientBuilder.newClient();
 	}
+	
+	/**
+	 * Instantiates a new MD N rest client.
+	 */
 	public MDN_RestClient()
 	{
 		if(System.getProperty("RESTURI")!=null)
@@ -84,12 +99,27 @@ public class MDN_RestClient
 		}
 		client = ClientBuilder.newClient();
 	}
+	
+	/**
+	 * Gets the users.
+	 *
+	 * @return the users
+	 */
 	public List<MDN_UserProfile> getUsers()
 	{
 		List<MDN_UserProfile> oList = client.target(MDN_RestClient.REST_URI).path("users").request(MediaType.APPLICATION_JSON).get(List.class);
 
 		return oList;
 	}
+	
+	/**
+	 * Logon.
+	 *
+	 * @param strUserName the str user name
+	 * @param strPassword the str password
+	 * @return true, if successful
+	 * @throws Exception the exception
+	 */
 	public boolean logon(String strUserName, String strPassword) throws Exception
 	{
 		MDN_UserCredentials oCredentials = new MDN_UserCredentials();
@@ -98,6 +128,14 @@ public class MDN_RestClient
 		registerToken(oCredentials);
 		return true;
 	}
+	
+	/**
+	 * Request new password.
+	 *
+	 * @param oMail the o mail
+	 * @return true, if successful
+	 * @throws Exception the exception
+	 */
 	public boolean requestNewPassword(MDN_MailAddress oMail) throws Exception
 	{
 
@@ -107,6 +145,14 @@ public class MDN_RestClient
 
 		return true;
 	}
+	
+	/**
+	 * Sets the new password.
+	 *
+	 * @param oPasswordReset the o password reset
+	 * @return true, if successful
+	 * @throws Exception the exception
+	 */
 	public boolean setNewPassword(MDN_PasswordReset oPasswordReset)throws Exception
 	{
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("password").request(MediaType.APPLICATION_JSON).put(Entity.entity(oPasswordReset, MediaType.APPLICATION_JSON));
@@ -115,6 +161,13 @@ public class MDN_RestClient
 		return true;
 	}
 
+	/**
+	 * Register token.
+	 *
+	 * @param oCredentials the o credentials
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	private String registerToken(MDN_UserCredentials oCredentials ) throws Exception
 	{
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("authentication").request(MediaType.APPLICATION_JSON).post(Entity.entity(oCredentials, MediaType.APPLICATION_JSON)); 
@@ -125,11 +178,28 @@ public class MDN_RestClient
 
 		return oToken.getToken();
 	}
+	
+	/**
+	 * Gets the user.
+	 *
+	 * @param strUserName the str user name
+	 * @return the user
+	 */
 	public  MDN_User getUser(String strUserName)
 	{
 		return client.target(MDN_RestClient.REST_URI).path("users").path(strUserName).request(MediaType.APPLICATION_JSON).get(MDN_User.class);
 	}
 
+	/**
+	 * Creates the user.
+	 *
+	 * @param strUserName the str user name
+	 * @param strPassword the str password
+	 * @param strMail the str mail
+	 * @param strToken the str token
+	 * @return true, if successful
+	 * @throws Exception the exception
+	 */
 	public boolean createUser(String strUserName, String strPassword, String strMail, String strToken) throws Exception
 	{
 		MDN_User oUser = new MDN_User();
@@ -141,6 +211,15 @@ public class MDN_RestClient
 		createUser(oUser, strToken);
 		return true;
 	}
+	
+	/**
+	 * Creates the user.
+	 *
+	 * @param oUser the o user
+	 * @param strToken the str token
+	 * @return the MD N user
+	 * @throws Exception the exception
+	 */
 	private  MDN_User createUser(MDN_User oUser, String strToken) throws Exception
 	{
 		Response response;
@@ -155,6 +234,14 @@ public class MDN_RestClient
 		checkForError(response, Response.Status.OK.getStatusCode() );
 		return oUser;
 	}
+	
+	/**
+	 * Delete user.
+	 *
+	 * @param strUserName the str user name
+	 * @return true, if successful
+	 * @throws Exception the exception
+	 */
 	public  boolean deleteUser(String strUserName) throws Exception
 	{
 
@@ -163,6 +250,15 @@ public class MDN_RestClient
 			throw new Exception("Deletion failed");
 		return true;
 	}
+	
+	/**
+	 * Update user.
+	 *
+	 * @param oUser the o user
+	 * @param strUserName the str user name
+	 * @return true, if successful
+	 * @throws Exception the exception
+	 */
 	public boolean updateUser(MDN_User oUser, String strUserName) throws Exception 
 	{
 		Response response =client.target(MDN_RestClient.REST_URI).path("users").path(strUserName).request(MediaType.APPLICATION_JSON).put(Entity.entity(oUser, MediaType.APPLICATION_JSON));
@@ -170,6 +266,13 @@ public class MDN_RestClient
 			throw new Exception("Deletion failed");
 		return true;
 	}
+	
+	/**
+	 * Gets the social feed.
+	 *
+	 * @param strPlatform the str platform
+	 * @return the social feed
+	 */
 	public List<MDN_SocialPost>  getSocialFeed(String strPlatform) 
 	{
 		List<MDN_SocialPost>  oList;
@@ -181,6 +284,12 @@ public class MDN_RestClient
 		return oList;
 	}
 
+	/**
+	 * Gets the personalized twitter feed.
+	 *
+	 * @param strUserName the str user name
+	 * @return the personalized twitter feed
+	 */
 	public List<MDN_PersonalSocialPost> getPersonalizedTwitterFeed(String strUserName) 
 	{
 		ObjectMapper mapper = new ObjectMapper();
@@ -201,16 +310,34 @@ public class MDN_RestClient
 		}
 		return oList;
 	}
+	
+	/**
+	 * Gets the facebook auth URL.
+	 *
+	 * @return the facebook auth URL
+	 */
 	public String getFacebookAuthURL() 
 	{
 		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("auth").path("facebook").request(MediaType.APPLICATION_JSON).get(String.class);
 		return strUrl;
 	}
+	
+	/**
+	 * Gets the twitter auth URL.
+	 *
+	 * @return the twitter auth URL
+	 */
 	public String getTwitterAuthURL() 
 	{
 		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("auth").path("twitter").request(MediaType.APPLICATION_JSON).get(String.class);
 		return strUrl;
 	}
+	
+	/**
+	 * Gets the social platforms.
+	 *
+	 * @return the social platforms
+	 */
 	public List<MDN_SocialPlatform> getSocialPlatforms()
 	{
 		ObjectMapper mapper = new ObjectMapper();
@@ -231,6 +358,12 @@ public class MDN_RestClient
 		}
 		return oList;
 	}
+	
+	/**
+	 * Gets the ranking.
+	 *
+	 * @return the ranking
+	 */
 	public List<MDN_SimpleUserProfile> getRanking()
 	{
 		ObjectMapper mapper = new ObjectMapper();
@@ -256,6 +389,12 @@ public class MDN_RestClient
 			return oRanking;
 	}
 
+	/**
+	 * Sets the facebook UID.
+	 *
+	 * @param strCode the str code
+	 * @return true, if successful
+	 */
 	public boolean setFacebookUID(String strCode) 
 	{
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("auth").path("facebook").request(MediaType.APPLICATION_JSON).post(Entity.entity(strCode, MediaType.APPLICATION_JSON));
@@ -265,6 +404,14 @@ public class MDN_RestClient
 		return true;
 
 	}
+	
+	/**
+	 * Gets the social feed.
+	 *
+	 * @param oPlatform the o platform
+	 * @return the social feed
+	 * @throws Exception the exception
+	 */
 	@SuppressWarnings("unchecked")
 	public void getSocialFeed(MDN_SocialPlatform oPlatform) throws Exception 
 	{
@@ -282,6 +429,13 @@ public class MDN_RestClient
 		oPlatform.setFeed(oFeed);
 
 	}
+	
+	/**
+	 * Sets the fractal UID.
+	 *
+	 * @param code the code
+	 * @return true, if successful
+	 */
 	public boolean setFractalUID(String code) 
 	{
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("social").path("auth").path("fractal").request(MediaType.APPLICATION_JSON).post(Entity.entity(code, MediaType.APPLICATION_JSON));
@@ -292,6 +446,14 @@ public class MDN_RestClient
 
 	}
 
+	/**
+	 * Sets the twitter UID.
+	 *
+	 * @param token the token
+	 * @param verifier the verifier
+	 * @return true, if successful
+	 * @throws Exception the exception
+	 */
 	public boolean setTwitterUID(String token, String verifier) throws Exception
 	{
 		MDN_OAuthToken oToken = new MDN_OAuthToken();
@@ -303,18 +465,41 @@ public class MDN_RestClient
 		return true;
 
 	}
+	
+	/**
+	 * Gets the referred users.
+	 *
+	 * @param strPlatform the str platform
+	 * @param strUsername the str username
+	 * @return the referred users
+	 */
 	public List<MDN_UserProfile> getReferredUsers(String strPlatform, String strUsername)
 	{
 		List<MDN_UserProfile> oProfiles = client.target(MDN_RestClient.REST_URI).path("social").path("feed").path(strPlatform.toLowerCase()).request(MediaType.APPLICATION_JSON).get(List.class);
 
 		return oProfiles;
 	}
+	
+	/**
+	 * Gets the available avatars.
+	 *
+	 * @param strUsername the str username
+	 * @return the available avatars
+	 */
 	public List<MDN_UserProfileImage> getAvailableAvatars(String strUsername)
 	{
 		List<MDN_UserProfileImage> oAvatars = client.target(MDN_RestClient.REST_URI).path("users").path(strUsername).path("avatars").request(MediaType.APPLICATION_JSON).get(List.class);
 
 		return oAvatars;
 	}
+	
+	/**
+	 * Sets the avatar.
+	 *
+	 * @param strUsername the str username
+	 * @param oImage the o image
+	 * @return true, if successful
+	 */
 	public boolean setAvatar(String strUsername, MDN_UserProfileImage oImage)
 	{
 		Response oResponse = client.target(MDN_RestClient.REST_URI).path("users").path(strUsername).path("avatars").request(MediaType.APPLICATION_JSON).post(Entity.entity(oImage, MediaType.APPLICATION_JSON));
@@ -323,6 +508,14 @@ public class MDN_RestClient
 
 		return true;
 	}
+	
+	/**
+	 * Gets the profile.
+	 *
+	 * @param strUserName the str user name
+	 * @return the profile
+	 * @throws Exception the exception
+	 */
 	public MDN_UserProfile getProfile(String strUserName) throws Exception 
 	{
 		try
@@ -337,6 +530,12 @@ public class MDN_RestClient
 
 	
 	}
+	
+	/**
+	 * Gets the profile.
+	 *
+	 * @return the profile
+	 */
 	public MDN_UserProfile getProfile() 
 	{
 		try
@@ -352,17 +551,35 @@ public class MDN_RestClient
 	
 	}
 
+	/**
+	 * Gets the system health.
+	 *
+	 * @return the system health
+	 */
 	public MDN_SystemHealthObject getSystemHealth()
 	{
 		MDN_SystemHealthObject Health = client.target(MDN_RestClient.REST_URI).path("health").request(MediaType.APPLICATION_JSON).get(MDN_SystemHealthObject.class);
 
 		return Health;
 	}
+	
+	/**
+	 * Gets the fractal auth URL.
+	 *
+	 * @return the fractal auth URL
+	 */
 	public String getFractalAuthURL() 	
 	{
 		String strUrl=client.target(MDN_RestClient.REST_URI).path("social").path("fractal").path("auth").request(MediaType.APPLICATION_JSON).get(String.class);
 		return strUrl;
 	}
+	
+	/**
+	 * Validate activation token.
+	 *
+	 * @param token the token
+	 * @return true, if successful
+	 */
 	public boolean validateActivationToken(String token) 	
 	{
 		Response oResponse=client.target(MDN_RestClient.REST_URI).path("users").path("activation").path(token).request(MediaType.APPLICATION_JSON).get();
@@ -372,6 +589,16 @@ public class MDN_RestClient
 		return true;	
 	}
 
+	/**
+	 * Gets the fractal auth token.
+	 *
+	 * @param strClientID the str client ID
+	 * @param strClientSecret the str client secret
+	 * @param strBaseURL the str base URL
+	 * @param strRedirectURL the str redirect URL
+	 * @param strCode the str code
+	 * @return the fractal auth token
+	 */
 	public String getFractalAuthToken(String strClientID, String strClientSecret, String strBaseURL, String strRedirectURL, String strCode)
 	{
 
@@ -387,11 +614,24 @@ public class MDN_RestClient
 		strResponse=strResponse.substring(strResponse.indexOf("access_token")+15, strResponse.indexOf("token_type")-3);
 		return strResponse;
 	}
+	
+	/**
+	 * Sets the authentication bearer.
+	 *
+	 * @param strBearer the new authentication bearer
+	 */
 	public void setAuthenticationBearer(String strBearer) 
 	{
 		Feature feature = OAuth2ClientSupport.feature(strBearer);
 		client.register(feature);	
 	}
+	
+	/**
+	 * Gets the fractal information.
+	 *
+	 * @param strBaseURL the str base URL
+	 * @return the fractal information
+	 */
 	public String getFractalInformation(String strBaseURL) 
 	{
 		strBaseURL=strBaseURL.substring(0, strBaseURL.lastIndexOf("/"));
@@ -399,6 +639,13 @@ public class MDN_RestClient
 		String strResponse = oJSON.get("did").asText();
 		return strResponse;
 	}
+	
+	/**
+	 * Gets the twitter embedd code.
+	 *
+	 * @param strFeedLink the str feed link
+	 * @return the twitter embedd code
+	 */
 	public String getTwitterEmbeddCode(String strFeedLink) 
 	{
 		JsonNode oJSON= null;
@@ -414,10 +661,13 @@ public class MDN_RestClient
 		String strResponse = oJSON.get("html").asText();
 		return strResponse;
 	}
+	
 	/**
-	 * @param string
-	 * @param oSetting
-	 * @return 
+	 * Sets the user setting.
+	 *
+	 * @param strUsername the str username
+	 * @param oSetting the o setting
+	 * @return true, if successful
 	 */
 	public boolean setUserSetting(String strUsername, MDN_UserSetting oSetting)
 	{
@@ -430,6 +680,13 @@ public class MDN_RestClient
 
 
 
+	/**
+	 * Check for error.
+	 *
+	 * @param response the response
+	 * @param status the status
+	 * @throws Exception the exception
+	 */
 	private void checkForError( Response response, int status )throws Exception
 	{
 		if( status!=response.getStatus())
@@ -448,6 +705,13 @@ public class MDN_RestClient
 
 		}
 	}
+	
+	/**
+	 * Gets the error message.
+	 *
+	 * @param response the response
+	 * @return the error message
+	 */
 	public MDN_ErrorMessage getErrorMessage( Response response )
 	{
 		return response.readEntity(MDN_ErrorMessage.class);
