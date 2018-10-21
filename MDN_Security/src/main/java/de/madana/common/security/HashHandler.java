@@ -28,9 +28,9 @@ import java.security.NoSuchAlgorithmException;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class DC_HashHandler.
+ * The Class HashHandler.
  */
-public class DC_HashHandler 
+public class HashHandler 
 {
 	
 	   /**

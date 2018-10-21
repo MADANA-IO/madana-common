@@ -44,9 +44,9 @@ import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MDN_CertificateHandler.
+ * The Class CertificateHandler.
  */
-public class MDN_CertificateHandler
+public class CertificateHandler
 {
 	
 	/**

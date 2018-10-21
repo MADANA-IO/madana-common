@@ -40,8 +40,8 @@ public class Certificate {
 ////			X509Certificate oCert = MDN_Certficatehandler.selfSign(gk.getKeypair(),"Test");
 //			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
 //	        keyGen.initialize(512);
-//			X509Certificate oCert = MDN_CertificateHandler.selfSign(keyGen.generateKeyPair(),"Test");
-//			String strPEM = MDN_CertificateHandler.convertToPem(oCert);
+//			X509Certificate oCert = CertificateHandler.selfSign(keyGen.generateKeyPair(),"Test");
+//			String strPEM = CertificateHandler.convertToPem(oCert);
 //			MD_FileHandler.writeToFile("C:\\Temp\\Test.crt", strPEM);
 //		} catch (NoSuchAlgorithmException e) {
 //			// TODO Auto-generated catch block

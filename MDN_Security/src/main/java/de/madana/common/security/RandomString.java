@@ -27,9 +27,9 @@ import java.util.Random;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MDN_RandomString.
+ * The Class RandomString.
  */
-public class MDN_RandomString {
+public class RandomString {
 
     /**
      * Generate a random string.
@@ -70,7 +70,7 @@ public class MDN_RandomString {
      * @param random the random
      * @param symbols the symbols
      */
-    public MDN_RandomString(int length, Random random, String symbols) {
+    public RandomString(int length, Random random, String symbols) {
         if (length < 1) throw new IllegalArgumentException();
         if (symbols.length() < 2) throw new IllegalArgumentException();
         this.random = Objects.requireNonNull(random);
@@ -84,7 +84,7 @@ public class MDN_RandomString {
      * @param length the length
      * @param random the random
      */
-    public MDN_RandomString(int length, Random random) {
+    public RandomString(int length, Random random) {
         this(length, random, alphanum);
     }
 
@@ -93,14 +93,14 @@ public class MDN_RandomString {
      *
      * @param length the length
      */
-    public MDN_RandomString(int length) {
+    public RandomString(int length) {
         this(length, new SecureRandom());
     }
 
     /**
      * Create session identifiers.
      */
-    public MDN_RandomString() {
+    public RandomString() {
         this(21);
     }
 

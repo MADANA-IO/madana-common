@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.common.security;
+package de.madana.common.security.crypto;
 
 import java.math.BigInteger;
 import java.security.KeyPair;

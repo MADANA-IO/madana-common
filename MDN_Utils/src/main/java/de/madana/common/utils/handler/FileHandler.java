@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.common.utils;
+package de.madana.common.utils.handler;
 
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -32,9 +32,9 @@ import java.nio.channels.FileChannel;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MD_FileHandler.
+ * The Class FileHandler.
  */
-public class MD_FileHandler 
+public class FileHandler 
 {
 	  
   	/**

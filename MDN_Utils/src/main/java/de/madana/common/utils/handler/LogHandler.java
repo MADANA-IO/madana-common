@@ -18,57 +18,49 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package datainterface;
+package de.madana.common.utils.handler;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MDN_DataObject.
+ * The Class LogHandler.
+ *
+ * @author Jean
+ * @since 13.05.2017
  */
-public class MDN_DataObject 
+public class LogHandler extends PrintStream 
 {
 	
-	/** The map. */
-	private Map<String, String> map = new HashMap<String, String>();
+	/** The o date format. */
+	SimpleDateFormat oDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 	
 	/**
-	 * Adds the entry.
+	 * Instantiates a new d C log handler.
 	 *
-	 * @param strKey the str key
-	 * @param strValue the str value
+	 * @param strFileName the str file name
+	 * @throws FileNotFoundException the file not found exception
 	 */
-	public void addEntry(String strKey, String strValue)
+	public LogHandler (String strFileName) throws FileNotFoundException
 	{
-		map.put(strKey, strValue);
-	}
+		super(new FileOutputStream(new File("./"+strFileName)), true);
 	
-	/**
-	 * Gets the entry.
-	 *
-	 * @param strKey the str key
-	 * @return the entry
-	 */
-	public String getEntry(String strKey)
-	{
-		return map.get(strKey);
 	}
-	
-	/**
-	 * Gets the keys.
-	 *
-	 * @return the keys
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.io.PrintStream#println(java.lang.String)
 	 */
-	public List<String> getKeys()
+	@Override
+	public void println(String s) 
 	{
-		List <String> oKeyList = new ArrayList<String>();
-		  for (Entry<String, String> entry : map.entrySet()) {
-		        oKeyList.add(entry.getKey());
-		    }
-		  return oKeyList;
+		super.print("[ "+  oDateFormat.format(new Date())+ " ] "+s);
 	}
+
+
 }

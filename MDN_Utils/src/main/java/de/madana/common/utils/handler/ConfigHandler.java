@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.common.utils;
+package de.madana.common.utils.handler;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,7 +36,7 @@ import java.util.Properties;
  * @author Jean
  * @since 10.05.2017
  */
-public class DC_ConfigHandler 
+public class ConfigHandler 
 {
 	
 	/** The props. */
@@ -53,7 +53,7 @@ public class DC_ConfigHandler
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @since 10.05.2017
 	 */
-	public DC_ConfigHandler(File fPropertyFile) throws IOException 
+	public ConfigHandler(File fPropertyFile) throws IOException 
 	{
 		this.fPropertyFile=fPropertyFile;
 		if(!fPropertyFile.exists())
@@ -84,7 +84,7 @@ public class DC_ConfigHandler
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @since 10.05.2017
 	 */
-	public DC_ConfigHandler(String strPropertyFileName) throws IOException 
+	public ConfigHandler(String strPropertyFileName) throws IOException 
 	{
 		fPropertyFile = new File("./conf/"+strPropertyFileName+".dcconf");
 		if(!fPropertyFile.exists())
@@ -115,9 +115,9 @@ public class DC_ConfigHandler
 	 * @return the all configs
 	 * @since 10.05.2017
 	 */
-	public static List <DC_ConfigHandler> getAllConfigs()
+	public static List <ConfigHandler> getAllConfigs()
 	{
-		List <DC_ConfigHandler> oConfigs = new ArrayList<DC_ConfigHandler>();
+		List <ConfigHandler> oConfigs = new ArrayList<ConfigHandler>();
 		File fRootDir = new File ("./conf/");
 		File[] fConfigFiles = fRootDir.listFiles(new FilenameFilter() 
 		{
@@ -132,7 +132,7 @@ public class DC_ConfigHandler
 			try 
 
 			{
-				oConfigs.add(new DC_ConfigHandler(fConfigFiles[i]));
+				oConfigs.add(new ConfigHandler(fConfigFiles[i]));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

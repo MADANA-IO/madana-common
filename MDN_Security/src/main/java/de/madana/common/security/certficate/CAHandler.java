@@ -54,9 +54,9 @@ import org.bouncycastle.pkcs.jcajce.JcaPKCS10CertificationRequest;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MDN_CAHandler.
+ * The Class CAHandler.
  */
-public class MDN_CAHandler {
+public class CAHandler {
 	
 	/**
 	 * Sign certificate request.

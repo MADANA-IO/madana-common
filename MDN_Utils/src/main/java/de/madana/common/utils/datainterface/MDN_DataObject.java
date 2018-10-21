@@ -18,22 +18,57 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.common.utils;
+package de.madana.common.utils.datainterface;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 // TODO: Auto-generated Javadoc
 /**
- * Hello world!.
+ * The Class MDN_DataObject.
  */
-public class App 
+public class MDN_DataObject 
 {
-    
-    /**
-     * The main method.
-     *
-     * @param args the arguments
-     */
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+	
+	/** The map. */
+	private Map<String, String> map = new HashMap<String, String>();
+	
+	/**
+	 * Adds the entry.
+	 *
+	 * @param strKey the str key
+	 * @param strValue the str value
+	 */
+	public void addEntry(String strKey, String strValue)
+	{
+		map.put(strKey, strValue);
+	}
+	
+	/**
+	 * Gets the entry.
+	 *
+	 * @param strKey the str key
+	 * @return the entry
+	 */
+	public String getEntry(String strKey)
+	{
+		return map.get(strKey);
+	}
+	
+	/**
+	 * Gets the keys.
+	 *
+	 * @return the keys
+	 */
+	public List<String> getKeys()
+	{
+		List <String> oKeyList = new ArrayList<String>();
+		  for (Entry<String, String> entry : map.entrySet()) {
+		        oKeyList.add(entry.getKey());
+		    }
+		  return oKeyList;
+	}
 }

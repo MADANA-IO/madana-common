@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.common.utils;
+package de.madana.common.utils.handler;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -27,9 +27,9 @@ import java.util.List;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MD_KeyHandler.
+ * The Class KeyHandler.
  */
-public class MD_KeyHandler 
+public class KeyHandler 
 {
 
 	/** The key file. */
@@ -40,7 +40,7 @@ public class MD_KeyHandler
 	 *
 	 * @param file the file
 	 */
-	public MD_KeyHandler(File file) {
+	public KeyHandler(File file) {
 		fKeyFile=file;
 	}
 
@@ -51,9 +51,9 @@ public class MD_KeyHandler
 	 * @return the all keys
 	 * @since 10.05.2017
 	 */
-	public static List <MD_KeyHandler> getAllKeys()
+	public static List <KeyHandler> getAllKeys()
 	{
-		List <MD_KeyHandler> oConfigs = new ArrayList<MD_KeyHandler>();
+		List <KeyHandler> oConfigs = new ArrayList<KeyHandler>();
 		File fRootDir = new File ("./keys/");
 		File[] fConfigFiles = fRootDir.listFiles(new FilenameFilter() 
 		{
@@ -65,7 +65,7 @@ public class MD_KeyHandler
 		if(fConfigFiles!=null)
 		for(int i=0; i<fConfigFiles.length;i++)
 		{
-			oConfigs.add(new MD_KeyHandler(fConfigFiles[i]));
+			oConfigs.add(new KeyHandler(fConfigFiles[i]));
 		}
 		return oConfigs;
 	}

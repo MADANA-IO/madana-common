@@ -31,9 +31,9 @@ import org.apache.commons.net.util.Base64;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MDN_Password.
+ * The Class Password.
  */
-public class MDN_Password {
+public class Password {
     // The higher the number of iterations the more 
     // expensive computing the hash is for us and
     /** The Constant iterations. */

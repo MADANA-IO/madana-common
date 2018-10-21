@@ -18,7 +18,7 @@
  * @author:Jean-Fabian Wenisch
  * @contact:dev@madana.io
  ******************************************************************************/
-package de.madana.common.security;
+package de.madana.common.security.crypto;
 
 import java.io.File;
 import java.io.FileInputStream;
