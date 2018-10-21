@@ -32,10 +32,10 @@
 		</plugins>
 	</reporting>
 	<modules>
-		<module>MDN_Database</module>
-		<module>MDN_Datastructures</module>
-		<module>MDN_RestClient</module>
-		<module>MDN_Security</module>
-		<module>MDN_Utils</module>
+		<module>madana-common-database</module>
+		<module>madana-common-datastructures</module>
+		<module>madana-common-restclient</module>
+		<module>madana-common-security</module>
+		<module>madana-common-utils</module>
 	</modules>
 </project>
