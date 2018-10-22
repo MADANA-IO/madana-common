@@ -1,0 +1,15 @@
+[submodule "madana-common-utils"]
+	path = madana-common-utils
+	url = https://github.com/MADANA-IO/madana-common-utils.git
+[submodule "madana-common-datastructures"]
+	path = madana-common-datastructures
+	url = https://github.com/MADANA-IO/madana-common-datastructures.git
+[submodule "madana-common-database"]
+	path = madana-common-database
+	url = https://github.com/MADANA-IO/madana-common-database.git
+[submodule "madana-common-restclient"]
+	path = madana-common-restclient
+	url = https://github.com/MADANA-IO/madana-common-restclient.git
+[submodule "madana-common-security"]
+	path = madana-common-security
+	url = https://github.com/MADANA-IO/madana-common-security.git
