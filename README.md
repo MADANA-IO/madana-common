@@ -7,6 +7,8 @@ Apache Maven (https://maven.apache.org/)  is a software project management and c
 
 ## install
 
+git clone
+git submodule update --init --recursive
 mvn install
 
 
