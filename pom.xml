@@ -4,7 +4,7 @@
 
   <groupId>de.madana</groupId>
   <artifactId>madana-common</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>${bamboo.mcommon.version}</version>
   <packaging>pom</packaging>
 
   <name>madana-common</name>
