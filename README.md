@@ -26,6 +26,6 @@ The Restclient is an always up to data client which inherits all functionality t
 ### madana-common-security ![Build Status](https://intranet.madana.io/bamboo/plugins/servlet/wittified/build-status/MC-MCS)
 The security module inherits different functionality related to crypographic functions and related implementations
 
-### madana-common-utils https://intranet.madana.io/bamboo/plugins/servlet/wittified/build-status/MC-MCU
+### madana-common-utils ![Build Status](https://intranet.madana.io/bamboo/plugins/servlet/wittified/build-status/MC-MCU)
 Inherits miscellaneous functionality which don't fit into the other modules.
 
