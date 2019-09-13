@@ -1,18 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>de.madana</groupId>
-  <artifactId>madana-common</artifactId>
-  <version>${bamboo.mcommon.version}</version>
-  <packaging>pom</packaging>
+	<groupId>de.madana</groupId>
+	<artifactId>madana-common</artifactId>
+	<version>${bamboo.mcommon.version}</version>
+	<packaging>pom</packaging>
 
-  <name>madana-common</name>
-  <url>http://maven.apache.org</url>
+	<name>madana-common</name>
+	<url>https//www.madana.io</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<reporting>
 		<plugins>
 			<plugin>
@@ -32,10 +33,12 @@
 		</plugins>
 	</reporting>
 	<modules>
-		<module>madana-common-database</module>
+
 		<module>madana-common-datastructures</module>
-		<module>madana-common-restclient</module>
 		<module>madana-common-security</module>
 		<module>madana-common-utils</module>
+		<module>madana-common-database</module>
+		<module>madana-common-restclient</module>
+
 	</modules>
 </project>
