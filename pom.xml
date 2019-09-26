@@ -41,4 +41,11 @@
 		<module>madana-common-restclient</module>
 
 	</modules>
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub MADANA-IO Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/MADANA-IO/madana-common</url>
+		</repository>
+	</distributionManagement>
 </project>
